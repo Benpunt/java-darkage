@@ -83,13 +83,22 @@ public class Engine extends Application {
 
     public void loadScenery() {
 	Box b = new Box(Vector3f.ZERO, 1, 1, 1);
-	Geometry geom = new Geometry("Box", b);
+	Box c = new Box(Vector3f.ZERO, 3, 2, 5);
+	Geometry geom = new Geometry("Box", b), geoc = new Geometry("Boxc", c);
+	
 
 	Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
 	mat.setColor("Color", ColorRGBA.Blue);
 	geom.setMaterial(mat);
-
+	
+	Material sad = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+	sad.setColor("Color", ColorRGBA.Red);
+	
+	geoc.setMaterial(sad);
+	
+	geoc.move(2, 3, 2);
 	_rootNode.attachChild(geom);
+	_rootNode.attachChild(geoc);
     }
 
     @Override
