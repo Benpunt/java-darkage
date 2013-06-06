@@ -6,12 +6,15 @@ package GUI.Engine;
 
 import GUI.Engine.State.CameraState;
 import GUI.Engine.State.Stats;
+import GUI.ShortcutKey;
+import GUI.ShortcutKeyListener;
 import com.jme3.app.Application;
 import com.jme3.app.DebugKeysAppState;
 import com.jme3.app.FlyCamAppState;
 import com.jme3.app.StatsAppState;
 import com.jme3.app.state.AppState;
 import com.jme3.font.BitmapFont;
+import com.jme3.input.KeyInput;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -22,6 +25,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.shape.Box;
 import com.jme3.system.AppSettings;
+import java.util.ArrayList;
 
 /**
  * This class contains the logic to start up the 3d engine
@@ -29,12 +33,12 @@ import com.jme3.system.AppSettings;
  * @author jappie
  */
 public class Engine extends Application {
-
-    private Camera Camera;
-    private Node rootNode = new Node("Root Node");
-    private Node guiNode = new Node("Gui Node");
-    private BitmapFont guiFont;
-
+    
+    private Camera _camera;
+    private Node _rootNode = new Node("Root Node");
+    private Node _guiNode = new Node("Gui Node");
+    private BitmapFont _guiFont;
+    private ShortcutKey _escape = new ShortcutKey("Escape", KeyInput.KEY_ESCAPE);
     public Engine() {
 	this(new Stats(), new CameraState(), new DebugKeysAppState());
     }
@@ -54,23 +58,25 @@ public class Engine extends Application {
     @Override
     public void initialize() {
 	super.initialize();
-
+	
+	ArrayList<ShortcutKey> keys = new ArrayList<ShortcutKey>();
+	keys.add(_escape);
+	ShortcutKeyListener keyListener = new ShortcutKeyListener(keys);
+	keyListener.bindKeys(inputManager);
 
 	getGuiNode().setQueueBucket(Bucket.Gui);
 	getGuiNode().setCullHint(CullHint.Never);
-	viewPort.attachScene(rootNode);
+	viewPort.attachScene(_rootNode);
 	guiViewPort.attachScene(getGuiNode());
-
-	cam.setFrustumPerspective(150f, (float) cam.getWidth() / cam.getHeight(), 1f, 1000f);
-	Camera = new Camera(cam);
-	Camera.setMoveSpeed(10f);
+	_camera = new Camera(cam);
+	_camera.setMoveSpeed(10f);
 
 	if (stateManager.getState(CameraState.class) != null) {
-	    stateManager.getState(CameraState.class).setCamera(Camera);
+	    stateManager.getState(CameraState.class).setCamera(_camera);
 	}
 	if (stateManager.getState(Stats.class) != null) {
 
-	    stateManager.getState(Stats.class).setFont(guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt"));
+	    stateManager.getState(Stats.class).setFont(_guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt"));
 	}
 	loadScenery();
     }
@@ -83,7 +89,7 @@ public class Engine extends Application {
 	mat.setColor("Color", ColorRGBA.Blue);
 	geom.setMaterial(mat);
 
-	rootNode.attachChild(geom);
+	_rootNode.attachChild(geom);
     }
 
     @Override
@@ -107,9 +113,9 @@ public class Engine extends Application {
 	// simple update and root node
 	update(tpf);
 
-	rootNode.updateLogicalState(tpf);
+	_rootNode.updateLogicalState(tpf);
 	getGuiNode().updateLogicalState(tpf);
-	rootNode.updateGeometricState();
+	_rootNode.updateGeometricState();
 	getGuiNode().updateGeometricState();
 
 	// render states
@@ -120,6 +126,9 @@ public class Engine extends Application {
     }
 
     public void update(float tpf) {
+	if(_escape.isPressed()){
+	    stop();
+	}
     }
 
     public void render(RenderManager rm) {
@@ -129,14 +138,14 @@ public class Engine extends Application {
      * @return the guiFont
      */
     public BitmapFont getGuiFont() {
-	return guiFont;
+	return _guiFont;
     }
     
     /**
      * @return the guiNode
      */
     public Node getGuiNode() {
-	return guiNode;
+	return _guiNode;
     }
 
 }
