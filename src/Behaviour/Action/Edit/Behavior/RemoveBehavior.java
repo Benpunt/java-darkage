@@ -4,14 +4,13 @@
  */
 package Behaviour.Action.Edit.Behavior;
 
-import Behaviour.Action.IAction;
 import Behaviour.IBehavior;
 
 /**
  *
  * @author jappie
  */
-public class RemoveBehavior extends BehaviorEdit implements IAction{
+public class RemoveBehavior extends BehaviorEdit{
     
     public RemoveBehavior(IBehavior from, IBehavior target){
 	super(from, target);

@@ -5,6 +5,7 @@
 package Behaviour.Action.Edit.Condition;
 
 import Behaviour.Action.Edit.Edit;
+import Behaviour.Action.IAction;
 import Behaviour.Condition.ICondition;
 import Behaviour.IBehavior;
 
@@ -12,7 +13,7 @@ import Behaviour.IBehavior;
  *
  * @author jappie
  */
-public abstract class ConditionEdit extends Edit {
+public abstract class ConditionEdit extends Edit  implements IAction {
     private ICondition _target;
     protected ConditionEdit(IBehavior from, ICondition target){
 	super(from);

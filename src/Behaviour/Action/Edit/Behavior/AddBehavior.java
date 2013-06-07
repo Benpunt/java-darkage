@@ -4,14 +4,13 @@
  */
 package Behaviour.Action.Edit.Behavior;
 
-import Behaviour.Action.IAction;
 import Behaviour.IBehavior;
 
 /**
  *
  * @author jappie
  */
-public class AddBehavior extends BehaviorEdit implements IAction{
+public class AddBehavior extends BehaviorEdit{
     public AddBehavior(IBehavior from, IBehavior target){
 	super(from, target);
     }

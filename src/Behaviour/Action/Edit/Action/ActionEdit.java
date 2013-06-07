@@ -12,7 +12,7 @@ import Behaviour.IBehavior;
  *
  * @author jappie
  */
-public abstract class ActionEdit extends Edit{
+public abstract class ActionEdit extends Edit implements IAction{
     private IAction _target;
     
     protected ActionEdit(IBehavior from, IAction target){

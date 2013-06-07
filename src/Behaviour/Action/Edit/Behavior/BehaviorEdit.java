@@ -5,6 +5,7 @@
 package Behaviour.Action.Edit.Behavior;
 
 import Behaviour.Action.Edit.Edit;
+import Behaviour.Action.IAction;
 import Behaviour.IBehavior;
 
 /**
@@ -12,7 +13,7 @@ import Behaviour.IBehavior;
  * removebehavior & add behavior
  * @author jappie
  */
-public abstract class BehaviorEdit extends Edit {
+public abstract class BehaviorEdit extends Edit  implements IAction {
     private IBehavior	_target,
 			_from;
     protected BehaviorEdit(IBehavior from, IBehavior target){

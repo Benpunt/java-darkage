@@ -11,7 +11,7 @@ import Behaviour.IBehavior;
  * @see RemoveAction
  * @author jappie
  */
-public class ActionAddendummer extends ActionEdit implements IAction{
+public class ActionAddendummer extends ActionEdit{
     
     public ActionAddendummer(IBehavior from, IAction target){
 	super(from, target);
