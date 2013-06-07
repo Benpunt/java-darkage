@@ -78,12 +78,13 @@ public class Engine extends Application {
 	}
 	loadScenery();
     }
-
+    Geometry geom;
     public void loadScenery() {
 	Box b = new Box(Vector3f.ZERO, 1, 1, 1);
 	Box c = new Box(Vector3f.ZERO, 3, 2, 5);
-	Geometry geom = new Geometry("Box", b), geoc = new Geometry("Boxc", c);
 	
+	geom = new Geometry("Box", b);
+	Geometry geoc = new Geometry("Boxc", c);
 
 	Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
 	mat.setColor("Color", ColorRGBA.Blue);
@@ -131,8 +132,10 @@ public class Engine extends Application {
 	render(renderManager);
 	stateManager.postRender();
     }
-
+    float sum;
     public void update(float tpf) {
+	sum += tpf;
+	geom.move(0.01f, (float)Math.sin(sum)/10, 0f);
     }
 
     public void render(RenderManager rm) {
