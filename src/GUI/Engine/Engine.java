@@ -7,10 +7,8 @@ package GUI.Engine;
 import GUI.Engine.State.CameraState;
 import GUI.Engine.State.Stats;
 import GUI.EscapeKey;
-import GUI.ShortcutKey;
 import GUI.ShortcutKeyListener;
 import com.jme3.app.Application;
-import com.jme3.app.DebugKeysAppState;
 import com.jme3.app.state.AppState;
 import com.jme3.font.BitmapFont;
 import com.jme3.input.KeyInput;
@@ -24,7 +22,6 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.shape.Box;
 import com.jme3.system.AppSettings;
-import java.util.ArrayList;
 
 /**
  * This class contains the logic to start up the 3d engine
@@ -38,7 +35,7 @@ public class Engine extends Application {
     private Node _guiNode = new Node("Gui Node");
     private BitmapFont _guiFont;
     public Engine() {
-	this(new Stats(), new CameraState(), new DebugKeysAppState());
+	this(new Stats(), new CameraState());
     }
 
     public Engine(AppState... initialStates) {
