@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Scene.Shapes;
+package Scene.Shape;
 
 import Exception.CompositionException;
 import com.jme3.material.Material;

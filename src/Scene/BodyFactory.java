@@ -4,8 +4,8 @@
  */
 package Scene;
 
-import Scene.Shapes.Shape;
-import Scene.Shapes.ShapeFactory;
+import Scene.Shape.Shape;
+import Scene.Shape.ShapeFactory;
 import com.jme3.scene.Node;
 
 /**

@@ -6,7 +6,7 @@ package Engine;
 
 import Scene.Body;
 import Scene.BodyFactory;
-import Scene.Shapes.ShapeFactory;
+import Scene.Shape.ShapeFactory;
 import UI.EscapeKey;
 import UI.ShortcutKeyListener;
 import com.jme3.input.KeyInput;

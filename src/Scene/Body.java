@@ -4,7 +4,7 @@
  */
 package Scene;
 
-import Scene.Shapes.Shape;
+import Scene.Shape.Shape;
 import com.jme3.scene.Node;
 import java.util.ArrayList;
 import java.util.List;
