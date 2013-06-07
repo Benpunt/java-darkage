@@ -52,15 +52,15 @@ public class Behavior implements IBehavior{
 	_behaviors.remove(behavior);
     }
 
-    public void Execute() {
+    public void execute() {
 	for(IBehavior behavior : _behaviors){
-	    behavior.Execute();
+	    behavior.execute();
 	}
 	if(!isSufficient()){
 	    return;
 	}
 	for(IAction action : _actions){
-	    action.Execute();
+	    action.execute();
 	}
     }
 

@@ -9,5 +9,5 @@ package Behaviour.Action;
  * @author jappie
  */
 public interface IAction {
-    void Execute();
+    void execute();
 }
