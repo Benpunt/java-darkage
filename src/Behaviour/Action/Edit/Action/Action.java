@@ -5,7 +5,6 @@
 package Behaviour.Action.Edit.Action;
 
 import Behaviour.Action.IAction;
-import Behaviour.Behavior;
 import Behaviour.IBehavior;
 
 /**
