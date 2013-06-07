@@ -12,7 +12,7 @@ import Behaviour.IBehavior;
  * @see RemoveAction
  * @author jappie
  */
-public class ActionRemover extends Action implements IAction{
+public class ActionRemover extends ActionEdit implements IAction{
 
     public ActionRemover(IBehavior from, IAction target){
 	super(from, target);

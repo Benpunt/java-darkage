@@ -11,7 +11,7 @@ import Behaviour.IBehavior;
  *
  * @author jappie
  */
-public class RemoveBehavior extends Behavior implements IAction{
+public class RemoveBehavior extends BehaviorEdit implements IAction{
     
     public RemoveBehavior(IBehavior from, IBehavior target){
 	super(from, target);

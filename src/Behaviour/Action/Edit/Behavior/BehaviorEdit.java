@@ -4,6 +4,7 @@
  */
 package Behaviour.Action.Edit.Behavior;
 
+import Behaviour.Action.Edit.Edit;
 import Behaviour.IBehavior;
 
 /**
@@ -11,11 +12,11 @@ import Behaviour.IBehavior;
  * removebehavior & add behavior
  * @author jappie
  */
-public abstract class Behavior {
+public abstract class BehaviorEdit extends Edit {
     private IBehavior	_target,
 			_from;
-    protected Behavior(IBehavior from, IBehavior target){
-	_from = from;
+    protected BehaviorEdit(IBehavior from, IBehavior target){
+	super(from);
 	_target = target;
     }
 
@@ -24,12 +25,5 @@ public abstract class Behavior {
      */
     protected IBehavior getTarget() {
 	return _target;
-    }
-
-    /**
-     * @return the _from
-     */
-    protected IBehavior getFrom() {
-	return _from;
     }
 }

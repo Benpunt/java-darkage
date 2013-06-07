@@ -4,6 +4,7 @@
  */
 package Behaviour.Action.Edit.Action;
 
+import Behaviour.Action.Edit.Edit;
 import Behaviour.Action.IAction;
 import Behaviour.IBehavior;
 
@@ -11,26 +12,17 @@ import Behaviour.IBehavior;
  *
  * @author jappie
  */
-public abstract class Action {
-    private IBehavior _from;
+public abstract class ActionEdit extends Edit{
     private IAction _target;
     
-    protected Action(IBehavior from, IAction target){
-	_from = from;
+    protected ActionEdit(IBehavior from, IAction target){
+	super(from);
 	_target = target;
     }
-
-    /**
-     * @return the _from
-     */
-    public IBehavior getFrom() {
-	return _from;
-    }
-
     /**
      * @return the _target
      */
-    public IAction getTarget() {
+    protected IAction getTarget() {
 	return _target;
     }
 }
