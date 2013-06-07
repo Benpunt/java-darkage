@@ -2,6 +2,7 @@ package Test.Behaviour;
 
 import Behaviour.Action.IAction;
 import Behaviour.Behavior;
+import Behaviour.Behavior;
 import Behaviour.Condition.ICondition;
 import Mock.ActionMock;
 import Mock.ConditionMock;
