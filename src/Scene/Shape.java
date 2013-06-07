@@ -13,6 +13,11 @@ import com.jme3.scene.Geometry;
  */
 public abstract class Shape {
     private Geometry _shape;
+    
+    public Shape(Geometry shape){
+	checkShape(shape);
+	_shape = shape;
+    }
 
     /**
      * @return the _shape
@@ -25,7 +30,11 @@ public abstract class Shape {
      * @param shape the _shape to set
      */
     public void setShape(Geometry shape) {
-	CompositionException.Check(shape, "shape", "geometry");
+	checkShape(shape);
 	this._shape = shape;
+    }
+    
+    private void checkShape(Geometry shape){
+	CompositionException.Check(shape, "shape", "geometry");
     }
 }

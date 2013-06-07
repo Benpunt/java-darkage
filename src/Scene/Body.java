@@ -6,6 +6,7 @@ package Scene;
 
 import Exception.CompositionException;
 import com.jme3.scene.Node;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,12 @@ public abstract class Body {
     
     private Node _node;
     private List<Shape> _shapes;
+    
+    public Body(Node node){
+	checkNode(node);
+	_node = node;
+	_shapes = new ArrayList<Shape>();
+    }
 
     /**
      * @return the _node
@@ -30,7 +37,7 @@ public abstract class Body {
      * @param node the _node to set
      */
     public void setNode(Node node) {
-	CompositionException.Check(node, "body", "node");
+	checkNode(node);
 	for(Shape shape : _shapes){
 	    _node.detachChild(shape.getShape());
 	}
@@ -40,6 +47,12 @@ public abstract class Body {
 	}
     }
     
+    public void add(Shape shape){
+	_shapes.add(shape);
+    }
     
+    private void checkNode(Node node){
+	CompositionException.Check(node, "body", "node");
+    }
     
 }
