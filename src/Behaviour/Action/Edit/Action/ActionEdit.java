@@ -25,4 +25,19 @@ public abstract class ActionEdit extends Edit implements IAction{
     protected IAction getTarget() {
 	return _target;
     }
+    
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof ActionEdit)){
+	    return false;
+	}
+	return to.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+	int hash = super.hashCode();
+	hash = 37 * hash + (this._target != null ? this._target.hashCode() : 0);
+	return hash;
+    }
 }

@@ -26,4 +26,19 @@ public abstract class ConditionEdit extends Edit  implements IAction {
     protected ICondition getTarget() {
 	return _target;
     }
+    
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof ConditionEdit)){
+	    return false;
+	}
+	return to.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+	int hash = super.hashCode();
+	hash = 97 * hash + (this._target != null ? this._target.hashCode() : 0);
+	return hash;
+    }
 }

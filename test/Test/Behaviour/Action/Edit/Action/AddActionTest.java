@@ -1,5 +1,6 @@
 package Test.Behaviour.Action.Edit.Action;
 
+import Behaviour.Action.Edit.Action.ActionAddendummer;
 import Behaviour.Action.Edit.Action.AddAction;
 import Behaviour.Behavior;
 import Behaviour.IBehavior;
@@ -29,8 +30,10 @@ public class AddActionTest  extends BehaviortestMocks {
 	AddAction instance = new AddAction(_behaviorMock, _actionMock);
 	instance.execute();
 	
+	// seems like intergration but only used for comparision of the result.
+	// (which uses equals, but you have to draw the line somwhere).
 	IBehavior excpected = new Behavior();
-	excpected.add(_actionMock);
+	excpected.add(new ActionAddendummer(_behaviorMock, _actionMock));
 	
 	Assert.assertEquals(excpected, _behaviorMock._addedBehavior);
 	

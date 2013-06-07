@@ -16,5 +16,13 @@ public class ActionMock implements IAction{
     public void execute() {
 	executed = onExection;
     }
-    
+    @Override
+    public boolean equals(Object to){
+	return (to instanceof ActionMock);
+    }
+
+    @Override
+    public int hashCode() {
+	return 1;
+    }
 }
