@@ -23,8 +23,9 @@ public class ActionAddendummerTest extends BehaviortestMocks{
 
     @Test
     public void testExecute() {
-	ActionAddendummer target = new ActionAddendummer(_behaviorMock, _actionMock);
-	target.execute();
+	System.out.println("Execute happy path.");
+	ActionAddendummer instance = new ActionAddendummer(_behaviorMock, _actionMock);
+	instance.execute();
 	Assert.assertEquals(_actionMock, _behaviorMock._addedAction);
     }
 

@@ -23,4 +23,19 @@ public abstract class Edit {
     protected IBehavior getFrom() {
 	return _from;
     }
+
+    @Override
+    public int hashCode() {
+	int hash = 7;
+	hash = 37 * hash + (this._from != null ? this._from.hashCode() : 0);
+	return hash;
+    }
+    
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof Edit)){
+	    return false;
+	}
+	return to.hashCode() == this.hashCode();
+    }
 }

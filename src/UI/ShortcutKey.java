@@ -35,6 +35,9 @@ public abstract class ShortcutKey implements IShortcutKey {
     
     @Override
     public boolean equals(Object to){
+	if(!(to instanceof ShortcutKey)){
+	    return false;
+	}
 	return this.hashCode() == to.hashCode();
 	
     }

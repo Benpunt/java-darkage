@@ -23,6 +23,9 @@ public class ShortcutKeyListener implements ActionListener{
     
     @Override
     public boolean equals(Object to){
+	if(!(to instanceof ShortcutKeyListener)){
+	    return false;
+	}
 	return (this.hashCode() == to.hashCode());
     }
 

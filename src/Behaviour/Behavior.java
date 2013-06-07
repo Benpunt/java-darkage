@@ -72,5 +72,22 @@ public class Behavior implements IBehavior{
 	}
 	return true;
     }
+
+    @Override
+    public int hashCode() {
+	int hash = 13;
+	hash = 79 * hash + (this._actions != null ? this._actions.hashCode() : 0);
+	hash = 2 * hash + (this._conditions != null ? this._conditions.hashCode() : 0);
+	hash = 42 * hash + (this._behaviors != null ? this._behaviors.hashCode() : 0);
+	return hash;
+    }
     
+    
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof Behavior)){
+	    return false;
+	}
+	return to.hashCode() == this.hashCode();
+    }
 }

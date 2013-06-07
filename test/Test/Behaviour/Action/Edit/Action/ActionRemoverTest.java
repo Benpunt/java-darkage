@@ -23,8 +23,9 @@ public class ActionRemoverTest  extends BehaviortestMocks{
 
     @Test
     public void testExecute() {
-	ActionRemover target = new ActionRemover(_behaviorMock, _actionMock);
-	target.execute();
+	System.out.println("Execute happy path.");
+	ActionRemover instance = new ActionRemover(_behaviorMock, _actionMock);
+	instance.execute();
 	Assert.assertEquals(_actionMock, _behaviorMock._removedAction);
     }
 
