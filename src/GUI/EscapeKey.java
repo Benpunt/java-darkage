@@ -8,6 +8,8 @@ import Engine.Engine;
 
 /**
  *
+ *  handles what happends if the escape button is pressed
+ * 
  * @author jappie
  */
 public class EscapeKey extends ShortcutKey {

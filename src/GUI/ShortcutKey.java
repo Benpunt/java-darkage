@@ -8,6 +8,10 @@ import com.jme3.input.controls.KeyTrigger;
 
 /**
  *
+ * forces it implementations to have a press action
+ * also forces it implementations to have a keytrigger and a name
+ * so shortcutkeylistener can work with them
+ * 
  * @author jappie
  */
 public abstract class ShortcutKey {

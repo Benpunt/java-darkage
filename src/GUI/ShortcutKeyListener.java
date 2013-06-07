@@ -10,12 +10,8 @@ import java.util.ArrayList;
 
 /**
  *
- * listens for key presses & sets the key their pressed value on true
- * so that other parts of the aplication can handle the rest.
- * 
- * TODO: make one listener handle one keypress, so the looping wont be necisary anymore.
- * TODO: make the shortcutkey abstract & its implementations handle the execution of the press
- * instead of remembering it & let some other part do the dirty work.
+ * listens for key presses & executes the code that is set in an implementation of shortcutkey
+ * also handles the creation of the shortcutkeylistener and the binding to the input managers
  * 
  * @author jappie
  */
