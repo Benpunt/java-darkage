@@ -10,10 +10,9 @@ import com.jme3.input.controls.KeyTrigger;
  *
  * @author jappie
  */
-public class ShortcutKey {
+public abstract class ShortcutKey {
     private KeyTrigger _trigger;
     private String _name;
-    private boolean _pressed;
     
     public ShortcutKey(String name, int key){
 	_name = name;
@@ -26,23 +25,9 @@ public class ShortcutKey {
     public String getName() {
 	return _name;
     }
-
-    /**
-     * @return the _pressed
-     */
-    public boolean isPressed() {
-	boolean value = _pressed;
-	_pressed = false;
-	return value;
-    }
-
-    /**
-     * @param pressed the _pressed to set
-     */
-    public void setPressed(boolean pressed) {
-	_pressed = pressed;
-    }
-
+    
+    public abstract void press();
+    
     /**
      * @return the _trigger
      */

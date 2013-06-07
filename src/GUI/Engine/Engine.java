@@ -6,12 +6,11 @@ package GUI.Engine;
 
 import GUI.Engine.State.CameraState;
 import GUI.Engine.State.Stats;
+import GUI.EscapeKey;
 import GUI.ShortcutKey;
 import GUI.ShortcutKeyListener;
 import com.jme3.app.Application;
 import com.jme3.app.DebugKeysAppState;
-import com.jme3.app.FlyCamAppState;
-import com.jme3.app.StatsAppState;
 import com.jme3.app.state.AppState;
 import com.jme3.font.BitmapFont;
 import com.jme3.input.KeyInput;
@@ -38,7 +37,6 @@ public class Engine extends Application {
     private Node _rootNode = new Node("Root Node");
     private Node _guiNode = new Node("Gui Node");
     private BitmapFont _guiFont;
-    private ShortcutKey _escape = new ShortcutKey("Escape", KeyInput.KEY_ESCAPE);
     public Engine() {
 	this(new Stats(), new CameraState(), new DebugKeysAppState());
     }
@@ -58,11 +56,14 @@ public class Engine extends Application {
     @Override
     public void initialize() {
 	super.initialize();
-	
-	ArrayList<ShortcutKey> keys = new ArrayList<ShortcutKey>();
-	keys.add(_escape);
-	ShortcutKeyListener keyListener = new ShortcutKeyListener(keys);
-	keyListener.bindKeys(inputManager);
+	ShortcutKeyListener.createAndBind(
+	    inputManager, 
+	    new EscapeKey(
+		"Escape", 
+		KeyInput.KEY_ESCAPE, 
+		this
+	    )
+	);
 
 	getGuiNode().setQueueBucket(Bucket.Gui);
 	getGuiNode().setCullHint(CullHint.Never);
@@ -135,9 +136,6 @@ public class Engine extends Application {
     }
 
     public void update(float tpf) {
-	if(_escape.isPressed()){
-	    stop();
-	}
     }
 
     public void render(RenderManager rm) {

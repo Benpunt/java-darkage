@@ -20,9 +20,9 @@ import java.util.ArrayList;
  * @author jappie
  */
 public class ShortcutKeyListener implements ActionListener{
-    private ArrayList<ShortcutKey> _keys;
-    public ShortcutKeyListener(ArrayList<ShortcutKey> keys){
-	_keys = keys;
+    private ShortcutKey _key;
+    private ShortcutKeyListener(ShortcutKey key){
+	_key = key;
     }
 
     /**
@@ -32,25 +32,34 @@ public class ShortcutKeyListener implements ActionListener{
      * @param tpf 
      */
     public void onAction(String name, boolean isPressed, float tpf) {
-	for(ShortcutKey key : _keys){
-	    if(key.getName().equals(name)){
-		key.setPressed(isPressed);
-	    }
+	if(_key.getName().equals(name)){
+	    _key.press();
 	}
+	
     }
     
     /**
-     * binds the keys in this listener to the manager.
-     * Also starts listening
+     * binds keys to the manager.
+     * for every key a new listener is created.
+     * This is faster in execution but slower in startup
      * @param manager 
      */
-    public void bindKeys(InputManager manager){
-	
-	for(ShortcutKey key : _keys){
-	    manager.addMapping(key.getName(), key.getTrigger());
-	    manager.addListener(this,key.getName());
+    public static void createAndBind(InputManager manager, ArrayList<ShortcutKey> keys){
+	for(ShortcutKey key : keys){
+	    createAndBind(manager, key);
 	}
 	
+    }
+    
+    /**
+     * creates and binds a shortcutKeyListener to the input manager
+     * the key listener will listen to the given key
+     * @param manager
+     * @param key 
+     */
+    public static void createAndBind(InputManager manager, ShortcutKey key){
+	manager.addMapping(key.getName(), key.getTrigger());
+	manager.addListener(new ShortcutKeyListener(key), key.getName());	
     }
     
 }
