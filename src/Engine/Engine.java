@@ -4,8 +4,8 @@
  */
 package Engine;
 
-import GUI.EscapeKey;
-import GUI.ShortcutKeyListener;
+import UI.EscapeKey;
+import UI.ShortcutKeyListener;
 import com.jme3.input.KeyInput;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;

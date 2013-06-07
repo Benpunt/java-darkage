@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package UI;
 
 import com.jme3.input.InputManager;
 import com.jme3.input.controls.ActionListener;
@@ -28,6 +28,9 @@ public class ShortcutKeyListener implements ActionListener{
      * @param tpf 
      */
     public void onAction(String name, boolean isPressed, float tpf) {
+	if(!isPressed){
+	    return;
+	}
 	if(_key.getName().equals(name)){
 	    _key.press();
 	}
