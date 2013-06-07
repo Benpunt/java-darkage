@@ -32,4 +32,18 @@ public abstract class ShortcutKey implements IShortcutKey {
     public KeyTrigger getTrigger() {
 	return _trigger;
     }
+    
+    @Override
+    public boolean equals(Object to){
+	return this.hashCode() == to.hashCode();
+	
+    }
+
+    @Override
+    public int hashCode() {
+	int hash = 2;
+	hash = 17 * hash + (this._trigger != null ? this._trigger.hashCode() : 0);
+	hash += 10 * hash + (this._name != null ? this._name.hashCode() : 0);
+	return hash;
+    }
 }

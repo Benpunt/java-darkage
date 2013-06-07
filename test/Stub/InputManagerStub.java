@@ -8,6 +8,7 @@ import com.jme3.cursors.plugins.JmeCursor;
 import com.jme3.input.InputManager;
 import com.jme3.input.Joystick;
 import com.jme3.input.RawInputListener;
+import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.InputListener;
 import com.jme3.input.controls.Trigger;
 import com.jme3.input.event.InputEvent;
@@ -28,9 +29,10 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * @author jappie
  */
 public class InputManagerStub extends InputManager {
-    
+    public String[] _keyNames;
+    public InputListener _listener;
     public InputManagerStub(){
-	super(null, null, null, null);
+	super(new MouseInputStub(), new KeyInputStub(), null, null);
     }
     @Override
     public void beginInput() {
@@ -79,6 +81,8 @@ public class InputManagerStub extends InputManager {
 
     @Override
     public void addListener(InputListener listener, String... mappingNames) {
+	_listener = listener;
+	_keyNames = mappingNames;
     }
     @Override
     public void removeListener(InputListener listener) {

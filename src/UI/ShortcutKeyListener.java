@@ -20,6 +20,18 @@ public class ShortcutKeyListener implements ActionListener{
     private ShortcutKeyListener(IShortcutKey key){
 	_key = key;
     }
+    
+    @Override
+    public boolean equals(Object to){
+	return (this.hashCode() == to.hashCode());
+    }
+
+    @Override
+    public int hashCode() {
+	int hash = 7;
+	hash = 23 * hash + (this._key != null ? this._key.hashCode() : 0);
+	return hash;
+    }
 
     /**
      * sets the pressed keys on true

@@ -1,10 +1,12 @@
 package UI;
 
 import Mock.ShortcutKeyMock;
+import Stub.InputManagerStub;
 import com.jme3.input.InputManager;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.List;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,8 +20,9 @@ import static org.junit.Assert.*;
  * @author jappie
  */
 public class ShortcutKeyListenerTest {
-    private ShortcutKeyListener instance;
-    private ShortcutKeyMock mock;
+    private ShortcutKeyListener _listenerInstance;
+    private ShortcutKeyMock _shortcutKeyMock;
+    private InputManagerStub _inputManagerStub;
     public ShortcutKeyListenerTest() {
     }
 
@@ -39,12 +42,12 @@ public class ShortcutKeyListenerTest {
 		IllegalAccessException, 
 		IllegalArgumentException, 
 		InvocationTargetException {
-	mock = new ShortcutKeyMock();
-	
-	Constructor<ShortcutKeyListener> c = ShortcutKeyListener.class.getDeclaredConstructor(ShortcutKey.class);
+	_shortcutKeyMock = new ShortcutKeyMock();
+	_inputManagerStub = new InputManagerStub();
+	Constructor<ShortcutKeyListener> c = ShortcutKeyListener.class.getDeclaredConstructor(IShortcutKey.class);
 	c.setAccessible(true);
 	
-	instance = c.newInstance(mock);
+	_listenerInstance = c.newInstance(_shortcutKeyMock);
 	System.out.print("ShortcutKeyListenerTest test: ");
     }
 
@@ -64,8 +67,8 @@ public class ShortcutKeyListenerTest {
 	float tpf = 0.0F;
 	String name = ShortcutKeyMock.MOCK_NAME;
 	
-	instance.onAction(name, isPressed, tpf);
-	Assert.assertTrue(mock.pressed);
+	_listenerInstance.onAction(name, isPressed, tpf);
+	Assert.assertTrue(_shortcutKeyMock.pressed);
     }
         /**
      * Test of onAction method, of class ShortcutKeyListener.
@@ -73,14 +76,14 @@ public class ShortcutKeyListenerTest {
     @Test
     public void testOnActionNotPressed(){
 	
-	System.out.println("onAction pressed");
+	System.out.println("onAction not pressed");
 	
 	boolean isPressed = false;
 	float tpf = 0.0F;
 	String name = ShortcutKeyMock.MOCK_NAME;
 	
-	instance.onAction(name, isPressed, tpf);
-	Assert.assertFalse(mock.pressed);
+	_listenerInstance.onAction(name, isPressed, tpf);
+	Assert.assertFalse(_shortcutKeyMock.pressed);
     }
         /**
      * Test of onAction method, of class ShortcutKeyListener.
@@ -88,40 +91,39 @@ public class ShortcutKeyListenerTest {
     @Test
     public void testOnActionWrongKey(){
 	
-	System.out.println("onAction pressed");
+	System.out.println("onAction wrong key");
 	
 	boolean isPressed = true;
 	float tpf = 0.0F;
 	String name = ShortcutKeyMock.MOCK_NAME + "hupple fruppel key";
 	
-	instance.onAction(name, isPressed, tpf);
-	Assert.assertFalse(mock.pressed);
+	_listenerInstance.onAction(name, isPressed, tpf);
+	Assert.assertFalse(_shortcutKeyMock.pressed);
     }
 
     /**
      * Test of createAndBind method, of class ShortcutKeyListener.
      */
     @Test
-    public void testCreateAndBind_InputManager_ArrayList() {
+    public void testCreateAndBind_InputManager_ShortcutKey_HappyPath() {
 	System.out.println("createAndBind");
-	InputManager manager = null;
-	ArrayList<ShortcutKey> keys = null;
-	ShortcutKeyListener.createAndBind(manager, keys);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
+	
+	ShortcutKeyListener.createAndBind(_inputManagerStub, _shortcutKeyMock);
+	
+	Assert.assertEquals(_listenerInstance, _inputManagerStub._listener);
     }
-
-    /**
+    
+        /**
      * Test of createAndBind method, of class ShortcutKeyListener.
      */
     @Test
-    public void testCreateAndBind_InputManager_ShortcutKey() {
+    public void testCreateAndBind_InputManager_ShortcutKey_names() {
 	System.out.println("createAndBind");
-	InputManager manager = null;
-	ShortcutKey key = null;
-	ShortcutKeyListener.createAndBind(manager, key);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
+	
+	ShortcutKeyListener.createAndBind(_inputManagerStub, _shortcutKeyMock);
+	
+	Assert.assertEquals(ShortcutKeyMock.MOCK_NAME, _inputManagerStub._keyNames[0]);
     }
+
 
 }
