@@ -24,6 +24,7 @@ public class Body extends ForceBody{
         
     public void add(Shape shape){
 	_shapes.add(shape);
+	getNode().attachChild(shape.getShape());
     }
     
     /**
