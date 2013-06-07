@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import GUI.Engine.Engine;
+import Engine.Engine;
 
 /**
  *

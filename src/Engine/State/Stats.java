@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.Engine.State;
+package Engine.State;
 
-import GUI.Engine.Engine;
+import Engine.Engine;
 import com.jme3.app.Application;
 import com.jme3.app.StatsView;
 import com.jme3.app.state.AbstractAppState;
