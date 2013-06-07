@@ -13,7 +13,7 @@ import Behaviour.Action.IAction;
 public class ActionMock implements IAction{
     public boolean onExection = true;
     public boolean executed = false;
-    public void Execute() {
+    public void execute() {
 	executed = onExection;
     }
     

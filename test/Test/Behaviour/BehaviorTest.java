@@ -3,8 +3,11 @@ package Test.Behaviour;
 import Behaviour.Action.IAction;
 import Behaviour.Behavior;
 import Behaviour.Condition.ICondition;
+import Mock.ActionMock;
+import Mock.ConditionMock;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,7 +18,9 @@ import static org.junit.Assert.*;
  * @author jappie
  */
 public class BehaviorTest {
-
+    Behavior instance;
+    ActionMock actionMock;
+    ConditionMock conditionMock;
     public BehaviorTest() {
     }
 
@@ -29,7 +34,12 @@ public class BehaviorTest {
 
     @Before
     public void setUp() {
+	instance = new Behavior();
 	System.out.print("BehaviorTest test: ");
+	actionMock = new ActionMock();
+	conditionMock = new ConditionMock();
+	instance.add(actionMock);
+	instance.add(conditionMock);
     }
 
     @After
@@ -39,12 +49,21 @@ public class BehaviorTest {
      * Test of Execute method, of class Behavior.
      */
     @Test
-    public void testExecute() {
-	System.out.println("Execute");
-	Behavior instance = new Behavior();
-	instance.Execute();
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
+    public void testExecuteHappyPath() {
+	System.out.println("Execute happy path");
+	
+	instance.execute();
+	Assert.assertTrue(actionMock.executed);
+    }
+    /**
+     * Test of Execute method, of class Behavior.
+     */
+    @Test
+    public void testExecuteHappyPathNot() {
+	System.out.println("Execute not happy path");
+	conditionMock.suficiency = false;
+	instance.execute();
+	Assert.assertFalse(actionMock.executed);
     }
 
     /**
@@ -52,13 +71,17 @@ public class BehaviorTest {
      */
     @Test
     public void testIsSufficient() {
-	System.out.println("isSufficient");
-	Behavior instance = new Behavior();
-	boolean expResult = false;
-	boolean result = instance.isSufficient();
-	assertEquals(expResult, result);
-	// TODO review the generated test code and remove the default call to fail.
-	fail("The test case is a prototype.");
+	System.out.println("isSufficient happy path");
+	Assert.assertTrue(instance.isSufficient());
+    }
+    /**
+     * Test of isSufficient method, of class Behavior.
+     */
+    @Test
+    public void testIsSufficientNot() {
+	System.out.println("isSufficient not happy path");
+	conditionMock.suficiency = false;
+	Assert.assertFalse(instance.isSufficient());
     }
 
 }
