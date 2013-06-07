@@ -100,7 +100,7 @@ public class ShortcutKeyListenerTest {
 
     /**
      * Test of createAndBind method, of class ShortcutKeyListener.
-     
+     */
     @Test
     public void testCreateAndBind_InputManager_ArrayList() {
 	System.out.println("createAndBind");
@@ -113,7 +113,7 @@ public class ShortcutKeyListenerTest {
 
     /**
      * Test of createAndBind method, of class ShortcutKeyListener.
-     
+     */
     @Test
     public void testCreateAndBind_InputManager_ShortcutKey() {
 	System.out.println("createAndBind");
@@ -123,6 +123,5 @@ public class ShortcutKeyListenerTest {
 	// TODO review the generated test code and remove the default call to fail.
 	fail("The test case is a prototype.");
     }
-    */
 
 }

@@ -14,7 +14,7 @@ import com.jme3.input.controls.KeyTrigger;
  * 
  * @author jappie
  */
-public abstract class ShortcutKey {
+public abstract class ShortcutKey implements IShortcutKey {
     private KeyTrigger _trigger;
     private String _name;
     
@@ -23,18 +23,12 @@ public abstract class ShortcutKey {
 	_trigger = new KeyTrigger(key);
     }
 
-    /**
-     * @return the _name
-     */
+    @Override
     public String getName() {
 	return _name;
     }
     
-    public abstract void press();
-    
-    /**
-     * @return the _trigger
-     */
+    @Override
     public KeyTrigger getTrigger() {
 	return _trigger;
     }

@@ -6,7 +6,7 @@ package UI;
 
 import com.jme3.input.InputManager;
 import com.jme3.input.controls.ActionListener;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,8 +16,8 @@ import java.util.ArrayList;
  * @author jappie
  */
 public class ShortcutKeyListener implements ActionListener{
-    private ShortcutKey _key;
-    private ShortcutKeyListener(ShortcutKey key){
+    private IShortcutKey _key;
+    private ShortcutKeyListener(IShortcutKey key){
 	_key = key;
     }
 
@@ -43,8 +43,8 @@ public class ShortcutKeyListener implements ActionListener{
      * This is faster in execution but slower in startup
      * @param manager 
      */
-    public static void createAndBind(InputManager manager, ArrayList<ShortcutKey> keys){
-	for(ShortcutKey key : keys){
+    public static void createAndBind(InputManager manager, List<IShortcutKey> keys){
+	for(IShortcutKey key : keys){
 	    createAndBind(manager, key);
 	}
 	
@@ -56,7 +56,7 @@ public class ShortcutKeyListener implements ActionListener{
      * @param manager
      * @param key 
      */
-    public static void createAndBind(InputManager manager, ShortcutKey key){
+    public static void createAndBind(InputManager manager, IShortcutKey key){
 	manager.addMapping(key.getName(), key.getTrigger());
 	manager.addListener(new ShortcutKeyListener(key), key.getName());	
     }
