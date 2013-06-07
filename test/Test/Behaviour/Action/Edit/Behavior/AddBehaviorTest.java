@@ -1,5 +1,6 @@
 package Test.Behaviour.Action.Edit.Behavior;
 
+import Test.Behaviour.BehaviortestMocks;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -8,7 +9,7 @@ import static org.junit.Assert.*;
  *
  * @author jappie
  */
-public class AddBehaviorTest {
+public class AddBehaviorTest  extends BehaviortestMocks{
 
     public AddBehaviorTest() {
     }
