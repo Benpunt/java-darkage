@@ -79,6 +79,7 @@ public class Engine extends Application {
 	loadScenery();
     }
     Geometry geom, geoc;
+    Node cubeNode = new Node("cubeSpatial");
     public void loadScenery() {
 	Box b = new Box(Vector3f.ZERO, 1, 1, 1);
 	Box c = new Box(Vector3f.ZERO, 3, 2, 5);
@@ -96,8 +97,11 @@ public class Engine extends Application {
 	geoc.setMaterial(sad);
 	
 	geoc.move(2, 3, 2);
-	_rootNode.attachChild(geom);
-	_rootNode.attachChild(geoc);
+	cubeNode.attachChild(geom);
+	cubeNode.attachChild(geoc);
+	
+	_rootNode.attachChild(cubeNode);
+	
     }
 
     @Override
@@ -138,6 +142,8 @@ public class Engine extends Application {
 	float sine = (float)Math.sin(sum)/10;
 	geom.move(0.01f, sine, 0f);
 	geoc.move(sine, 0, sine);
+	cubeNode.rotate(0.001f, 0.0001f, 0.0001f);
+	geoc.rotate(0.001f, -0.0001f, -0.0001f);
     }
 
     public void render(RenderManager rm) {
