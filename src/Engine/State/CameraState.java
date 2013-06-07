@@ -10,7 +10,12 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 
 /**
- *
+ * jme3 works trough the state pattern. Wich i find quite horibble but they
+ * must have had good reasons to use it. Those people are certainly not stupid
+ * 
+ * this class is needed to replace the simpleaplication class. I found their naming
+ * anoying. Besides 80 chars per rule is for 800x600 screens
+ * 
  * @author jappie
  */
 public class CameraState extends AbstractAppState {

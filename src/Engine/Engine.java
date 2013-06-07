@@ -4,55 +4,30 @@
  */
 package Engine;
 
-import Engine.State.CameraState;
-import Engine.State.Stats;
 import GUI.EscapeKey;
 import GUI.ShortcutKeyListener;
-import com.jme3.app.Application;
-import com.jme3.app.state.AppState;
-import com.jme3.font.BitmapFont;
 import com.jme3.input.KeyInput;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
-import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.shape.Box;
-import com.jme3.system.AppSettings;
+
 
 /**
- * This class contains the logic to start up the 3d engine
- *
+ * This class is an implementation of the vendor engine
+ * It handles all my addendums to the world and shows stuff
+ * 
  * @author jappie
  */
-public class Engine extends Application {
+public class Engine extends VendorEngine {
+    Geometry geom, geoc;
+    Node cubeNode = new Node("cubeSpatial");
     
-    private Camera _camera;
-    private Node _rootNode = new Node("Root Node");
-    private Node _guiNode = new Node("Gui Node");
-    private BitmapFont _guiFont;
-    public Engine() {
-	this(new Stats(), new CameraState());
-    }
-
-    public Engine(AppState... initialStates) {
-	super();
-
-	if (initialStates != null) {
-	    for (AppState a : initialStates) {
-		if (a != null) {
-		    stateManager.attach(a);
-		}
-	    }
-	}
-    }
-
     @Override
-    public void initialize() {
-	super.initialize();
+    public void init() {
 	ShortcutKeyListener.createAndBind(
 	    inputManager, 
 	    new EscapeKey(
@@ -61,27 +36,7 @@ public class Engine extends Application {
 		this
 	    )
 	);
-
-	getGuiNode().setQueueBucket(Bucket.Gui);
-	getGuiNode().setCullHint(CullHint.Never);
-	viewPort.attachScene(_rootNode);
-	guiViewPort.attachScene(getGuiNode());
-	_camera = new Camera(cam);
-	_camera.setMoveSpeed(10f);
-
-	if (stateManager.getState(CameraState.class) != null) {
-	    stateManager.getState(CameraState.class).setCamera(_camera);
-	}
-	if (stateManager.getState(Stats.class) != null) {
-
-	    stateManager.getState(Stats.class).setFont(_guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt"));
-	}
-	loadScenery();
-    }
-    Geometry geom, geoc;
-    Node cubeNode = new Node("cubeSpatial");
-    public void loadScenery() {
-	Box b = new Box(Vector3f.ZERO, 1, 1, 1);
+		Box b = new Box(Vector3f.ZERO, 1, 1, 1);
 	Box c = new Box(Vector3f.ZERO, 3, 2, 5);
 	
 	geom = new Geometry("Box", b);
@@ -100,67 +55,26 @@ public class Engine extends Application {
 	cubeNode.attachChild(geom);
 	cubeNode.attachChild(geoc);
 	
-	_rootNode.attachChild(cubeNode);
+	getRootNode().attachChild(cubeNode);
+    }
+
+    @Override
+    public void render(RenderManager rm) {
 	
     }
-
-    @Override
-    public void start() {
-	setSettings(new AppSettings(true));
-	super.start();
-    }
-
-    @Override
-    public void update() {
-	super.update(); // makes sure to execute AppTasks
-	if (speed == 0 || paused) {
-	    return;
-	}
-
-	float tpf = timer.getTimePerFrame() * speed;
-
-	// update states
-	stateManager.update(tpf);
-
-	// simple update and root node
-	update(tpf);
-
-	_rootNode.updateLogicalState(tpf);
-	getGuiNode().updateLogicalState(tpf);
-	_rootNode.updateGeometricState();
-	getGuiNode().updateGeometricState();
-
-	// render states
-	stateManager.render(renderManager);
-	renderManager.render(tpf, context.isRenderable());
-	render(renderManager);
-	stateManager.postRender();
-    }
+    
+    /**
+     * TODO: make sence of this madness
+     */
     float sum;
     public void update(float tpf) {
+
 	sum += tpf;
 	float sine = (float)Math.sin(sum)/10;
 	geom.move(0.01f, sine, 0f);
 	geoc.move(sine, 0, sine);
 	cubeNode.rotate(0.001f, 0.0001f, 0.0001f);
 	geoc.rotate(0.001f, -0.0001f, -0.0001f);
-    }
-
-    public void render(RenderManager rm) {
-    }
-
-    /**
-     * @return the guiFont
-     */
-    public BitmapFont getGuiFont() {
-	return _guiFont;
-    }
-    
-    /**
-     * @return the guiNode
-     */
-    public Node getGuiNode() {
-	return _guiNode;
     }
 
 }
