@@ -1,5 +1,6 @@
 package Test.Behaviour.Action.Edit.Condition;
 
+import Behaviour.Action.Edit.Condition.RemoveCondition;
 import Test.Behaviour.BehaviortestMocks;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +22,10 @@ public class RemoveConditionTest extends BehaviortestMocks{
 
     @Test
     public void testExecute() {
+	System.out.println("Execute happy path.");
+	RemoveCondition instance = new RemoveCondition(_behaviorMock, _conditionMock);
+	instance.execute();
+	assertEquals(_conditionMock, _behaviorMock._removedCondition);
     }
 
 }

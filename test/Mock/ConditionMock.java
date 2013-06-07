@@ -16,4 +16,14 @@ public class ConditionMock implements ICondition{
 	return suficiency;
     }
     
+    @Override
+    public boolean equals(Object to){
+	return (to instanceof ConditionMock);
+    }
+
+    @Override
+    public int hashCode() {
+	return 1;
+    }
+    
 }

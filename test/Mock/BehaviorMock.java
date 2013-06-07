@@ -54,5 +54,14 @@ public class BehaviorMock implements IBehavior {
     public boolean isSufficient() {
 	return _isSufficient;
     }
+    @Override
+    public boolean equals(Object to){
+	return (to instanceof BehaviorMock);
+    }
+
+    @Override
+    public int hashCode() {
+	return 1;
+    }
     
 }
