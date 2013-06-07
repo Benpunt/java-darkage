@@ -1,14 +1,16 @@
 package Test.Behaviour.Action.Edit.Action;
 
+import Behaviour.Action.Edit.Action.ActionAddendummer;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author jappie
  */
 public class ActionAddendummerTest {
+    
+    public ActionAddendummer target;
 
     public ActionAddendummerTest() {
     }

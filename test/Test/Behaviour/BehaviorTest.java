@@ -18,10 +18,8 @@ import static org.junit.Assert.*;
  *
  * @author jappie
  */
-public class BehaviorTest {
+public class BehaviorTest extends BehaviortestMocks {
     Behavior instance;
-    ActionMock actionMock;
-    ConditionMock conditionMock;
     public BehaviorTest() {
     }
 
@@ -37,10 +35,8 @@ public class BehaviorTest {
     public void setUp() {
 	instance = new Behavior();
 	System.out.print("BehaviorTest test: ");
-	actionMock = new ActionMock();
-	conditionMock = new ConditionMock();
-	instance.add(actionMock);
-	instance.add(conditionMock);
+	instance.add(_actionMock);
+	instance.add(_conditionMock);
     }
 
     @After
@@ -52,9 +48,8 @@ public class BehaviorTest {
     @Test
     public void testExecuteHappyPath() {
 	System.out.println("Execute happy path");
-	
 	instance.execute();
-	Assert.assertTrue(actionMock.executed);
+	Assert.assertTrue(_actionMock.executed);
     }
     /**
      * Test of Execute method, of class Behavior.
@@ -62,9 +57,9 @@ public class BehaviorTest {
     @Test
     public void testExecuteHappyPathNot() {
 	System.out.println("Execute not happy path");
-	conditionMock.suficiency = false;
+	_conditionMock.suficiency = false;
 	instance.execute();
-	Assert.assertFalse(actionMock.executed);
+	Assert.assertFalse(_actionMock.executed);
     }
 
     /**
@@ -81,7 +76,7 @@ public class BehaviorTest {
     @Test
     public void testIsSufficientNot() {
 	System.out.println("isSufficient not happy path");
-	conditionMock.suficiency = false;
+	_conditionMock.suficiency = false;
 	Assert.assertFalse(instance.isSufficient());
     }
 
