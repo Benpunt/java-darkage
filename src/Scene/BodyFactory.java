@@ -29,10 +29,10 @@ public class BodyFactory {
     public Body createCubes(){
 	Body body = createBody();
 	
-	for(int i = 0; i < Math.random() * 50; i++){
+	for(int i = 0; i < Math.random() * 1000; i++){
 	    Shape shape = _factory.createCube();
-	    shape.getShape().move(3f, 0, 0);
 	    body.add(shape);
+	    shape.getShape().move(3f*i, 0, 0);
 	}
 	
 	_target.add(body);

@@ -4,12 +4,15 @@
  */
 package Engine;
 
+import Scene.Body;
 import Scene.BodyFactory;
 import Scene.Shapes.ShapeFactory;
 import UI.EscapeKey;
 import UI.ShortcutKeyListener;
 import com.jme3.input.KeyInput;
 import com.jme3.renderer.RenderManager;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -19,7 +22,8 @@ import com.jme3.renderer.RenderManager;
  * @author jappie
  */
 public class Engine extends VendorEngine {
-    
+    BodyFactory bodyFactory;
+    List<Body> _bodies;
     @Override
     public void init() {
 	ShortcutKeyListener.createAndBind(
@@ -31,8 +35,9 @@ public class Engine extends VendorEngine {
 	    )
 	);
 	ShapeFactory shapeFactory = new ShapeFactory(assetManager);
-	BodyFactory bodyFactory = new BodyFactory(getRootNode(), shapeFactory);
-	bodyFactory.createCubes();
+	bodyFactory = new BodyFactory(getRootNode(), shapeFactory);
+	_bodies = new ArrayList<Body>();
+	_bodies.add(bodyFactory.createCubes());
     }
 
     @Override
@@ -44,7 +49,17 @@ public class Engine extends VendorEngine {
      * TODO: make sence of this madness
      */
     float sum;
+    int threshold = 10;
+    int distance = 1;
     public void update(float tpf) {
+	
+	sum = (sum+tpf) % threshold;
+	if((sum + tpf) > threshold){
+	    _bodies.add(bodyFactory.createCubes());
+	}
+	for(Body body : _bodies){
+	    body.getNode().move(0,tpf/threshold+0.005f,0);
+	}
     }
 
 }

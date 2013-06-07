@@ -19,7 +19,8 @@ public class ShapeFactory {
     }
     
     public Shape createCube(){
-	_material.setColor("Color", ColorRGBA.randomColor());
-	return Cube.create(_material);
+	Material material = _material.clone();
+	material.setColor("Color", ColorRGBA.randomColor());
+	return Cube.create(material);
     }
 }
