@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Scene;
+package Scene.Shapes;
 
 import Exception.CompositionException;
+import com.jme3.material.Material;
 import com.jme3.scene.Geometry;
 
 /**
@@ -12,9 +13,9 @@ import com.jme3.scene.Geometry;
  * @author jappie
  */
 public abstract class Shape {
-    private Geometry _shape;
+    protected Geometry _shape;
     
-    public Shape(Geometry shape){
+    protected Shape(Geometry shape){
 	checkShape(shape);
 	_shape = shape;
     }
