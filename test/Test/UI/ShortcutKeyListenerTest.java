@@ -1,7 +1,9 @@
-package UI;
+package Test.UI;
 
 import Mock.ShortcutKeyMock;
 import Stub.InputManagerStub;
+import UI.IShortcutKey;
+import UI.ShortcutKeyListener;
 import com.jme3.input.InputManager;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
