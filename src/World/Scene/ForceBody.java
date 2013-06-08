@@ -18,10 +18,10 @@ import java.util.List;
  *
  * @author jappie
  */
-public abstract class ForceBody extends Validator implements IBehavior {
+public abstract class ForceBody extends Validator implements IForceBody {
     
     private Node _node;
-    private List<ForceBody> _bodies;
+    private List<IForceBody> _bodies;
     private IBehavior _behavior;
     
     protected ForceBody(Node node, IBehavior behavior){
@@ -30,7 +30,7 @@ public abstract class ForceBody extends Validator implements IBehavior {
 	}
 	checkNode(node);
 	_node = node;
-	_bodies = new ArrayList<ForceBody>();
+	_bodies = new ArrayList<IForceBody>();
 	_behavior = behavior;	
     }
     
@@ -41,6 +41,7 @@ public abstract class ForceBody extends Validator implements IBehavior {
     /**
      * @return the _node
      */
+    @Override
     public Node getNode() {
 	return _node;
     }
@@ -50,18 +51,20 @@ public abstract class ForceBody extends Validator implements IBehavior {
      * detaches and reataches all the forcebodies
      * @param node the _node to set
      */
+    @Override
     public void setNode(Node node) {
 	checkNode(node);
-	for(ForceBody body : _bodies){
+	for(IForceBody body : _bodies){
 	    _node.detachChild(body.getNode());
 	}
 	_node = node;
-	for(ForceBody body : _bodies){
+	for(IForceBody body : _bodies){
 	    _node.attachChild(body.getNode());
 	}
     }
 
     
+    @Override
     public void add(ForceBody body){
 	_bodies.add(body);
 	_node.attachChild(body.getNode());

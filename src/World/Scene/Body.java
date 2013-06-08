@@ -5,6 +5,7 @@
 package World.Scene;
 
 import World.Behaviour.IBehavior;
+import World.Scene.Shape.IShape;
 import World.Scene.Shape.Shape;
 import com.jme3.scene.Node;
 import java.util.ArrayList;
@@ -14,19 +15,20 @@ import java.util.List;
  *
  * @author jappie
  */
-public class Body extends ForceBody{
+public class Body extends ForceBody implements IBody{
     
-    private List<Shape> _shapes;
+    private List<IShape> _shapes;
     public Body(Node node){
 	this(node, null);
 	
     }
     public Body(Node node, IBehavior behavior){
 	super(node, behavior);
-	_shapes = new ArrayList<Shape>();
+	_shapes = new ArrayList<IShape>();
     }
         
-    public void add(Shape shape){
+    @Override
+    public void add(IShape shape){
 	_shapes.add(shape);
 	getNode().attachChild(shape.getShape());
     }
@@ -38,11 +40,11 @@ public class Body extends ForceBody{
      */
     @Override
     public void setNode(Node node) {
-	for(Shape shape : _shapes){
+	for(IShape shape : _shapes){
 	    getNode().detachChild(shape.getShape());
 	}
 	super.setNode(node);
-	for(Shape shape : _shapes){
+	for(IShape shape : _shapes){
 	    getNode().attachChild(shape.getShape());
 	}
     }

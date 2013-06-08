@@ -12,7 +12,7 @@ import com.jme3.scene.Geometry;
  *
  * @author jappie
  */
-public abstract class Shape {
+public abstract class Shape implements IShape {
     protected Geometry _shape;
     
     protected Shape(Geometry shape){
@@ -23,6 +23,7 @@ public abstract class Shape {
     /**
      * @return the _shape
      */
+    @Override
     public Geometry getShape() {
 	return _shape;
     }
@@ -30,6 +31,7 @@ public abstract class Shape {
     /**
      * @param shape the _shape to set
      */
+    @Override
     public void setShape(Geometry shape) {
 	checkShape(shape);
 	this._shape = shape;

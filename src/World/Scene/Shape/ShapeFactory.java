@@ -12,7 +12,7 @@ import com.jme3.math.ColorRGBA;
  *
  * @author jappie
  */
-public class ShapeFactory {
+public class ShapeFactory implements IShapeFactory{
     Material _material;
     public ShapeFactory(AssetManager assetManager){
 	_material = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
@@ -22,5 +22,9 @@ public class ShapeFactory {
 	Material material = _material.clone();
 	material.setColor("Color", ColorRGBA.randomColor());
 	return Cube.create(material);
+    }
+
+    public Shape create() {
+	return createCube();
     }
 }
