@@ -4,11 +4,13 @@
  */
 package Engine;
 
+import Engine.Handler.ITpfHandler;
+import Engine.Handler.TimesPerFrameHandler;
+import UI.EscapeKey;
+import UI.ShortcutKeyListener;
 import World.Scene.Body;
 import World.Scene.BodyFactory;
 import World.Scene.Shape.ShapeFactory;
-import UI.EscapeKey;
-import UI.ShortcutKeyListener;
 import com.jme3.input.KeyInput;
 import com.jme3.renderer.RenderManager;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import java.util.List;
 public class Engine extends VendorEngine {
     BodyFactory bodyFactory;
     List<Body> _bodies;
+    ITpfHandler _tpfHandler;
     @Override
     public void init() {
 	ShortcutKeyListener.createAndBind(
@@ -34,6 +37,9 @@ public class Engine extends VendorEngine {
 		this
 	    )
 	);
+	
+	_tpfHandler = new TimesPerFrameHandler();
+	
 	ShapeFactory shapeFactory = new ShapeFactory(assetManager);
 	bodyFactory = new BodyFactory(getRootNode(), shapeFactory);
 	_bodies = new ArrayList<Body>();
@@ -52,6 +58,7 @@ public class Engine extends VendorEngine {
     int threshold = 10;
     int distance = 1;
     public void update(float tpf) {
+	_tpfHandler.setTimesPerFrame(tpf);
 	
 	sum = (sum+tpf) % threshold;
 	if((sum + tpf) > threshold){
