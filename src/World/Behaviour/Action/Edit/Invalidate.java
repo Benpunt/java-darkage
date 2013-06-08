@@ -4,6 +4,7 @@
  */
 package World.Behaviour.Action.Edit;
 
+import World.Behaviour.Action.Action;
 import World.Behaviour.Action.IAction;
 import World.IValid;
 import World.Validator;
@@ -19,7 +20,7 @@ import World.Validator;
  * @see Behaviour.Behavior
  * @author jappie
  */
-public class Invalidate extends Validator implements IAction{
+public class Invalidate extends Action implements IAction{
     private IValid _target;
     public Invalidate(IValid target){
 	_target = target;

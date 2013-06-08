@@ -4,6 +4,7 @@
  */
 package World.Behaviour.Action.Edit;
 
+import World.Behaviour.Action.Action;
 import World.Behaviour.IBehavior;
 import World.Validator;
 
@@ -11,7 +12,7 @@ import World.Validator;
  *
  * @author jappie
  */
-public abstract class Edit extends Validator {
+public abstract class Edit extends Action {
     private IBehavior _from;
     
     protected Edit (IBehavior from){
