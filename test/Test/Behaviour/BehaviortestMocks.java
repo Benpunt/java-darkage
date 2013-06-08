@@ -4,9 +4,9 @@
  */
 package Test.Behaviour;
 
-import Mock.ActionMock;
-import Mock.BehaviorMock;
-import Mock.ConditionMock;
+import Mock.Behaviour.ActionMock;
+import Mock.Behaviour.BehaviorMock;
+import Mock.Behaviour.ConditionMock;
 import org.junit.Before;
 
 /**

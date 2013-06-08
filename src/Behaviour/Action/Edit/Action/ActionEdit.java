@@ -6,6 +6,7 @@ package Behaviour.Action.Edit.Action;
 
 import Behaviour.Action.Edit.Edit;
 import Behaviour.Action.IAction;
+import Behaviour.IValid;
 import Behaviour.IBehavior;
 
 /**
@@ -14,7 +15,6 @@ import Behaviour.IBehavior;
  */
 public abstract class ActionEdit extends Edit implements IAction{
     private IAction _target;
-    
     protected ActionEdit(IBehavior from, IAction target){
 	super(from);
 	_target = target;

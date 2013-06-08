@@ -6,6 +6,7 @@ package Behaviour;
 
 import Behaviour.Action.IAction;
 import Behaviour.Condition.ICondition;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * If the conditions suffice the actions get executed
  * @author jappie
  */
-public class Behavior implements IBehavior{
+public class Behavior extends Validator implements IBehavior{
     private List<IAction> _actions;
     private List<ICondition> _conditions;
     private List<IBehavior> _behaviors;
@@ -53,25 +54,36 @@ public class Behavior implements IBehavior{
     }
 
     public void execute() {
-	for(IBehavior behavior : _behaviors){
-	    behavior.execute();
-	}
 	if(!isSufficient()){
 	    return;
 	}
-	for(IAction action : _actions){
-	    action.execute();
-	}
+	actionLoop(_behaviors.iterator());
+	actionLoop(_actions.iterator());
+    }
+    
+    private void actionLoop(Iterator<? extends IAction> iterator){
+	while(iterator.hasNext()){
+	    IAction action = iterator.next();
+	    if(validAction(iterator)){
+		action.execute();
+	    }
+	}	
     }
 
     public boolean isSufficient() {
-	for(ICondition condition : _conditions){
-	    if(!condition.isSufficient()){
-		return false;
+	Iterator<ICondition> iterator = _conditions.iterator();
+	while(iterator.hasNext()){
+	    ICondition condition = iterator.next();
+	    if(validAction(iterator)){
+		if(!condition.isSufficient()){
+		    return false;
+		}
 	    }
 	}
 	return true;
     }
+    
+
 
     @Override
     public int hashCode() {

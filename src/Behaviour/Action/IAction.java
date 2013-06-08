@@ -4,10 +4,12 @@
  */
 package Behaviour.Action;
 
+import Behaviour.IValid;
+
 /**
  *
  * @author jappie
  */
-public interface IAction {
+public interface IAction extends IValid{
     void execute();
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Mock;
+package Mock.Behaviour;
 
 import Behaviour.Action.IAction;
 
@@ -10,7 +10,7 @@ import Behaviour.Action.IAction;
  *
  * @author jappie
  */
-public class ActionMock implements IAction{
+public class ActionMock extends ValidationMock implements IAction{
     public boolean onExection = true;
     public boolean executed = false;
     public void execute() {

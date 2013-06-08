@@ -4,6 +4,7 @@
  */
 package Behaviour.Action.Edit.Action;
 
+import Behaviour.Action.Edit.Invalidate;
 import Behaviour.Action.IAction;
 import Behaviour.Behavior;
 import Behaviour.IBehavior;
@@ -22,6 +23,7 @@ public class AddAction extends ActionEdit{
     public void execute() {
 	IBehavior behavior = new Behavior();
 	behavior.add(new ActionAddendummer(getFrom(), getTarget()));
+	behavior.add(new Invalidate(behavior)); // invalidate itself after removal
 	getFrom().add(behavior);
     }
     

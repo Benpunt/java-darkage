@@ -4,10 +4,12 @@
  */
 package Behaviour.Condition;
 
+import Behaviour.IValid;
+
 /**
  *
  * @author jappie
  */
-public interface ICondition {
+public interface ICondition extends IValid{
     boolean isSufficient();
 }

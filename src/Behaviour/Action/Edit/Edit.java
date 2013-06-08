@@ -5,12 +5,13 @@
 package Behaviour.Action.Edit;
 
 import Behaviour.IBehavior;
+import Behaviour.Validator;
 
 /**
  *
  * @author jappie
  */
-public abstract class Edit {
+public abstract class Edit extends Validator {
     private IBehavior _from;
     
     protected Edit (IBehavior from){

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Mock;
+package Mock.Behaviour;
 
 import Behaviour.Action.IAction;
 import Behaviour.Condition.ICondition;
@@ -12,7 +12,7 @@ import Behaviour.IBehavior;
  *
  * @author jappie
  */
-public class BehaviorMock implements IBehavior {
+public class BehaviorMock extends ValidationMock implements IBehavior {
     
     public IAction _addedAction, _removedAction;
     public ICondition _addedCondition, _removedCondition;

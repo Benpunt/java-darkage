@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Mock;
+package Mock.Behaviour;
 
 import Behaviour.Condition.ICondition;
 
@@ -10,7 +10,7 @@ import Behaviour.Condition.ICondition;
  *
  * @author jappie
  */
-public class ConditionMock implements ICondition{
+public class ConditionMock extends ValidationMock implements ICondition{
     public boolean suficiency = true;
     public boolean isSufficient() {
 	return suficiency;
