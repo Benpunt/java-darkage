@@ -32,5 +32,17 @@ public class ValidationMock implements IValid{
 	_givenIterator = executioner;
 	return _validAction;
     }
-    
+    @Override
+    public boolean equals(Object to){
+	return (to instanceof ValidationMock);
+    }
+
+    @Override
+    public int hashCode() {
+	return 1;
+    }
+
+    public boolean isHashComputed() {
+	return true;
+    }
 }

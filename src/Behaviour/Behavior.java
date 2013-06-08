@@ -87,7 +87,7 @@ public class Behavior extends Validator implements IBehavior{
 
     @Override
     public int hashCode() {
-	int hash = 13;
+	int hash = super.hashCode();
 	hash = 79 * hash + (this._actions != null ? this._actions.hashCode() : 0);
 	hash = 2 * hash + (this._conditions != null ? this._conditions.hashCode() : 0);
 	hash = 42 * hash + (this._behaviors != null ? this._behaviors.hashCode() : 0);
@@ -99,6 +99,9 @@ public class Behavior extends Validator implements IBehavior{
     public boolean equals(Object to){
 	if(!(to instanceof Behavior)){
 	    return false;
+	}
+	if(isHashComputed()){
+	    return true;
 	}
 	return to.hashCode() == this.hashCode();
     }

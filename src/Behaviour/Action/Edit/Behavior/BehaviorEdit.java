@@ -31,6 +31,9 @@ public abstract class BehaviorEdit extends Edit  implements IAction {
 	if(!(to instanceof BehaviorEdit)){
 	    return false;
 	}
+	if(isHashComputed()){
+	    return true;
+	}
 	return to.hashCode() == this.hashCode();
     }
 

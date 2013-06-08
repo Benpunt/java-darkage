@@ -23,7 +23,7 @@ public class AddAction extends ActionEdit{
     public void execute() {
 	IBehavior behavior = new Behavior();
 	behavior.add(new ActionAddendummer(getFrom(), getTarget()));
-	behavior.add(new Invalidate(behavior)); // invalidate itself after removal
+	behavior.add(new Invalidate(behavior)); // invalidate itself after adding the action
 	getFrom().add(behavior);
     }
     

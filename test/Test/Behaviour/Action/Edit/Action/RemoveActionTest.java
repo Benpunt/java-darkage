@@ -2,6 +2,7 @@ package Test.Behaviour.Action.Edit.Action;
 
 import Behaviour.Action.Edit.Action.ActionRemover;
 import Behaviour.Action.Edit.Action.RemoveAction;
+import Behaviour.Action.Edit.Invalidate;
 import Behaviour.Behavior;
 import Behaviour.IBehavior;
 import Test.Behaviour.BehaviortestMocks;
@@ -29,10 +30,10 @@ public class RemoveActionTest  extends BehaviortestMocks{
 	RemoveAction instance = new RemoveAction(_behaviorMock, _actionMock);
 	instance.execute();
 	
-	IBehavior excpected = new Behavior();
-	excpected.add(new ActionRemover(_behaviorMock, _actionMock));
-	
-	Assert.assertEquals(excpected, _behaviorMock._addedBehavior);
+	IBehavior expected = new Behavior();
+	expected.add(new ActionRemover(_behaviorMock, _actionMock));
+	expected.add(new Invalidate(expected));
+	Assert.assertEquals(expected, _behaviorMock._addedBehavior);
     }
 
 }

@@ -31,6 +31,9 @@ public abstract class ActionEdit extends Edit implements IAction{
 	if(!(to instanceof ActionEdit)){
 	    return false;
 	}
+	if(isHashComputed()){
+	    return true;
+	}
 	return to.hashCode() == this.hashCode();
     }
 

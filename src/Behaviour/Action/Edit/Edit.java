@@ -27,15 +27,19 @@ public abstract class Edit extends Validator {
 
     @Override
     public int hashCode() {
-	int hash = 7;
+	int hash = super.hashCode();
 	hash = 37 * hash + (this._from != null ? this._from.hashCode() : 0);
 	return hash;
     }
+    
     
     @Override
     public boolean equals(Object to){
 	if(!(to instanceof Edit)){
 	    return false;
+	}
+	if(isHashComputed()){
+	    return true;
 	}
 	return to.hashCode() == this.hashCode();
     }

@@ -32,6 +32,9 @@ public abstract class ConditionEdit extends Edit  implements IAction {
 	if(!(to instanceof ConditionEdit)){
 	    return false;
 	}
+	if(isHashComputed()){
+	    return true;
+	}
 	return to.hashCode() == this.hashCode();
     }
 

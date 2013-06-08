@@ -4,6 +4,7 @@
  */
 package Behaviour;
 
+import Behaviour.Action.Edit.Invalidate;
 import java.util.Iterator;
 
 /**
@@ -12,7 +13,8 @@ import java.util.Iterator;
  */
 public abstract class Validator implements IValid {
     private boolean _valid = true;
-
+    private int _hashCall = 0;
+    private static final int DEFAUTL_INT = 0;
     public void invalidate() {
 	_valid = false;
     }
@@ -28,5 +30,24 @@ public abstract class Validator implements IValid {
 	executioner.remove();
 	return false;
     }
+    
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof Validator)){
+	    return false;
+	}
+	return to.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+	int hash = _hashCall;
+	_hashCall++;
+	return hash;
+    }
+    
+     public boolean isHashComputed(){
+	 return DEFAUTL_INT == _hashCall;
+     }
     
 }

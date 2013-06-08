@@ -29,4 +29,10 @@ public interface IValid{
      * @return isValid
      */
     boolean validAction(Iterator executioner);
+    
+    /**
+     * prevents infinite hash loops when calling equals
+     * @return 
+     */
+    boolean isHashComputed();
 }
