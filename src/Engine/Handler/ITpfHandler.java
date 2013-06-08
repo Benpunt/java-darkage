@@ -8,6 +8,6 @@ package Engine.Handler;
  *
  * @author jappie
  */
-public interface ITpfHandler extends ITpf{
+public interface ITpfHandler extends IReadtpf{
     void setTimesPerFrame(float tpf);
 }

@@ -8,6 +8,6 @@ package Engine.Handler;
  *
  * @author jappie
  */
-public interface ITpf {
+public interface IReadtpf {
     float getTimesPerFrame();
 }
