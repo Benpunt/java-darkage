@@ -1,6 +1,6 @@
 package Test.Behaviour.Action.Edit.Behavior;
 
-import Behaviour.Action.Edit.Behavior.RemoveBehavior;
+import World.Behaviour.Action.Edit.Behavior.RemoveBehavior;
 import Mock.Behaviour.BehaviorMock;
 import Test.Behaviour.BehaviortestMocks;
 import org.junit.Before;

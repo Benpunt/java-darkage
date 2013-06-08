@@ -4,9 +4,9 @@
  */
 package Mock.Behaviour;
 
-import Behaviour.Action.IAction;
-import Behaviour.Condition.ICondition;
-import Behaviour.IBehavior;
+import World.Behaviour.Action.IAction;
+import World.Behaviour.Condition.ICondition;
+import World.Behaviour.IBehavior;
 
 /**
  *

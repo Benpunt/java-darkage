@@ -4,7 +4,7 @@
  */
 package Mock.Behaviour;
 
-import Behaviour.Action.IAction;
+import World.Behaviour.Action.IAction;
 
 /**
  *

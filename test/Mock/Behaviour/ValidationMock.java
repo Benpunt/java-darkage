@@ -4,7 +4,7 @@
  */
 package Mock.Behaviour;
 
-import Behaviour.IValid;
+import World.IValid;
 import java.util.Iterator;
 
 /**

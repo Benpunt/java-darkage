@@ -1,6 +1,6 @@
 package Test.Behaviour.Action.Edit.Action;
 
-import Behaviour.Action.Edit.Action.ActionAddendummer;
+import World.Behaviour.Action.Edit.Action.ActionAddendummer;
 import Test.Behaviour.BehaviortestMocks;
 import org.junit.Assert;
 import org.junit.Before;

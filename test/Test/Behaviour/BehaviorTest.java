@@ -1,9 +1,9 @@
 package Test.Behaviour;
 
-import Behaviour.Action.IAction;
-import Behaviour.Behavior;
-import Behaviour.Behavior;
-import Behaviour.Condition.ICondition;
+import World.Behaviour.Action.IAction;
+import World.Behaviour.Behavior;
+import World.Behaviour.Behavior;
+import World.Behaviour.Condition.ICondition;
 import Mock.Behaviour.ActionMock;
 import Mock.Behaviour.ConditionMock;
 import org.junit.After;

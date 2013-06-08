@@ -4,7 +4,7 @@
  */
 package Mock.Behaviour;
 
-import Behaviour.Condition.ICondition;
+import World.Behaviour.Condition.ICondition;
 
 /**
  *

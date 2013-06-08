@@ -1,6 +1,6 @@
 package Test.Behaviour.Action.Edit.Condition;
 
-import Behaviour.Action.Edit.Condition.RemoveCondition;
+import World.Behaviour.Action.Edit.Condition.RemoveCondition;
 import Test.Behaviour.BehaviortestMocks;
 import org.junit.Before;
 import org.junit.Test;

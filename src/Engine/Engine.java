@@ -4,9 +4,9 @@
  */
 package Engine;
 
-import Scene.Body;
-import Scene.BodyFactory;
-import Scene.Shape.ShapeFactory;
+import World.Scene.Body;
+import World.Scene.BodyFactory;
+import World.Scene.Shape.ShapeFactory;
 import UI.EscapeKey;
 import UI.ShortcutKeyListener;
 import com.jme3.input.KeyInput;

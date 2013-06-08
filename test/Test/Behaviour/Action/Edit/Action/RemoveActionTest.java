@@ -1,10 +1,10 @@
 package Test.Behaviour.Action.Edit.Action;
 
-import Behaviour.Action.Edit.Action.ActionRemover;
-import Behaviour.Action.Edit.Action.RemoveAction;
-import Behaviour.Action.Edit.Invalidate;
-import Behaviour.Behavior;
-import Behaviour.IBehavior;
+import World.Behaviour.Action.Edit.Action.ActionRemover;
+import World.Behaviour.Action.Edit.Action.RemoveAction;
+import World.Behaviour.Action.Edit.Invalidate;
+import World.Behaviour.Behavior;
+import World.Behaviour.IBehavior;
 import Test.Behaviour.BehaviortestMocks;
 import junit.framework.Assert;
 import org.junit.Before;
