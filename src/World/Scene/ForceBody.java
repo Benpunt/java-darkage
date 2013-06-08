@@ -4,14 +4,14 @@
  */
 package World.Scene;
 
+import Exception.CompositionException;
 import World.Behaviour.Action.IAction;
+import World.Behaviour.Behavior;
 import World.Behaviour.Condition.ICondition;
 import World.Behaviour.IBehavior;
-import Exception.CompositionException;
 import World.Validator;
 import com.jme3.scene.Node;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -24,10 +24,18 @@ public abstract class ForceBody extends Validator implements IBehavior {
     private List<ForceBody> _bodies;
     private IBehavior _behavior;
     
-    protected ForceBody(Node node){
+    protected ForceBody(Node node, IBehavior behavior){
+	if(behavior == null){
+	    behavior = new Behavior();
+	}
 	checkNode(node);
 	_node = node;
 	_bodies = new ArrayList<ForceBody>();
+	_behavior = behavior;	
+    }
+    
+    protected ForceBody(Node node){
+	this(node, null);
     }
 
     /**
@@ -64,35 +72,35 @@ public abstract class ForceBody extends Validator implements IBehavior {
     }
 
     public void add(IAction action) {
-	throw new UnsupportedOperationException("Not supported yet.");
+	_behavior.add(action);
     }
 
     public void add(ICondition condition) {
-	throw new UnsupportedOperationException("Not supported yet.");
+	_behavior.add(condition);
     }
 
     public void add(IBehavior behavior) {
-	throw new UnsupportedOperationException("Not supported yet.");
+	_behavior.add(behavior);
     }
 
     public void remove(IAction action) {
-	throw new UnsupportedOperationException("Not supported yet.");
+	_behavior.add(action);
     }
 
     public void remove(ICondition condition) {
-	throw new UnsupportedOperationException("Not supported yet.");
+	_behavior.add(condition);
     }
 
     public void remove(IBehavior behavior) {
-	throw new UnsupportedOperationException("Not supported yet.");
+	_behavior.add(behavior);
     }
 
     public void execute() {
-	throw new UnsupportedOperationException("Not supported yet.");
+	_behavior.execute();
     }
 
     public boolean isSufficient() {
-	throw new UnsupportedOperationException("Not supported yet.");
+	return _behavior.isSufficient();
     }
     
 }

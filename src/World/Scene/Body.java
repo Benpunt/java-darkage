@@ -4,6 +4,7 @@
  */
 package World.Scene;
 
+import World.Behaviour.IBehavior;
 import World.Scene.Shape.Shape;
 import com.jme3.scene.Node;
 import java.util.ArrayList;
@@ -17,10 +18,13 @@ public class Body extends ForceBody{
     
     private List<Shape> _shapes;
     public Body(Node node){
-	super(node);
+	this(node, null);
+	
+    }
+    public Body(Node node, IBehavior behavior){
+	super(node, behavior);
 	_shapes = new ArrayList<Shape>();
     }
-    
         
     public void add(Shape shape){
 	_shapes.add(shape);

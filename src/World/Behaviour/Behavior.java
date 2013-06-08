@@ -4,9 +4,9 @@
  */
 package World.Behaviour;
 
-import World.Validator;
 import World.Behaviour.Action.IAction;
 import World.Behaviour.Condition.ICondition;
+import World.Validator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
