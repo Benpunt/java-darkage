@@ -1,11 +1,11 @@
-package Test.Behaviour.Action.Edit.Action;
+package Test.World.Behaviour.Action.Edit.Action;
 
 import World.Behaviour.Action.Edit.Action.ActionAddendummer;
 import World.Behaviour.Action.Edit.Action.AddAction;
 import World.Behaviour.Action.Edit.Invalidate;
 import World.Behaviour.Behavior;
 import World.Behaviour.IBehavior;
-import Test.Behaviour.BehaviortestMocks;
+import Test.World.Behaviour.BehaviortestMocks;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;

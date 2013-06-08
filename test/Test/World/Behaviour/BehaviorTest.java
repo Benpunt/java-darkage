@@ -1,4 +1,4 @@
-package Test.Behaviour;
+package Test.World.Behaviour;
 
 import World.Behaviour.Action.IAction;
 import World.Behaviour.Behavior;
