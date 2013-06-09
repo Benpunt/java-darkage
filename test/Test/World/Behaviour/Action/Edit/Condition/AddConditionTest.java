@@ -1,7 +1,7 @@
 package Test.World.Behaviour.Action.Edit.Condition;
 
 import World.Behaviour.Action.Edit.Condition.AddCondition;
-import Test.World.Behaviour.BehaviortestMocks;
+import Test.World.BehaviortestMocks;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

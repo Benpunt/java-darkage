@@ -5,7 +5,7 @@ import World.Behaviour.Action.Edit.Action.AddAction;
 import World.Behaviour.Action.Edit.Invalidate;
 import World.Behaviour.Behavior;
 import World.Behaviour.IBehavior;
-import Test.World.Behaviour.BehaviortestMocks;
+import Test.World.BehaviortestMocks;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;

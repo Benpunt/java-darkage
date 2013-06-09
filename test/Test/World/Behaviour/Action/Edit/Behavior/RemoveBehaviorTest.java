@@ -2,7 +2,7 @@ package Test.World.Behaviour.Action.Edit.Behavior;
 
 import World.Behaviour.Action.Edit.Behavior.RemoveBehavior;
 import Mock.Behaviour.BehaviorMock;
-import Test.World.Behaviour.BehaviortestMocks;
+import Test.World.BehaviortestMocks;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

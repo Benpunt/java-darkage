@@ -1,5 +1,6 @@
 package Test.World.Behaviour;
 
+import Test.World.BehaviortestMocks;
 import World.Behaviour.Action.IAction;
 import World.Behaviour.Behavior;
 import World.Behaviour.Behavior;

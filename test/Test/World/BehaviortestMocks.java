@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Test.World.Behaviour;
+package Test.World;
 
 import Mock.Behaviour.ActionMock;
 import Mock.Behaviour.BehaviorMock;
