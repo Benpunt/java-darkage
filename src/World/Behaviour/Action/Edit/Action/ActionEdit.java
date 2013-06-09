@@ -6,7 +6,6 @@ package World.Behaviour.Action.Edit.Action;
 
 import World.Behaviour.Action.Edit.Edit;
 import World.Behaviour.Action.IAction;
-import World.IValid;
 import World.Behaviour.IBehavior;
 
 /**

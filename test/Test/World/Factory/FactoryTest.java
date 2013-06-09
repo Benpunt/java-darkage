@@ -4,7 +4,7 @@ import Mock.Behaviour.ConditionMock;
 import Stub.AbstractStub;
 import Test.World.BehaviortestMocks;
 import World.Behaviour.Condition.ICondition;
-import World.Behaviour.Decorator.Abstract.ValidDecorator;
+import World.Behaviour.Decorator.BehaviorDecorator;
 import World.Factory.Factory;
 import java.util.logging.Level;
 import java.util.logging.Logger;

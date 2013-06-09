@@ -14,7 +14,7 @@ import World.Behaviour.IBehavior;
  */
 public class ActionRemover extends ActionEdit{
 
-    public ActionRemover(IBehavior from, IAction target){
+    protected ActionRemover(IBehavior from, IAction target){
 	super(from, target);
     }
     public void execute() {

@@ -4,18 +4,16 @@
  */
 package World.Behaviour.Action.Edit.Action;
 
-import World.Behaviour.Action.Edit.Invalidate;
 import World.Behaviour.Action.IAction;
-import World.Behaviour.Behavior;
 import World.Behaviour.IBehavior;
 
 /**
  *
  * @author jappie
  */
-public class RemoveAction extends ActionEdit {
-    public RemoveAction(IBehavior from, IAction target){
-	super(from, target);
+public class RemoveAction extends ActionEditInitilizer {
+    public RemoveAction(IBehavior from, IAction target, IActionEditFactory behaviorFactory){
+	super(from, target, behaviorFactory);
     }
     /**
      * because the stupid foreach does not alows changes to itself be made
@@ -24,9 +22,9 @@ public class RemoveAction extends ActionEdit {
      * wich is not in execution. But will be executed next run.
      */
     public void execute() {
-	IBehavior behavior = new Behavior();
-	behavior.add(new ActionRemover(getFrom(), getTarget()));
-	behavior.add(new Invalidate(behavior)); // remove itself after removal of action
+	IActionEditFactory factory = getFactory();
+	IBehavior behavior = getFactory().create();
+	behavior.add(getFactory().createActionRemover(getFrom(), getTarget()));
 	getFrom().add(behavior);
 	
     }

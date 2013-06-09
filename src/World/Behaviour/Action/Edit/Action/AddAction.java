@@ -4,9 +4,7 @@
  */
 package World.Behaviour.Action.Edit.Action;
 
-import World.Behaviour.Action.Edit.Invalidate;
 import World.Behaviour.Action.IAction;
-import World.Behaviour.Behavior;
 import World.Behaviour.IBehavior;
 
 /**
@@ -14,16 +12,15 @@ import World.Behaviour.IBehavior;
  * @see RemoveAction
  * @author jappie
  */
-public class AddAction extends ActionEdit{
+public class AddAction extends ActionEditInitilizer{
     
-    public AddAction(IBehavior from, IAction target){
-	super(from, target);
+    public AddAction(IBehavior from, IAction target, IActionEditFactory behaviorFactory){
+	super(from, target, behaviorFactory);
     }
 
     public void execute() {
-	IBehavior behavior = new Behavior();
-	behavior.add(new ActionAddendummer(getFrom(), getTarget()));
-	behavior.add(new Invalidate(behavior)); // invalidate itself after adding the action
+	IBehavior behavior = getFactory().create();
+	behavior.add(getFactory().createActionAddendummer(getFrom(), getTarget()));
 	getFrom().add(behavior);
     }
     

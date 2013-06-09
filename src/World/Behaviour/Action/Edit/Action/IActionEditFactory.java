@@ -5,20 +5,16 @@
 package World.Behaviour.Action.Edit.Action;
 
 import World.Behaviour.Action.IAction;
+import World.Behaviour.Action.IActionFactory;
 import World.Behaviour.IBehavior;
 
 /**
- * @see RemoveAction
+ *
  * @author jappie
  */
-public class ActionAddendummer extends ActionEdit{
-    
-    protected ActionAddendummer(IBehavior from, IAction target){
-	super(from, target);
-    }
+public interface IActionEditFactory extends IActionFactory{
 
-    public void execute() {
-	getFrom().add(getTarget());
-    }
+    IAction createActionAddendummer(IBehavior from, IAction target);
+    IAction createActionRemover(IBehavior from, IAction target);
     
 }
