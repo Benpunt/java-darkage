@@ -32,8 +32,7 @@ public class Engine extends VendorEngine {
 	ShortcutKeyListener.createAndBind(
 	    inputManager, 
 	    new EscapeKey(
-		"Escape", 
-		KeyInput.KEY_ESCAPE, 
+		"Escape",
 		this
 	    )
 	);

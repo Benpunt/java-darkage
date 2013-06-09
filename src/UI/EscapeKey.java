@@ -5,6 +5,7 @@
 package UI;
 
 import Engine.Engine;
+import com.jme3.input.KeyInput;
 
 /**
  *
@@ -14,8 +15,8 @@ import Engine.Engine;
  */
 public class EscapeKey extends ShortcutKey {
     private Engine _engine;
-    public EscapeKey(String name, int key, Engine engine){
-	super(name, key);
+    public EscapeKey(String name, Engine engine){
+	super(name, KeyInput.KEY_ESCAPE);
 	_engine = engine;
     }
     @Override
