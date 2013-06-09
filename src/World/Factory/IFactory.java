@@ -4,8 +4,7 @@
  */
 package World.Factory;
 /**
- * Generic factory interface... Prety useless for parametized creations with no real default
- * values or obtainable by enviorement (like times per frame)
+ * Generic factory interface...
  * A factory creates somthing (wow... took me quite a while to figure this one out)
  * @author jappie
  */
