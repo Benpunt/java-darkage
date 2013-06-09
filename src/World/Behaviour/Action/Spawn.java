@@ -4,8 +4,9 @@
  */
 package World.Behaviour.Action;
 
+import World.Factory.IFactory;
 import World.Scene.IBody;
-import World.Scene.Shape.IShapeFactory;
+import World.Scene.Shape.IShape;
 
 /**
  *
@@ -13,8 +14,8 @@ import World.Scene.Shape.IShapeFactory;
  */
 public class Spawn extends Action{
     private IBody _on;
-    private IShapeFactory _from;
-    public Spawn(IBody on, IShapeFactory from){
+    private IFactory<IShape> _from;
+    public Spawn(IBody on, IFactory<IShape> from){
 	_on = on;
 	_from = from;
     }

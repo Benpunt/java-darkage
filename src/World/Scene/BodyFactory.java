@@ -4,6 +4,7 @@
  */
 package World.Scene;
 
+import World.Scene.Shape.IShape;
 import World.Scene.Shape.Shape;
 import World.Scene.Shape.ShapeFactory;
 import com.jme3.scene.Node;
@@ -30,7 +31,7 @@ public class BodyFactory {
 	Body body = createBody();
 	
 	for(int i = 0; i < Math.random() * 1000; i++){
-	    Shape shape = _factory.createCube();
+	    IShape shape = _factory.createCube();
 	    body.add(shape);
 	    shape.getShape().move(3f*i, 0, 0);
 	}

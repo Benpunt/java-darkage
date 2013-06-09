@@ -4,6 +4,7 @@
  */
 package World.Scene.Shape;
 
+import World.Factory.IFactory;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -12,19 +13,19 @@ import com.jme3.math.ColorRGBA;
  *
  * @author jappie
  */
-public class ShapeFactory implements IShapeFactory{
+public class ShapeFactory implements IFactory<IShape>{
     Material _material;
     public ShapeFactory(AssetManager assetManager){
 	_material = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
     }
     
-    public Shape createCube(){
+    public IShape createCube(){
 	Material material = _material.clone();
 	material.setColor("Color", ColorRGBA.randomColor());
 	return Cube.create(material);
     }
 
-    public Shape create() {
+    public IShape create() {
 	return createCube();
     }
 }

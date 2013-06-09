@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package World.Behaviour.Decorator;
+package World.Behaviour.Decorator.Abstract;
 
 import World.IValid;
 
@@ -23,5 +23,5 @@ public abstract class IsValidDecorator extends ValidDecorator{
      * gets trough an and gate whit its component validness
      * @return 
      */
-    abstract boolean isValidExtension();
+    public abstract boolean isValidExtension();
 }

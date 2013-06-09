@@ -4,24 +4,25 @@
  */
 package World.Behaviour.Decorator;
 
+import World.Behaviour.Decorator.Abstract.IsValidDecorator;
 import World.IValid;
 
 /**
  *
  * @author jappie
  */
-public class IsValidOnce extends IsValidDecorator {
+public class ValidOnce extends IsValidDecorator {
     
     /**
      * 
      * @param component the component which will only be valid once
      */
-    public IsValidOnce(IValid component){
+    public ValidOnce(IValid component){
 	super(component);
     }
-
+    
     @Override
-    boolean isValidExtension() {
+    public boolean isValidExtension() {
 	throw new UnsupportedOperationException("Not supported yet.");
     }
     
