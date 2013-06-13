@@ -64,19 +64,8 @@ public class Engine extends VendorEngine {
     /**
      * TODO: make sence of this madness
      */
-    float sum;
-    int threshold = 10;
-    int distance = 1;
     public void update(float tpf) {
 	_tpfHandler.set(tpf);
-	
-	sum = (sum+tpf) % threshold;
-	if((sum + tpf) > threshold){
-	    _bodies.add(bodyFactory.createCubes());
-	}
-	for(Body body : _bodies){
-	    body.getNode().move(0,tpf/threshold+0.005f,0);
-	}
     }
 
 }

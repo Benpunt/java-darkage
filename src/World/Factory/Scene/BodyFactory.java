@@ -31,7 +31,7 @@ public class BodyFactory {
      */
     public Body createCubes(){
 	Body body = createBody();
-	double num =  Math.random() * 1000;
+	double num =  1000;
 	for(int i = 0; i < num; i++){
 	    IShape shape = _factory.createCube();
 	    body.add(shape);
@@ -47,7 +47,9 @@ public class BodyFactory {
 	Body body = createBody();
 	IShape shape = _factory.createMapCube();
 	body.add(shape);
-	shape.getShape().move(2f, 2f, 2f);
+	shape.getShape().move(10f,0f, 0f);
+	shape.getShape().scale(100f);
+	_target.add(body);
 	return body;
     }
     
