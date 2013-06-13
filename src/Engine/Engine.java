@@ -13,7 +13,9 @@ import World.Factory.Scene.BodyFactory;
 import World.Factory.Scene.ShapeFactory;
 import World.Scene.Visual.Body;
 import com.jme3.input.KeyInput;
+import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,13 @@ public class Engine extends VendorEngine {
 	_bodies = new ArrayList<Body>();
 	_bodies.add(bodyFactory.createCubes());
 	bodyFactory.createMap();
+	
+	 
+	/** Must add a light to make the lit object visible! */
+	DirectionalLight sun = new DirectionalLight();
+	sun.setDirection(new Vector3f(1,0,-2).normalizeLocal());
+	sun.setColor(ColorRGBA.White);
+	rootNode.addLight(sun);
     }
 
     @Override
