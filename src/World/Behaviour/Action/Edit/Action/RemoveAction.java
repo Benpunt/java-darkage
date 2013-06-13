@@ -13,9 +13,9 @@ import World.Behaviour.IBehavior;
  *
  * @author jappie
  */
-public class RemoveAction extends ActionEditInitilizer {
-    public RemoveAction(IBehavior from, IAction target, IActionEditFactory behaviorFactory){
-	super(from, target, behaviorFactory);
+public class RemoveAction extends ActionEdit {
+    public RemoveAction(IBehavior from, IAction target){
+	super(from, target);
     }
     /**
      * because the stupid foreach does not alows changes to itself be made

@@ -14,10 +14,10 @@ import World.Behaviour.IBehavior;
  * @see RemoveAction
  * @author jappie
  */
-public class AddAction extends ActionEditInitilizer{
+public class AddAction extends ActionEdit{
     
-    public AddAction(IBehavior from, IAction target, IActionEditFactory behaviorFactory){
-	super(from, target, behaviorFactory);
+    public AddAction(IBehavior from, IAction target){
+	super(from, target);
     }
 
     public void execute() {

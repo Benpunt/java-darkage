@@ -47,7 +47,7 @@ public class BodyFactory {
 	Body body = createBody();
 	IShape shape = _factory.createMapCube();
 	body.add(shape);
-	shape.getShape().move(20f, 20f, 20f);
+	shape.getShape().move(2f, 2f, 2f);
 	return body;
     }
     

@@ -24,5 +24,9 @@ public class ShortcutKeyMock extends Input{
     public void press() {
 	pressed = true;
     }
+
+    public void press(float value) {
+	throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

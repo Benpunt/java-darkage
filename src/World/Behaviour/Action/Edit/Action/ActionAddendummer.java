@@ -13,7 +13,7 @@ import World.Behaviour.IBehavior;
  */
 public class ActionAddendummer extends ActionEdit{
     
-    protected ActionAddendummer(IBehavior from, IAction target){
+    public ActionAddendummer(IBehavior from, IAction target){
 	super(from, target);
     }
 
