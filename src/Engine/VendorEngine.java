@@ -28,7 +28,7 @@ import com.jme3.system.AppSettings;
 public abstract class VendorEngine extends SimpleApplication {
     
     public VendorEngine(){
-	super(new StatsAppState(), new CameraState(), new DebugKeysAppState(), new BulletAppState());
+	super(new StatsAppState(), new CameraState(), new BulletAppState());
     }
     
     public abstract void init();

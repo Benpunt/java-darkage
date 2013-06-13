@@ -5,6 +5,7 @@
 package World.Behaviour.Condition.Collision;
 
 import World.Behaviour.Condition.Condition;
+import com.jme3.bullet.PhysicsSpace;
 import com.jme3.scene.Spatial;
 
 /**
@@ -14,11 +15,11 @@ import com.jme3.scene.Spatial;
  * @author jappie
  */
 public class Collision extends Condition {
-    ICollisionListener _listener;
+    CollisionListener _listener;
     
-    public Collision(Spatial ... targets){
+    public Collision(PhysicsSpace space, Spatial ... targets){
 	_listener = new CollisionListener();
-	
+	space.add(_listener);
 	for(Spatial shape : targets){
 	    shape.addControl(_listener);
 	}

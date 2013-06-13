@@ -4,13 +4,15 @@
  */
 package World.Behaviour.Condition.Collision;
 
+import com.jme3.bullet.collision.PhysicsCollisionListener;
+import com.jme3.bullet.control.PhysicsControl;
 import com.jme3.scene.control.Control;
 
 /**
  *
  * @author jappie
  */
-public interface ICollisionListener extends Control{
+public interface ICollisionListener extends PhysicsControl, Control, PhysicsCollisionListener{
 
     /**
      * listening event
