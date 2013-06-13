@@ -4,14 +4,16 @@
  */
 package Engine;
 
-import Engine.Handler.ITpfHandler;
-import Engine.Handler.TimesPerFrameHandler;
-import UI.EscapeKey;
-import UI.ShortcutKeyListener;
-import World.Scene.Body;
-import World.Scene.BodyFactory;
-import World.Scene.Shape.ShapeFactory;
+import Engine.Handler.FloatHandler;
+import Engine.Handler.IFloatHandler;
+import UI.BehavioredInput;
+import UI.InputListener;
+import World.Behaviour.Action.Stop;
+import World.Factory.Scene.BodyFactory;
+import World.Factory.Scene.ShapeFactory;
+import World.Scene.Visual.Body;
 import com.jme3.input.KeyInput;
+import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.RenderManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,23 +28,23 @@ import java.util.List;
 public class Engine extends VendorEngine {
     BodyFactory bodyFactory;
     List<Body> _bodies;
-    ITpfHandler _tpfHandler;
+    IFloatHandler _tpfHandler;
+    
     @Override
     public void init() {
-	ShortcutKeyListener.createAndBind(
-	    inputManager, 
-	    new EscapeKey(
-		"Escape",
-		this
-	    )
+	InputListener.createAndBind(
+		inputManager,
+		new BehavioredInput("Escape", new Stop(this), KeyInput.KEY_ESCAPE)
 	);
+	viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
 	
-	_tpfHandler = new TimesPerFrameHandler();
+	_tpfHandler = new FloatHandler();
 	
 	ShapeFactory shapeFactory = new ShapeFactory(assetManager);
 	bodyFactory = new BodyFactory(getRootNode(), shapeFactory);
 	_bodies = new ArrayList<Body>();
 	_bodies.add(bodyFactory.createCubes());
+	bodyFactory.createMap();
     }
 
     @Override
@@ -57,7 +59,7 @@ public class Engine extends VendorEngine {
     int threshold = 10;
     int distance = 1;
     public void update(float tpf) {
-	_tpfHandler.setTimesPerFrame(tpf);
+	_tpfHandler.set(tpf);
 	
 	sum = (sum+tpf) % threshold;
 	if((sum + tpf) > threshold){

@@ -4,13 +4,13 @@
  */
 package Mock;
 
-import UI.ShortcutKey;
+import UI.Input;
 
 /**
  *
  * @author jappie
  */
-public class ShortcutKeyMock extends ShortcutKey{
+public class ShortcutKeyMock extends Input{
     public static String MOCK_NAME = "mock";
     public static int KEY_NUMBER = 1;
     public boolean pressed = false;

@@ -5,6 +5,8 @@
 package World.Behaviour.Action.Edit.Action;
 
 import World.Behaviour.Action.IAction;
+import World.Behaviour.Behavior;
+import World.Behaviour.Decorator.ValidOnce;
 import World.Behaviour.IBehavior;
 
 /**
@@ -22,9 +24,8 @@ public class RemoveAction extends ActionEditInitilizer {
      * wich is not in execution. But will be executed next run.
      */
     public void execute() {
-	IActionEditFactory factory = getFactory();
-	IBehavior behavior = getFactory().create();
-	behavior.add(getFactory().createActionRemover(getFrom(), getTarget()));
+	IBehavior behavior = new ValidOnce(new Behavior());
+	behavior.add(new ActionRemover(getFrom(), getTarget()));
 	getFrom().add(behavior);
 	
     }

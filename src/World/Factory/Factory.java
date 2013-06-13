@@ -25,13 +25,25 @@ public class Factory<Abstract> implements IFactory<Abstract>{
     }
 
     public Abstract create() {
-	Logger.getLogger("Factory").log(Level.FINER, "Used generic factory to create a: {0}", _implementation.getName());
+	Logger.getLogger("Factory").log(
+	    Level.FINER, 
+	    "Used generic factory to create a: {0}", 
+	    _implementation.getName()
+	);
 	try {
 	    return (Abstract) _implementation.newInstance();
 	} catch (InstantiationException ex) {
-	    Logger.getLogger(Factory.class.getName()).log(Level.SEVERE, _implementation.getName()+INSTANTATION, ex);
+	    Logger.getLogger(Factory.class.getName()).log(
+		Level.SEVERE, 
+		_implementation.getName()+INSTANTATION,
+		ex
+	    );
 	} catch (IllegalAccessException ex) {
-	    Logger.getLogger(Factory.class.getName()).log(Level.SEVERE, ILLEGAL_ACCES + _implementation.getName(), ex);
+	    Logger.getLogger(Factory.class.getName()).log(
+		Level.SEVERE, 
+		ILLEGAL_ACCES + _implementation.getName(), 
+		ex
+	    );
 	}
 	// the aplication has to crash now, otherwise intracable bugs could apear.
 	throw new IllegalArgumentException("Could not create the disered class");

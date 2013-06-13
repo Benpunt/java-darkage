@@ -5,6 +5,8 @@
 package World.Behaviour.Action.Edit.Action;
 
 import World.Behaviour.Action.IAction;
+import World.Behaviour.Behavior;
+import World.Behaviour.Decorator.ValidOnce;
 import World.Behaviour.IBehavior;
 
 /**
@@ -19,8 +21,8 @@ public class AddAction extends ActionEditInitilizer{
     }
 
     public void execute() {
-	IBehavior behavior = getFactory().create();
-	behavior.add(getFactory().createActionAddendummer(getFrom(), getTarget()));
+	IBehavior behavior = new ValidOnce(new Behavior());
+	behavior.add(new ActionAddendummer(getFrom(), getTarget()));
 	getFrom().add(behavior);
     }
     

@@ -5,8 +5,8 @@
 package World.Behaviour.Action;
 
 import World.Factory.IFactory;
-import World.Scene.IBody;
-import World.Scene.Shape.IShape;
+import World.Scene.Visual.IBody;
+import World.Scene.Visual.Shape.IShape;
 
 /**
  *

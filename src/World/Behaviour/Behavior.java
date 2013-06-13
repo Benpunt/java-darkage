@@ -7,16 +7,16 @@ package World.Behaviour;
 import World.Behaviour.Action.IAction;
 import World.Behaviour.Condition.ICondition;
 import World.Validator;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This class is a wrapper for all the behavior.
+ * This class is a controller for all the behavior.
  * It allows clean acces to everthing that happens in the game.
- * It is prety straight forward. First the behaviors get executed.
- * then this behavior gets executed, meaning:
- * If the conditions suffice the actions get executed
+ * It is prety straight forward. If all conditions are true, all sub behaviors & actions
+ * get executed. No conditions, everthing gets executed
  * @author jappie
  */
 public class Behavior extends Validator implements IBehavior{
@@ -25,11 +25,33 @@ public class Behavior extends Validator implements IBehavior{
     private List<IBehavior> _behaviors;
     
     public Behavior(){
-	_actions = new LinkedList<IAction>();
-	_conditions = new LinkedList<ICondition>();
-	_behaviors = new LinkedList<IBehavior>();
+	this(null, null, null);
     }
     
+    public Behavior(IAction ... actions){
+	this();
+	_actions.addAll(Arrays.asList(actions));
+    }
+    
+    public Behavior(ICondition ... conditions){
+	this();
+	_conditions.addAll(Arrays.asList(conditions));
+    } 
+    
+    public Behavior(IBehavior ... behaviors){
+	this();
+	_behaviors.addAll(Arrays.asList(behaviors));
+    } 
+    
+    public Behavior(
+	List<IBehavior> behaviors, 
+	List<IAction> actions, 
+	List<ICondition> conditions
+    ){
+	_behaviors =	(behaviors != null) ? behaviors : new LinkedList<IBehavior>();
+	_actions =	(actions != null)   ? actions	: new LinkedList<IAction>();
+	_conditions =	(conditions != null)? conditions: new LinkedList<ICondition>();
+    }
     public void add(IAction action) {
 	_actions.add(action);
     }

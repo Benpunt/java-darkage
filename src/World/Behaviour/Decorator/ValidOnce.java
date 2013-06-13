@@ -4,6 +4,7 @@
  */
 package World.Behaviour.Decorator;
 
+import World.Behaviour.Action.Edit.Invalidate;
 import World.Behaviour.IBehavior;
 
 /**

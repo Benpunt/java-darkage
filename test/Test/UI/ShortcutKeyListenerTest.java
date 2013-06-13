@@ -2,8 +2,8 @@ package Test.UI;
 
 import Mock.ShortcutKeyMock;
 import Stub.InputManagerStub;
-import UI.IShortcutKey;
-import UI.ShortcutKeyListener;
+import UI.IInput;
+import UI.InputListener;
 import com.jme3.input.InputManager;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  * @author jappie
  */
 public class ShortcutKeyListenerTest {
-    private ShortcutKeyListener _listenerInstance;
+    private InputListener _listenerInstance;
     private ShortcutKeyMock _shortcutKeyMock;
     private InputManagerStub _inputManagerStub;
     public ShortcutKeyListenerTest() {
@@ -46,7 +46,7 @@ public class ShortcutKeyListenerTest {
 		InvocationTargetException {
 	_shortcutKeyMock = new ShortcutKeyMock();
 	_inputManagerStub = new InputManagerStub();
-	Constructor<ShortcutKeyListener> c = ShortcutKeyListener.class.getDeclaredConstructor(IShortcutKey.class);
+	Constructor<InputListener> c = InputListener.class.getDeclaredConstructor(IInput.class);
 	c.setAccessible(true);
 	
 	_listenerInstance = c.newInstance(_shortcutKeyMock);
@@ -110,7 +110,7 @@ public class ShortcutKeyListenerTest {
     public void testCreateAndBind_InputManager_ShortcutKey_HappyPath() {
 	System.out.println("createAndBind");
 	
-	ShortcutKeyListener.createAndBind(_inputManagerStub, _shortcutKeyMock);
+	InputListener.createAndBind(_inputManagerStub, _shortcutKeyMock);
 	
 	Assert.assertEquals(_listenerInstance, _inputManagerStub._listener);
     }
@@ -122,7 +122,7 @@ public class ShortcutKeyListenerTest {
     public void testCreateAndBind_InputManager_ShortcutKey_names() {
 	System.out.println("createAndBind");
 	
-	ShortcutKeyListener.createAndBind(_inputManagerStub, _shortcutKeyMock);
+	InputListener.createAndBind(_inputManagerStub, _shortcutKeyMock);
 	
 	Assert.assertEquals(ShortcutKeyMock.MOCK_NAME, _inputManagerStub._keyNames[0]);
     }
