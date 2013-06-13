@@ -21,7 +21,7 @@ public class ShapeFactory implements IFactory<IShape>{
     private Material _material;
     Texture _map;
     public ShapeFactory(AssetManager assetManager){
-	_map = assetManager.loadTexture("map");
+	_map = assetManager.loadTexture("Textures/map.png");
 	_material = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
     }
     
@@ -34,7 +34,7 @@ public class ShapeFactory implements IFactory<IShape>{
     public IShape createMapCube(){
 	Material material = getMaterial();
 	material.setColor("Color", ColorRGBA.White);
-	material.setTexture("Map", _map);
+	material.setTexture("Color", _map);
 	return Cube.create(material);
     }
 
