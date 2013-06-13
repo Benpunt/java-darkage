@@ -11,4 +11,19 @@ import World.Validator;
  * @author jappie
  */
 public abstract class Condition extends Validator implements ICondition {
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof Condition)){
+	    return false;
+	}
+	if(isHashComputed()){
+	    return true;
+	}
+	return to.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+	return super.hashCode()*33;
+    }
 }

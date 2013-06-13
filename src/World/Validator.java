@@ -13,7 +13,7 @@ import java.util.Iterator;
 public abstract class Validator implements IValid {
     private boolean _valid = true;
     private int _hashCall = 0;
-    private static final int DEFAUTL_INT = 0;
+    private static final int DEFAUTL_INT = 1;
     public void invalidate() {
 	_valid = false;
     }
@@ -35,6 +35,9 @@ public abstract class Validator implements IValid {
 	if(!(to instanceof Validator)){
 	    return false;
 	}
+	if(isHashComputed()){
+	    return true;
+	}
 	return to.hashCode() == this.hashCode();
     }
 
@@ -46,7 +49,7 @@ public abstract class Validator implements IValid {
     }
     
      public boolean isHashComputed(){
-	 return DEFAUTL_INT == _hashCall;
+	 return DEFAUTL_INT <= _hashCall;
      }
     
 }

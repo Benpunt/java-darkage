@@ -20,5 +20,19 @@ public class ActionRemover extends ActionEdit{
     public void execute() {
 	getFrom().remove(getTarget());
     }
-    
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof ActionRemover)){
+	    return false;
+	}
+	if(isHashComputed()){
+	    return true;
+	}
+	return to.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+	return super.hashCode()+12;
+    }
 }

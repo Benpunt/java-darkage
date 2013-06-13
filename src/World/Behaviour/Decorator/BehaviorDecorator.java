@@ -26,4 +26,20 @@ public abstract class BehaviorDecorator extends SuperBehavior {
     public IBehavior getComponent() {
 	return _component;
     }
+    
+        @Override
+    public boolean equals(Object to){
+	if(!(to instanceof BehaviorDecorator)){
+	    return false;
+	}
+	if(isHashComputed()){
+	    return true;
+	}
+	return to.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+	return (super.hashCode() * 79) * _component.hashCode();
+    }
 }

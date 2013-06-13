@@ -1,11 +1,11 @@
 package Test.World.Behaviour.Action.Edit.Action;
 
+import Test.World.BehaviortestMocks;
 import World.Behaviour.Action.Edit.Action.ActionRemover;
 import World.Behaviour.Action.Edit.Action.RemoveAction;
-import World.Behaviour.Action.Edit.Invalidate;
 import World.Behaviour.Behavior;
+import World.Behaviour.Decorator.ValidOnce;
 import World.Behaviour.IBehavior;
-import Test.World.BehaviortestMocks;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,9 +30,8 @@ public class RemoveActionTest  extends BehaviortestMocks{
 	RemoveAction instance = new RemoveAction(_behaviorMock, _actionMock);
 	instance.execute();
 	
-	IBehavior expected = new Behavior();
+	IBehavior expected = new ValidOnce(new Behavior());
 	expected.add(new ActionRemover(_behaviorMock, _actionMock));
-	expected.add(new Invalidate(expected));
 	Assert.assertEquals(expected, _behaviorMock._addedBehavior);
     }
 

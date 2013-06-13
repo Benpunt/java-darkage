@@ -39,7 +39,7 @@ public class ValidationMock implements IValid{
 
     @Override
     public int hashCode() {
-	return 1;
+	return 40;
     }
 
     public boolean isHashComputed() {

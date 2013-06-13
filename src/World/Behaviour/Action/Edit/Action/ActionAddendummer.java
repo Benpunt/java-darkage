@@ -20,5 +20,19 @@ public class ActionAddendummer extends ActionEdit{
     public void execute() {
 	getFrom().add(getTarget());
     }
-    
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof ActionAddendummer)){
+	    return false;
+	}
+	if(isHashComputed()){
+	    return true;
+	}
+	return to.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+	return super.hashCode()+32;
+    }
 }

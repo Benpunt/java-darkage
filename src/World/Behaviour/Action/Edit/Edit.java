@@ -27,14 +27,6 @@ public abstract class Edit extends Action {
     }
 
     @Override
-    public int hashCode() {
-	int hash = super.hashCode();
-	hash = 37 * hash + (this._from != null ? this._from.hashCode() : 0);
-	return hash;
-    }
-    
-    
-    @Override
     public boolean equals(Object to){
 	if(!(to instanceof Edit)){
 	    return false;
@@ -43,5 +35,12 @@ public abstract class Edit extends Action {
 	    return true;
 	}
 	return to.hashCode() == this.hashCode();
+    }
+    
+    @Override
+    public int hashCode() {
+	int hash = super.hashCode();
+	hash = 37 * hash + (this._from != null ? this._from.hashCode() : 0);
+	return hash;
     }
 }

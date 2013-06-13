@@ -23,7 +23,7 @@ public class ConditionMock extends ValidationMock implements ICondition{
 
     @Override
     public int hashCode() {
-	return 1;
+	return 4;
     }
     
 }

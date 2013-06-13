@@ -25,5 +25,20 @@ public class AddAction extends ActionEdit{
 	behavior.add(new ActionAddendummer(getFrom(), getTarget()));
 	getFrom().add(behavior);
     }
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof AddAction)){
+	    return false;
+	}
+	if(isHashComputed()){
+	    return true;
+	}
+	return to.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+	return super.hashCode()+11;
+    }
     
 }

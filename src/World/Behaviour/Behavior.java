@@ -106,7 +106,16 @@ public class Behavior extends Validator implements IBehavior{
 	return true;
     }
     
-
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof Behavior)){
+	    return false;
+	}
+	if(isHashComputed()){
+	    return true;
+	}
+	return to.hashCode() == this.hashCode();
+    }
 
     @Override
     public int hashCode() {
@@ -118,14 +127,5 @@ public class Behavior extends Validator implements IBehavior{
     }
     
     
-    @Override
-    public boolean equals(Object to){
-	if(!(to instanceof Behavior)){
-	    return false;
-	}
-	if(isHashComputed()){
-	    return true;
-	}
-	return to.hashCode() == this.hashCode();
-    }
+
 }

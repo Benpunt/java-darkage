@@ -11,4 +11,19 @@ import World.Validator;
  * @author jappie
  */
 public abstract class Action extends Validator implements IAction {
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof Action)){
+	    return false;
+	}
+	if(isHashComputed()){
+	    return true;
+	}
+	return to.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+	return super.hashCode()-30000000;
+    }
 }

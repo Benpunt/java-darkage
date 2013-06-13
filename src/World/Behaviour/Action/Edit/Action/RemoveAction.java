@@ -29,4 +29,20 @@ public class RemoveAction extends ActionEdit {
 	getFrom().add(behavior);
 	
     }
+    
+    @Override
+    public boolean equals(Object to){
+	if(!(to instanceof RemoveAction)){
+	    return false;
+	}
+	if(isHashComputed()){
+	    return true;
+	}
+	return to.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+	return super.hashCode()+71;
+    }
 }
