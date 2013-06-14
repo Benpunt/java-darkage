@@ -4,7 +4,8 @@
  */
 package World.Factory.Scene;
 
-import World.Scene.Solid.Body;
+import World.Scene.PhysicalBody;
+import World.Scene.SolidBody;
 import World.Scene.Visual.Shape.IShape;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -34,15 +35,12 @@ public class FixatedSolidFactory{
 	this._node = rootNode;
     }
 
-    public Body create(IShape shape) {
-	World.Scene.Physical.Body physical = new World.Scene.Physical.Body(_space, 
-	CollisionShapeFactory.createMeshShape(shape.getShape()));
-
-		RigidBodyControl control = new RigidBodyControl(physical.getShape(), 0f);
-	shape.getShape().addControl(control);
+    public SolidBody create(IShape shape) {
+	PhysicalBody physical = new World.Scene.PhysicalBody(_space, 
+	new RigidBodyControl(CollisionShapeFactory.createMeshShape(shape.getShape())));
 
 	World.Scene.Visual.Body visual = new World.Scene.Visual.Body(_node);
 	
-	return new Body(physical, visual);
+	return new SolidBody(physical, visual);
     }
 }

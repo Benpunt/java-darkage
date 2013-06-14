@@ -6,50 +6,60 @@ package World.Scene;
 
 import Exception.CompositionException;
 import World.Behaviour.IBehavior;
-import World.Scene.Presence;
 import com.jme3.bullet.PhysicsSpace;
-import com.jme3.bullet.collision.shapes.CollisionShape;
+import com.jme3.bullet.objects.PhysicsRigidBody;
+import com.jme3.math.Vector3f;
 
 /**
  *
  * @author jappie
  */
-public class PhysicalBody extends Presence{
-    private CollisionShape _shape;
+public class PhysicalBody extends Presence implements IPhysicalBody{
+    private PhysicsRigidBody _physicsBody;
     private PhysicsSpace _space;
-    public PhysicalBody(PhysicsSpace space, CollisionShape shape){
+    public PhysicalBody(PhysicsSpace space, PhysicsRigidBody shape){
 	this(space, shape, null);
     }
-    public PhysicalBody(PhysicsSpace space, CollisionShape shape, IBehavior behavior){
+    public PhysicalBody(PhysicsSpace space, PhysicsRigidBody shape, IBehavior behavior){
 	super(behavior);
 	check(shape);
-	_shape = shape;
+	_physicsBody = shape;
 	_space = space;
-	_space.add(_shape);
+	_space.add(_physicsBody);
     }
 
     /**
      * @return the _shape
      */
-    public CollisionShape getShape() {
-	return _shape;
+    @Override
+    public PhysicsRigidBody getPhysicsBody() {
+	return _physicsBody;
     }
 
     /**
      * @param shape the _shape to set
      */
-    public void setShape(CollisionShape shape) {
+    @Override
+    public void setPhysicsBody(PhysicsRigidBody shape) {
 	check(shape);
-	_space.remove(_shape);
-	_shape = shape;
-	_space.add(_shape);
+	_space.remove(_physicsBody);
+	_physicsBody = shape;
+	_space.add(_physicsBody);
     }
     
     public void detach(){
-	_space.remove(_shape);
+	_space.remove(_physicsBody);
     }
     
-    private void check(CollisionShape shape){
-	CompositionException.Check(shape, "Physical.body", "collisionShape");
+    private void check(PhysicsRigidBody shape){
+	CompositionException.Check(shape, "Physical.body", "PhysicsRigidBody");
+    }
+
+    public void setLocation(Vector3f to) {
+	_physicsBody.setPhysicsLocation(to);
+    }
+
+    public void move(Vector3f to) {
+	_physicsBody.setLinearVelocity(to);
     }
 }

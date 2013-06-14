@@ -5,13 +5,14 @@
 package World.Scene.Visual;
 
 import World.Behaviour.IBehavior;
+import World.Scene.IPresence;
 import com.jme3.scene.Node;
 
 /**
  *
  * @author jappie
  */
-public interface IForceBody extends IBehavior {
+public interface IForceBody extends IPresence {
 
     void add(ForceBody body);
 

@@ -12,13 +12,8 @@ import World.Behaviour.SuperBehavior;
  *
  * @author jappie
  */
-public abstract class Presence extends SuperBehavior{
+public abstract class Presence extends SuperBehavior implements IPresence{
     public Presence(IBehavior behavior){
 	super((behavior == null)? new Behavior() : behavior);
     }
-    
-    /**
-     * detaches the presence from a space
-     */
-    public abstract void detach();
 }

@@ -39,6 +39,9 @@ public class Engine extends VendorEngine {
     private Body _sillyCubes;
     @Override
     public void init() {
+	// extend vield of view, it annoys me if i can't see everything
+	
+	
 	InputListener.createAndBind(
 		inputManager,
 		new BehavioredInput("Escape", new Stop(this), KeyInput.KEY_ESCAPE)
@@ -60,25 +63,18 @@ public class Engine extends VendorEngine {
 	
 	_sillyCubes = _bodyFactory.createCubes();
 	
-	IBehavior quitOnCollide = new Behavior(
-		new Collision(
-		space, 
-		_sillyCubes.getNode()
-		)
-	    );
-	quitOnCollide.add(new Stop(this));
-	_behaviors.add(quitOnCollide);
 	
-	_sillyCubes.getNode().move(0f, 500f, 0f);
+	_sillyCubes.getNode().move(0f, 100f, 0f);
 	
-	_bodyFactory.createMap();
-	
+
 	 
 	/** Must add a light to make the lit object visible! */
 	DirectionalLight sun = new DirectionalLight();
 	sun.setDirection(new Vector3f(1,0,-2).normalizeLocal());
 	sun.setColor(ColorRGBA.White);
 	rootNode.addLight(sun);
+	
+	createOrientationPoints();
     }
 
     @Override
@@ -94,7 +90,20 @@ public class Engine extends VendorEngine {
 	for(IBehavior behavior : _behaviors){
 	    behavior.execute();
 	}
-	_sillyCubes.getNode().move(0f, -0.01f*tpf, 0f);
+	_sillyCubes.getNode().move(0f, -1f*tpf, 0f);
+    }
+    
+    /** 
+     * i get lost to quickly
+     * TODO: uhh remove?
+     */
+    private void createOrientationPoints(){
+	
+	
+	Body map = _bodyFactory.createMap();
+	map.getNode().move(-2500, -6000f, -2500f);	
+	
+	Body justSomeCubes = _bodyFactory.createCubes();
     }
 
 }

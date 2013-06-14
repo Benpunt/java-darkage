@@ -5,9 +5,7 @@
 package World.Scene.Visual;
 
 import Exception.CompositionException;
-import World.Behaviour.Behavior;
 import World.Behaviour.IBehavior;
-import World.Behaviour.SuperBehavior;
 import World.Scene.Presence;
 import com.jme3.scene.Node;
 import java.util.ArrayList;
