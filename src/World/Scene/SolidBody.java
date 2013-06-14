@@ -5,18 +5,17 @@
 package World.Scene;
 
 import World.Behaviour.Behavior;
-import World.Scene.Presence;
-import com.jme3.scene.control.Control;
+import World.Scene.Visual.Body;
 
 /**
  *
  * @author jappie
  */
 public class SolidBody extends Presence{
-    private World.Scene.PhysicalBody _physical;
-    private World.Scene.Visual.Body  _visual;
+    private PhysicalBody _physical;
+    private Body  _visual;
     
-    public SolidBody(World.Scene.PhysicalBody physical, World.Scene.Visual.Body visual){  
+    public SolidBody(PhysicalBody physical, Body visual){  
 	super(new Behavior(physical, visual));
 	_physical = physical;
 	_visual = visual;
