@@ -7,6 +7,7 @@ import World.Behaviour.Behavior;
 import World.Behaviour.Condition.ICondition;
 import Mock.Behaviour.ActionMock;
 import Mock.Behaviour.ConditionMock;
+import World.Behaviour.Behavior;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;

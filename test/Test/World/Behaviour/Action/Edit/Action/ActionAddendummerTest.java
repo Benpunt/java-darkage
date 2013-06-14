@@ -2,6 +2,7 @@ package Test.World.Behaviour.Action.Edit.Action;
 
 import World.Behaviour.Action.Edit.Action.ActionAddendummer;
 import Test.World.BehaviortestMocks;
+import World.Behaviour.Action.Edit.Action.ActionAddendummer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

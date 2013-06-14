@@ -37,24 +37,25 @@ public class Engine extends VendorEngine {
     private List<IBehavior> _behaviors;
     private IFloatHandler _tpfHandler;
     private Body _sillyCubes;
-    private BulletAppState _physics;
     @Override
     public void init() {
 	InputListener.createAndBind(
 		inputManager,
 		new BehavioredInput("Escape", new Stop(this), KeyInput.KEY_ESCAPE)
 	);
-	_physics = stateManager.getState(BulletAppState.class);
+	
+	
 	_tpfHandler = new FloatHandler();
 	
 	viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
 	
-	PhysicsSpace space = _physics.getPhysicsSpace();
-
+	PhysicsSpace space = stateManager.getState(BulletAppState.class).getPhysicsSpace();
 	
 	ShapeFactory shapeFactory = new ShapeFactory(assetManager);
 	_bodyFactory = new BodyFactory(getRootNode(), shapeFactory);
 	_behaviors = new ArrayList<IBehavior>();
+	
+	Body targetCubes = _bodyFactory.createCubes();
 	
 	
 	_sillyCubes = _bodyFactory.createCubes();
@@ -93,7 +94,7 @@ public class Engine extends VendorEngine {
 	for(IBehavior behavior : _behaviors){
 	    behavior.execute();
 	}
-	_sillyCubes.getNode().move(0f, -1*tpf, 0f);
+	_sillyCubes.getNode().move(0f, -0.01f*tpf, 0f);
     }
 
 }

@@ -2,6 +2,7 @@ package Test.World.Behaviour.Action.Edit.Condition;
 
 import World.Behaviour.Action.Edit.Condition.RemoveCondition;
 import Test.World.BehaviortestMocks;
+import World.Behaviour.Action.Edit.Condition.RemoveCondition;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

@@ -3,6 +3,7 @@ package Test.World.Behaviour.Action.Edit.Behavior;
 import World.Behaviour.Action.Edit.Behavior.AddBehavior;
 import Mock.Behaviour.BehaviorMock;
 import Test.World.BehaviortestMocks;
+import World.Behaviour.Action.Edit.Behavior.AddBehavior;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

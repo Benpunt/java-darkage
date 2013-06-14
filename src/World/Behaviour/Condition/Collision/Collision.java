@@ -6,6 +6,9 @@ package World.Behaviour.Condition.Collision;
 
 import World.Behaviour.Condition.Condition;
 import com.jme3.bullet.PhysicsSpace;
+import com.jme3.bullet.collision.PhysicsCollisionObject;
+import com.jme3.bullet.util.CollisionShapeFactory;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
 /**
@@ -18,11 +21,12 @@ public class Collision extends Condition {
     CollisionListener _listener;
     
     public Collision(PhysicsSpace space, Spatial ... targets){
-	_listener = new CollisionListener();
-	space.add(_listener);
-	for(Spatial shape : targets){
-	    shape.addControl(_listener);
+	Node n = new Node();
+	for(Spatial component : targets){
+	    n.attachChild(component);
 	}
+	_listener = new CollisionListener(CollisionShapeFactory.createMeshShape(n));
+	space.add((PhysicsCollisionObject)_listener);
     }
 
     public boolean isSufficient() {

@@ -2,6 +2,7 @@ package Test.World.Behaviour.Condition.Resetable;
 
 import Test.World.BehaviortestMocks;
 import World.Behaviour.Condition.Resetable.Limit;
+import World.Behaviour.Condition.Resetable.Limit;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;

@@ -4,10 +4,8 @@
  */
 package World.Behaviour.Condition.Collision;
 
-import com.jme3.bullet.PhysicsSpace;
-import com.jme3.bullet.PhysicsTickListener;
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
-import com.jme3.bullet.collision.PhysicsCollisionListener;
+import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.GhostControl;
 
 /**
@@ -15,6 +13,10 @@ import com.jme3.bullet.control.GhostControl;
  * @author jappie
  */
 public class CollisionListener extends GhostControl implements ICollisionListener{
+    
+    public CollisionListener(CollisionShape to){
+	super(to);
+    }
     
     private boolean _hasColided;
 
