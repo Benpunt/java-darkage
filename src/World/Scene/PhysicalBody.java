@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package World.Scene.Physical;
+package World.Scene;
 
 import Exception.CompositionException;
 import World.Behaviour.IBehavior;
@@ -14,13 +14,13 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
  *
  * @author jappie
  */
-public class Body extends Presence{
+public class PhysicalBody extends Presence{
     private CollisionShape _shape;
     private PhysicsSpace _space;
-    public Body(PhysicsSpace space, CollisionShape shape){
+    public PhysicalBody(PhysicsSpace space, CollisionShape shape){
 	this(space, shape, null);
     }
-    public Body(PhysicsSpace space, CollisionShape shape, IBehavior behavior){
+    public PhysicalBody(PhysicsSpace space, CollisionShape shape, IBehavior behavior){
 	super(behavior);
 	check(shape);
 	_shape = shape;
