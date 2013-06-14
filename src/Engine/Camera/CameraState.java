@@ -60,6 +60,7 @@ public class CameraState extends AbstractAppState {
             if (_flyCam == null) {
                 _flyCam = new CameraAcces(app.getCamera());
 		_flyCam.setMoveSpeed(50f);
+		_flyCam.setFarSight(10000f);
 	    }
 	    IFactory<IFloatHandler> floatFactory = new Factory<IFloatHandler>(FloatHandler.class);
 	    IFloatHandler handler = floatFactory.create();
