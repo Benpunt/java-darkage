@@ -5,15 +5,9 @@
 package Engine;
 
 import Engine.Camera.CameraState;
-import com.jme3.app.DebugKeysAppState;
-import com.jme3.app.FlyCamAppState;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.StatsAppState;
 import com.jme3.bullet.BulletAppState;
-import com.jme3.input.FlyByCamera;
-import com.jme3.input.InputManager;
-import com.jme3.input.KeyInput;
-import com.jme3.input.MouseInput;
 import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
 
@@ -39,10 +33,10 @@ public abstract class VendorEngine extends SimpleApplication {
     @Override
     public void start() {
 	showSettings = false;
-        AppSettings settings = new AppSettings(true);
-	settings.setWidth(1900);
-	settings.setHeight(1080);
-        setSettings(settings);
+        AppSettings settingChanges = new AppSettings(true);
+	settingChanges.setWidth(1900);
+	settingChanges.setHeight(1080);
+        setSettings(settingChanges);
         super.start();
 	
     }    
