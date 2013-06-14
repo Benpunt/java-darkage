@@ -11,6 +11,7 @@ import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState.BlendMode;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 import com.jme3.texture.Image;
 import com.jme3.texture.Texture;
 
@@ -36,7 +37,7 @@ public class ShapeFactory implements IFactory<IShape>{
 	Material material = getMaterial();
 	material.setTexture("ColorMap", _map);
 	material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
-	return Cube.create(material);
+	return Cube.create(material, new Vector3f(1,1,1), new Vector3f(5000, 5000, 5000));
     }
 
     public IShape create() {

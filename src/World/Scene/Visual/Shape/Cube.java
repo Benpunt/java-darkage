@@ -19,11 +19,17 @@ public class Cube extends Shape {
 	super(shape);
     }
 
-    public static Shape create(Material from) {
+    public static IShape create(Material from) {
 	Box box = new Box(Vector3f.ZERO, 1, 1, 1);
 	Geometry geometry = new Geometry(NAME, box);
 	geometry.setMaterial(from);
 	return new Cube(geometry);
+    }
+    public static IShape create(Material from, Vector3f min, Vector3f max){
+	Box box = new Box(min, max);
+	Geometry geometry = new Geometry(NAME, box);
+	geometry.setMaterial(from);
+	return new Cube(geometry);	
     }
     
 }
