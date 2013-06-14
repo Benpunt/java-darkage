@@ -9,7 +9,7 @@ import com.jme3.math.Vector3f;
 
 /**
  * teleports the target to the given location
- * teleport is suposed to move somthing to always the same location.
+ * @see ITeleportable
  * @author jappie
  */
 public class Teleport extends CoordinateAcces{
