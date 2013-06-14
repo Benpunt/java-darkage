@@ -7,7 +7,7 @@ package World.Scene;
 import com.jme3.math.Vector3f;
 
 /**
- *
+ * teleport is suposed to move somthing to the absolute where location.
  * @author jappie
  */
 public interface ITeleportable {

@@ -7,7 +7,7 @@ package World.Scene;
 import com.jme3.math.Vector3f;
 
 /**
- *
+ * move is suposed to add difference to the current location.
  * @author jappie
  */
 public interface IMoveable {

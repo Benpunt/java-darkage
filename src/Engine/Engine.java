@@ -20,6 +20,7 @@ import com.jme3.bullet.PhysicsSpace;
 import com.jme3.input.KeyInput;
 import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class Engine extends VendorEngine {
 	_sillyCubes = _bodyFactory.createCubes();
 	
 	
-	_sillyCubes.getNode().move(0f, 100f, 0f);
+	_sillyCubes.move(new Vector3f(0f, 1000f, 0f));
 	
 
 	 
@@ -90,7 +91,7 @@ public class Engine extends VendorEngine {
 	for(IBehavior behavior : _behaviors){
 	    behavior.execute();
 	}
-	_sillyCubes.getNode().move(0f, -1f*tpf, 0f);
+	_sillyCubes.move(new Vector3f(0f, -10f*tpf, 0f));
     }
     
     /** 
@@ -100,10 +101,43 @@ public class Engine extends VendorEngine {
     private void createOrientationPoints(){
 	
 	
+	
 	Body map = _bodyFactory.createMap();
 	map.getNode().move(-2500, -6000f, -2500f);	
 	
+	// aperantly you look at the z axis on the begining
 	Body justSomeCubes = _bodyFactory.createCubes();
+	justSomeCubes.move(new Vector3f(0, 0, 5000f));
+	justSomeCubes.getNode().scale(3f);
+	
+	justSomeCubes = _bodyFactory.createCubes();
+	justSomeCubes.move(new Vector3f(0, 0, -5000f));
+	justSomeCubes.getNode().scale(3f);
+
+	
+	// has to rotate to see it from the center
+    	justSomeCubes = _bodyFactory.createCubes();
+	justSomeCubes.move(new Vector3f(-5000f, 0, 0));
+	justSomeCubes.getNode().rotate(0,(float) (0.5 * Math.PI),0);
+	justSomeCubes.getNode().scale(3f);
+	
+	justSomeCubes = _bodyFactory.createCubes();
+	justSomeCubes.move(new Vector3f(5000f, 0, 0));
+	justSomeCubes.getNode().rotate(0,(float) (0.5 * Math.PI),0);
+	justSomeCubes.getNode().scale(3f);
+	
+	
+	// a nice seeling cross
+	justSomeCubes = _bodyFactory.createCubes();
+	justSomeCubes.move(new Vector3f(0, 5000f, 450));
+	justSomeCubes.getNode().rotate(0,(float) (0.5 * Math.PI),0);
+	justSomeCubes.getNode().scale(3f);
+	
+	justSomeCubes = _bodyFactory.createCubes();
+	justSomeCubes.move(new Vector3f(-450, 5000f, 0));
+	justSomeCubes.getNode().scale(3f);
+	
+	// all those colorfull cubes :)
     }
 
 }
