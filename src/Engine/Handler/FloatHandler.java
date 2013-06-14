@@ -14,7 +14,8 @@ package Engine.Handler;
  * @author jappie
  */
 public class FloatHandler implements IFloatHandler {
-    private float _value;
+    private  static final float DEFAULT_VALUE = 0;
+    private float _value = DEFAULT_VALUE;
 
     public float get() {
 	return _value;

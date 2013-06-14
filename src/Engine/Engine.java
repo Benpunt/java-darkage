@@ -8,6 +8,7 @@ import Engine.Handler.FloatHandler;
 import Engine.Handler.IFloatHandler;
 import UI.BehavioredInput;
 import UI.InputListener;
+import World.Behaviour.Action.Move.Move;
 import World.Behaviour.Action.Stop;
 import World.Behaviour.Behavior;
 import World.Behaviour.Condition.Collision.Collision;
@@ -64,8 +65,8 @@ public class Engine extends VendorEngine {
 	
 	_sillyCubes = _bodyFactory.createCubes();
 	
-	
 	_sillyCubes.move(new Vector3f(0f, 1000f, 0f));
+	_behaviors.add(new Behavior(new Move(_sillyCubes, new Vector3f(0f, -10f, 0f), _tpfHandler)));
 	
 
 	 
@@ -91,7 +92,6 @@ public class Engine extends VendorEngine {
 	for(IBehavior behavior : _behaviors){
 	    behavior.execute();
 	}
-	_sillyCubes.move(new Vector3f(0f, -10f*tpf, 0f));
     }
     
     /** 
