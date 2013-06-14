@@ -9,6 +9,7 @@ import com.jme3.math.Vector3f;
 
 /**
  * moves the target to the to value.
+ * move is suposed to add difference to the current location.
  * @author jappie
  */
 public class Move extends CoordinateAcces {
