@@ -19,6 +19,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.RenderManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 
 /**
@@ -28,6 +29,7 @@ import java.util.List;
  * @author jappie
  */
 public class Engine extends VendorEngine {
+
     private List<IBehavior> _behaviors;
     private IFloatHandler _tpfHandler;
 
@@ -44,7 +46,6 @@ public class Engine extends VendorEngine {
     @Override
     public void init() {
 	// extend vield of view, it annoys me if i can't see everything
-	
 	
 	InputListener.createAndBind(
 		inputManager,
@@ -63,6 +64,7 @@ public class Engine extends VendorEngine {
      * TODO: make sence of this madness
      */
     public void update(float tpf) {
+	Log.write(Level.FINEST, "loop");
 	getTpfHandler().set(tpf);
 	for(IBehavior behavior : getBehaviors()){
 	    behavior.execute();

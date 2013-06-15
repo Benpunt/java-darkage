@@ -53,7 +53,7 @@ public class ScenePopulateState extends AbstractAppState{
 	SolidBody _targetCubes = solidFactory.createFromVisual(_bodyFactory.createCubes());
 	
 	_sillyCubes = _bodyFactory.createCubes();
-	_sillyCubes.move(new Vector3f(0f, 1000f, 0f));
+	_sillyCubes.move(new Vector3f(0f, 100f, 0f));
 	
 
 	 
@@ -121,7 +121,7 @@ public class ScenePopulateState extends AbstractAppState{
 			_sillyCubes, 
 			new Vector3f(
 			    0f, 
-			    -75f, 
+			    -10f, 
 			    0f
 			), 
 			_engine.getTpfHandler()
