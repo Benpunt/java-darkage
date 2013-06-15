@@ -4,7 +4,8 @@
  */
 package World.Behaviour.Decorator;
 
-import World.Behaviour.Action.Edit.Invalidate;
+import World.Behaviour.Action.IAction;
+import World.Behaviour.Condition.ICondition;
 import World.Behaviour.IBehavior;
 
 /**
@@ -14,10 +15,15 @@ import World.Behaviour.IBehavior;
 public class ValidOnce extends BehaviorDecorator {
     
     /**
-     * 
      * @param component the component which will only be valid once
      */
     public ValidOnce(IBehavior component){
+	super(component);
+    }
+        public ValidOnce(ICondition component){
+	super(component);
+    }
+    public ValidOnce(IAction component){
 	super(component);
     }
     
