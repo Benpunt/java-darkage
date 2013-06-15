@@ -4,10 +4,8 @@
  */
 package Engine;
 
-import Engine.Camera.CameraState;
 import com.jme3.app.SimpleApplication;
-import com.jme3.app.StatsAppState;
-import com.jme3.bullet.BulletAppState;
+import com.jme3.app.state.AppState;
 import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
 
@@ -21,8 +19,8 @@ import com.jme3.system.AppSettings;
  */
 public abstract class VendorEngine extends SimpleApplication {
     
-    public VendorEngine(){
-	super(new StatsAppState(), new CameraState(), new BulletAppState());
+    public VendorEngine( AppState... initialStates ) {
+	super(initialStates);
     }
     
     public abstract void init();

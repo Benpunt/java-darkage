@@ -4,6 +4,7 @@
  */
 package Engine;
 
+import Engine.Camera.CameraState;
 import Engine.Handler.FloatHandler;
 import Engine.Handler.IFloatHandler;
 import UI.BehavioredInput;
@@ -11,17 +12,16 @@ import UI.InputListener;
 import World.Behaviour.Action.Move.Move;
 import World.Behaviour.Action.Stop;
 import World.Behaviour.Behavior;
-import World.Behaviour.Condition.Collision.Collision;
 import World.Behaviour.IBehavior;
 import World.Factory.Scene.BodyFactory;
 import World.Factory.Scene.ShapeFactory;
 import World.Scene.Visual.Body;
+import com.jme3.app.StatsAppState;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.input.KeyInput;
 import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import java.util.ArrayList;
@@ -39,6 +39,14 @@ public class Engine extends VendorEngine {
     private List<IBehavior> _behaviors;
     private IFloatHandler _tpfHandler;
     private Body _sillyCubes;
+
+    public Engine(){
+	super(
+		new StatsAppState(), // adds some debug texts
+		new CameraState(), // creates camara & keyinput bindings
+		new BulletAppState() // loads physics
+	    );
+    }
     @Override
     public void init() {
 	// extend vield of view, it annoys me if i can't see everything
