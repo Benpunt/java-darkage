@@ -33,7 +33,7 @@ public abstract class VendorEngine extends SimpleApplication {
 	showSettings = false;
         AppSettings settingChanges = new AppSettings(true);
 	settingChanges.setWidth(1900);
-	settingChanges.setHeight(1080);
+	settingChanges.setHeight(1000);
         setSettings(settingChanges);
         super.start();
 	
