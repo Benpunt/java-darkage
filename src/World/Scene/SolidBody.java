@@ -20,6 +20,7 @@ public class SolidBody extends Presence implements IPhysicalBody, IBody{
     private IPhysicalBody _physical;
     private IBody  _visual;
     
+    
     public SolidBody(IPhysicalBody physical, IBody visual){  
 	super(new Behavior(physical, visual));
 	_physical = physical;
