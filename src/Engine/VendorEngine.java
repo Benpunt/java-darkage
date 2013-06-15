@@ -8,6 +8,8 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppState;
 import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  * This class overwites settings from simpleaplication
@@ -32,8 +34,9 @@ public abstract class VendorEngine extends SimpleApplication {
     public void start() {
 	showSettings = false;
         AppSettings settingChanges = new AppSettings(true);
-	settingChanges.setWidth(1900);
-	settingChanges.setHeight(1000);
+	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	settingChanges.setWidth((int)Math.round(screenSize.getWidth()));
+	settingChanges.setHeight((int)Math.round(screenSize.getHeight()-80));
         setSettings(settingChanges);
         super.start();
 	
