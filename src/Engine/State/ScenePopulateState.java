@@ -5,10 +5,14 @@
 package Engine.State;
 
 import Engine.Engine;
+import World.Behaviour.Action.App.Stop;
 import World.Behaviour.Action.Move.Move;
 import World.Behaviour.Behavior;
+import World.Behaviour.Condition.Collision.Collision;
 import World.Factory.Scene.BodyFactory;
 import World.Factory.Scene.ShapeFactory;
+import World.Factory.Scene.SolidFactory;
+import World.Scene.SolidBody;
 import World.Scene.Visual.Body;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
@@ -28,7 +32,7 @@ public class ScenePopulateState extends AbstractAppState{
     private BodyFactory _bodyFactory;
     private Body _sillyCubes;
     private Engine _engine;
-    
+    private PhysicsSpace _space;
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
@@ -39,16 +43,16 @@ public class ScenePopulateState extends AbstractAppState{
 	    return;
 	}
 	
-	PhysicsSpace space = stateManager.getState(BulletAppState.class).getPhysicsSpace();
+	_space = stateManager.getState(BulletAppState.class).getPhysicsSpace();
 	
 	ShapeFactory shapeFactory = new ShapeFactory(_engine.getAssetManager());
 	_bodyFactory = new BodyFactory(_engine.getRootNode(), shapeFactory);
+	SolidFactory solidFactory = new SolidFactory(_space);
 	
-	Body targetCubes = _bodyFactory.createCubes();
 	
+	SolidBody _targetCubes = solidFactory.createFromVisual(_bodyFactory.createCubes());
 	
 	_sillyCubes = _bodyFactory.createCubes();
-	
 	_sillyCubes.move(new Vector3f(0f, 1000f, 0f));
 	
 
@@ -99,17 +103,31 @@ public class ScenePopulateState extends AbstractAppState{
     }
     
     private void initBehavior(){
+	Behavior quitOnCollide = new Behavior(
+	    new Collision(
+		_space, 
+		_sillyCubes
+	    )
+	);
+	quitOnCollide.add(
+	    new Stop(
+		_engine
+	    )
+	);
 	_engine.getBehaviors().add(
 	    new Behavior(
-		new Move(
-		    _sillyCubes, 
-		    new Vector3f(
-			0f, 
-			-10f, 
-			0f
-		    ), 
-		    _engine.getTpfHandler()
-		)
+		new Behavior(
+		    new Move(
+			_sillyCubes, 
+			new Vector3f(
+			    0f, 
+			    -75f, 
+			    0f
+			), 
+			_engine.getTpfHandler()
+		    )
+		),
+		quitOnCollide
 	    )
 	);
 	

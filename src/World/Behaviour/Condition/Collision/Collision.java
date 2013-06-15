@@ -5,6 +5,7 @@
 package World.Behaviour.Condition.Collision;
 
 import World.Behaviour.Condition.Condition;
+import World.Scene.Visual.Body;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.CollisionShape;
@@ -25,12 +26,8 @@ public class Collision extends Condition {
 	register(space, shape);
     }
     
-    public Collision(PhysicsSpace space, Spatial ... targets){
-	Node n = new Node();
-	for(Spatial component : targets){
-	    n.attachChild(component);
-	}
-	register(space, CollisionShapeFactory.createMeshShape(n));
+    public Collision(PhysicsSpace space, Body target){
+	register(space, CollisionShapeFactory.createMeshShape(target.getNode()));
     }
     /**
      * registers the shape to the space
