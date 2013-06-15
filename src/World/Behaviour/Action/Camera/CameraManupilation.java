@@ -4,33 +4,24 @@
  */
 package World.Behaviour.Action.Camera;
 
-import Engine.State.Camera.CameraAcces;
 import Engine.Handler.IReadFloat;
-import World.Behaviour.Action.Action;
+import Engine.State.Camera.CameraAcces;
 
 /**
  *
  * @author jappie
  */
-public abstract class CameraManupilation extends Action{
-    private CameraAcces _camera;
+public abstract class CameraManupilation extends CameraAction{
     private IReadFloat _float;
-    public CameraManupilation(CameraAcces camera, IReadFloat floatAcces){
-	_camera = camera;
+    protected CameraManupilation(CameraAcces camera, IReadFloat floatAcces){
+	super(camera);
 	_float = floatAcces;
-    }
-
-    /**
-     * @return the _camera
-     */
-    public CameraAcces getCamera() {
-	return _camera;
     }
 
     /**
      * @return the _float
      */
-    public IReadFloat getFloat() {
+    protected IReadFloat getFloat() {
 	return _float;
     }
 }

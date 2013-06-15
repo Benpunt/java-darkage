@@ -9,6 +9,7 @@ import Engine.Handler.IFloatHandler;
 import UI.BehavioredInput;
 import UI.InputListener;
 import World.Behaviour.Action.Camera.Backward;
+import World.Behaviour.Action.Camera.CameraAbleSwitch;
 import World.Behaviour.Action.Camera.Forward;
 import World.Behaviour.Action.Camera.StrafeLeft;
 import World.Behaviour.Action.Camera.StrafeRight;
@@ -16,6 +17,9 @@ import World.Behaviour.Action.Camera.TiltDown;
 import World.Behaviour.Action.Camera.TiltLeft;
 import World.Behaviour.Action.Camera.TiltRight;
 import World.Behaviour.Action.Camera.TiltUp;
+import World.Behaviour.Action.CursorVisibiltySwitch;
+import World.Behaviour.Behavior;
+import World.Behaviour.Decorator.ValidOnce;
 import World.Factory.Factory;
 import World.Factory.IFactory;
 import com.jme3.app.Application;
@@ -149,6 +153,19 @@ public class CameraState extends AbstractAppState {
 	    input.setFloatHandler(handler);
 	    InputListener.createAndBind(_inputManager, input);
 	    
+	    input = new BehavioredInput(
+		"mouse capture", 
+		
+		new Behavior(),
+		KeyInput.KEY_F1
+	    );
+	    input.setActionBehavior(
+		new Behavior(
+		    new CursorVisibiltySwitch(_inputManager), // shows cursor (or not)
+		    new CameraAbleSwitch(_flyCam) // disablese cam (or enable)
+		));
+	    InputListener.createAndBind(_inputManager, input);
+	    
 	    _inputManager.setCursorVisible(_flyCam.isDragToRotate() || !isEnabled());
         }               
     }
@@ -163,14 +180,6 @@ public class CameraState extends AbstractAppState {
     @Override
     public void cleanup() {
         super.cleanup();
-
         _flyCam.unregisterInput();        
-    }
-    
-    @Override
-    public void update(float tpf) {
-	if(_inputManager != null){
-	    _inputManager.setCursorVisible(_flyCam.isDragToRotate() || !isEnabled());
-	}
     }
 }
