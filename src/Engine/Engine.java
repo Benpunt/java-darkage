@@ -4,10 +4,10 @@
  */
 package Engine;
 
-import Engine.State.ScenePopulateState;
-import Engine.State.Camera.CameraState;
 import Engine.Handler.FloatHandler;
 import Engine.Handler.IFloatHandler;
+import Engine.State.Camera.CameraState;
+import Engine.State.ScenePopulateState;
 import UI.BehavioredInput;
 import UI.InputListener;
 import World.Behaviour.Action.Stop;

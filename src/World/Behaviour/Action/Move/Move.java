@@ -27,7 +27,8 @@ public class Move extends CoordinateAcces {
     }
 
     public void execute() {
-	_target.move(getCoordinate().multLocal(_tpf.get()));
+	System.out.println(getCoordinate());
+	_target.move(getCoordinate().mult(_tpf.get()));
     }
     
     @Override
