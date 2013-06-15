@@ -53,6 +53,8 @@ public class BehaviorTest extends BehaviortestMocks {
     
     /**
      * Test of Execute method, of class Behavior.
+     * The flexiblity of the pattern depends a lot on execution without conditions.
+     * Thats why it has its own test
      */
     @Test
     public void testExecuteHappyPath_withoutConditions() {
