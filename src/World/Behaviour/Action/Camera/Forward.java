@@ -4,7 +4,7 @@
  */
 package World.Behaviour.Action.Camera;
 
-import Engine.Camera.CameraAcces;
+import Engine.State.Camera.CameraAcces;
 import Engine.Handler.IReadFloat;
 
 /**

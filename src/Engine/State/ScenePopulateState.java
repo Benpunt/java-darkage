@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Engine;
+package Engine.State;
 
+import Engine.Engine;
 import World.Behaviour.Action.Move.Move;
 import World.Behaviour.Behavior;
 import World.Factory.Scene.BodyFactory;
