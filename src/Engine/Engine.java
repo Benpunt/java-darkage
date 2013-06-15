@@ -10,7 +10,7 @@ import Engine.State.Camera.CameraState;
 import Engine.State.ScenePopulateState;
 import UI.BehavioredInput;
 import UI.InputListener;
-import World.Behaviour.Action.Stop;
+import World.Behaviour.Action.App.Stop;
 import World.Behaviour.IBehavior;
 import com.jme3.app.StatsAppState;
 import com.jme3.bullet.BulletAppState;
