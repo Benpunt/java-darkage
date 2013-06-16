@@ -7,6 +7,7 @@ package Engine;
 import Engine.Handler.FloatHandler;
 import Engine.Handler.IFloatHandler;
 import Engine.State.Camera.CameraState;
+import Engine.State.PlayerState;
 import Engine.State.ScenePopulateState;
 import UI.BehavioredInput;
 import UI.InputListener;
@@ -38,7 +39,8 @@ public class Engine extends VendorEngine {
 		new StatsAppState(), // adds some debug texts
 		new CameraState(), // creates camara & keyinput bindings
 		new BulletAppState(), // loads physics
-		new ScenePopulateState()
+		new ScenePopulateState(), // creates a world
+		new PlayerState() // defines a player
 	    );
 	_behaviors = new ArrayList<IBehavior>();
 	_tpfHandler = new FloatHandler();

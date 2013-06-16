@@ -5,16 +5,13 @@
 package Engine.State;
 
 import Engine.Engine;
-import World.Behaviour.Action.App.Stop;
 import World.Behaviour.Action.Edit.Behavior.AddBehavior;
 import World.Behaviour.Action.IAction;
 import World.Behaviour.Action.Move.Move;
-import World.Behaviour.Action.Move.Teleport;
 import World.Behaviour.Action.Spawn;
 import World.Behaviour.Behavior;
 import World.Behaviour.Condition.Collision.Collision;
 import World.Behaviour.Decorator.ValidOnce;
-import World.Behaviour.IBehavior;
 import World.Factory.IFactory;
 import World.Factory.Scene.BodyFactory;
 import World.Factory.Scene.ShapeFactory;
