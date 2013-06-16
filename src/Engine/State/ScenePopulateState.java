@@ -31,7 +31,7 @@ import com.jme3.math.Vector3f;
 public class ScenePopulateState extends AbstractAppState{
     
     private BodyFactory _bodyFactory;
-    private Body _sillyCubes;
+    private Body _sillyCubes, _testCubes;
     private Engine _engine;
     private PhysicsSpace _space;
     @Override
@@ -56,6 +56,7 @@ public class ScenePopulateState extends AbstractAppState{
 	_sillyCubes = _bodyFactory.createCubes();
 	_sillyCubes.move(new Vector3f(0f, 100f, 0f));
 	
+	_testCubes = _bodyFactory.createCubes();
 
 	 
 	/** Must add a light to make the lit object visible! */
@@ -111,10 +112,10 @@ public class ScenePopulateState extends AbstractAppState{
 	    )
 	);
 	onCollision.add(
-	    new Teleport(_sillyCubes, new Vector3f(0f, 100f, 0f))
+	    new Move(_sillyCubes, new Vector3f(0f, 1000f, 0f), _engine.getTpfHandler())
 	);
-	_engine.getBehaviors().add(
-	    new Behavior(
+	_sillyCubes.add(
+	new Behavior(
 		new Behavior(
 		    new Move(
 			_sillyCubes, 
@@ -129,6 +130,19 @@ public class ScenePopulateState extends AbstractAppState{
 		onCollision
 	    )
 	);
+	_engine.getBehaviors().add(
+	    _sillyCubes
+	);
 	
     }
+    
+    /**
+     * test update
+     * @param tpf 
+     */
+    @Override
+    public void update(float tpf) {
+	_testCubes.move(new Vector3f(0, 0, -3*tpf));
+    }
+
 }

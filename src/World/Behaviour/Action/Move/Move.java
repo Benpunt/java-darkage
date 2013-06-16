@@ -17,9 +17,6 @@ import com.jme3.math.Vector3f;
 public class Move extends CoordinateAcces {
     private IMoveable _target;
     private IReadFloat _tpf;
-    public Move(IMoveable target, Vector3f to){
-	this(target, to, new FloatHandler());
-    }
     public Move(IMoveable target, Vector3f to, IReadFloat tpf){
 	super(to);
 	_tpf = tpf;

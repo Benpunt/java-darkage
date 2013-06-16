@@ -61,7 +61,7 @@ public class Engine extends VendorEngine {
     }
     
     /**
-     * TODO: make sence of this madness
+     * executes all behaviors
      */
     public void update(float tpf) {
 	Log.write(Level.FINEST, "loop");
