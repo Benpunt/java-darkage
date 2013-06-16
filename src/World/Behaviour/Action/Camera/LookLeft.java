@@ -12,8 +12,8 @@ import World.Behaviour.Action.Action;
  *
  * @author jappie
  */
-public class TiltLeft extends CameraManupilation {
-    public TiltLeft(CameraAcces camera, IReadFloat floatAcces){
+public class LookLeft extends CameraManupilation {
+    public LookLeft(CameraAcces camera, IReadFloat floatAcces){
 	super(camera, floatAcces);
     }
     public void execute() {

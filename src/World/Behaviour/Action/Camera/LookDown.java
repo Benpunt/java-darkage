@@ -12,8 +12,8 @@ import World.Behaviour.Action.Action;
  *
  * @author jappie
  */
-public class TiltDown extends CameraManupilation {
-    public TiltDown(CameraAcces camera, IReadFloat floatAcces){
+public class LookDown extends CameraManupilation {
+    public LookDown(CameraAcces camera, IReadFloat floatAcces){
 	super(camera, floatAcces);
     }
     public void execute() {

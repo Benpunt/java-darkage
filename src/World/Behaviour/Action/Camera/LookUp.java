@@ -12,11 +12,11 @@ import World.Behaviour.Action.Action;
  *
  * @author jappie
  */
-public class TiltRight extends CameraManupilation {
-    public TiltRight(CameraAcces camera, IReadFloat floatAcces){
+public class LookUp extends CameraManupilation {
+    public LookUp(CameraAcces camera, IReadFloat floatAcces){
 	super(camera, floatAcces);
     }
     public void execute() {
-	getCamera().rotateCamera(-getFloat().get(), getCamera().getUp());
+	getCamera().rotateCamera(getFloat().get(), getCamera().getLeft());
     }
 }
