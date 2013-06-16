@@ -16,6 +16,7 @@ import World.Behaviour.Action.Camera.LookRight;
 import World.Behaviour.Action.Camera.LookUp;
 import World.Behaviour.Action.Camera.StrafeLeft;
 import World.Behaviour.Action.Camera.StrafeRight;
+import World.Behaviour.Behavior;
 import World.Behaviour.IBehavior;
 import World.Factory.Factory;
 import World.Factory.IFactory;
@@ -24,9 +25,11 @@ import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.MouseAxisTrigger;
+import com.jme3.input.controls.Trigger;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
-import java.util.HashMap;
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
  *
@@ -35,14 +38,14 @@ import java.util.HashMap;
 public class CameraAcces extends FlyByCamera{
     private float _farSight = 1000f;
     private float _nearSight = 1f;
-    private HashMap<String, IBehavior> _behaviors;
-    private enum INPUTS {
+    private Map<CamAction, IBehavior> _behaviors;
+    private enum CamAction {
 	StrafeForward, StrafeBackward, StrafeLeft, StrafeRight, 
 	LookDown, LookUp, LookLeft, LookRight
     };
     public CameraAcces(Camera cam){
         super(cam);
-	_behaviors = new HashMap<String, IBehavior>();
+	_behaviors = new EnumMap<CamAction, IBehavior>(CamAction.class);
     }
     public Vector3f getLeft(){
 	return cam.getLeft();
@@ -88,93 +91,68 @@ public class CameraAcces extends FlyByCamera{
 	cam.setFrustumPerspective(45f, (float)cam.getWidth() / cam.getHeight(), _nearSight, _farSight);
     }
     
+    private void register(
+	InputManager inputManager, 
+	IFloatHandler handler, 
+	CamAction action, 
+	int key
+    ){
+	BehavioredInput input = 
+		new BehavioredInput(
+		    action+"", 
+		    _behaviors.get(action), 
+		    key);
+	input.setFloatHandler(handler);
+	InputListener.createAndBind(inputManager, input);	
+    }    
+    private void register(
+	InputManager inputManager, 
+	IFloatHandler handler, 
+	CamAction action, 
+	Trigger key
+    ){
+	BehavioredInput input = 
+		new BehavioredInput(
+		    action+"", 
+		    _behaviors.get(action), 
+		    key);
+	input.setFloatHandler(handler);
+	InputListener.createAndBind(inputManager, input);	
+    }
+    
     public void registerInput(InputManager inputManager){
 	
 	IFactory<IFloatHandler> floatFactory = new Factory<IFloatHandler>(FloatHandler.class);
 	IFloatHandler handler = floatFactory.create();
-	BehavioredInput input = 
-		new BehavioredInput(
-		    "Strafe forward", 
-		    new Forward(this, handler), 
-		    KeyInput.KEY_W);
-	input.setFloatHandler(handler);
-	InputListener.createAndBind(inputManager, input);
-
+	_behaviors.put(CamAction.StrafeForward, new Behavior(new Forward(this, handler)));
+	register(inputManager, handler, CamAction.StrafeForward, KeyInput.KEY_W);
+	
+	handler = floatFactory.create();
+	_behaviors.put(CamAction.StrafeLeft, new Behavior(new StrafeLeft(this, handler)));
+	register(inputManager, handler, CamAction.StrafeLeft, KeyInput.KEY_A);
 
 	handler = floatFactory.create();
-	input = new BehavioredInput(
-		    "Strafe left", 
-		    new StrafeLeft(this, handler), 
-		    KeyInput.KEY_A);
-	input.setFloatHandler(handler);
-	InputListener.createAndBind(inputManager, input);
-
+	_behaviors.put(CamAction.StrafeRight, new Behavior(new StrafeRight(this, handler)));
+	register(inputManager, handler, CamAction.StrafeRight, KeyInput.KEY_D);
 
 	handler = floatFactory.create();
-	input = new BehavioredInput(
-		    "Strafe right", 
-		    new StrafeRight(this, handler), 
-		    KeyInput.KEY_D);
-	input.setFloatHandler(handler);
-	InputListener.createAndBind(inputManager, input);
-
+	_behaviors.put(CamAction.StrafeBackward, new Behavior(new Backward(this, handler)));
+	register(inputManager, handler, CamAction.StrafeBackward, KeyInput.KEY_S);
 
 	handler = floatFactory.create();
-	input = new BehavioredInput(
-		    "Strafe back", 
-		    new Backward(this, handler), 
-		    KeyInput.KEY_S);
-	input.setFloatHandler(handler);
-	InputListener.createAndBind(inputManager, input);
-
+	_behaviors.put(CamAction.LookLeft, new Behavior(new LookLeft(this, handler)));
+	register(inputManager, handler, CamAction.LookLeft, new MouseAxisTrigger(MouseInput.AXIS_X, true));
 
 	handler = floatFactory.create();
-	input = new BehavioredInput(
-		    "Look left", 
-		    new LookLeft(this, handler), 
-		    new MouseAxisTrigger(
-			MouseInput.AXIS_X, 
-			true)
-		    );
-	input.setFloatHandler(handler);
-	InputListener.createAndBind(inputManager, input);
-
+	_behaviors.put(CamAction.LookRight, new Behavior(new LookRight(this, handler)));
+	register(inputManager, handler, CamAction.LookRight, new MouseAxisTrigger(MouseInput.AXIS_X, false));
 
 	handler = floatFactory.create();
-	input = new BehavioredInput(
-		    "Look right", 
-		    new LookRight(this, handler), 
-		    new MouseAxisTrigger(
-			MouseInput.AXIS_X, 
-			false)
-		    );
-	input.setFloatHandler(handler);
-	InputListener.createAndBind(inputManager, input);
-
+	_behaviors.put(CamAction.LookUp, new Behavior(new LookUp(this, handler)));
+	register(inputManager, handler, CamAction.LookUp, new MouseAxisTrigger(MouseInput.AXIS_Y, !isYInverted()));
 
 	handler = floatFactory.create();
-	input = new BehavioredInput(
-		    "Look up", 
-		    new LookUp(this, handler), 
-		    new MouseAxisTrigger(
-			MouseInput.AXIS_Y, 
-			!isYInverted()
-		    )
-		);
-	input.setFloatHandler(handler);
-	InputListener.createAndBind(inputManager, input);
-
-
-	handler = floatFactory.create();
-	input = new BehavioredInput(
-		    "Look down", 
-		    new LookDown(this, handler), 
-		    new MouseAxisTrigger(
-			MouseInput.AXIS_Y, 
-			this.isYInverted()
-		    )
-		);
-	input.setFloatHandler(handler);
-	InputListener.createAndBind(inputManager, input);   
+	_behaviors.put(CamAction.LookDown, new Behavior(new LookDown(this, handler)));
+	register(inputManager, handler, CamAction.LookDown, new MouseAxisTrigger(MouseInput.AXIS_Y, isYInverted()));
     }
 }
