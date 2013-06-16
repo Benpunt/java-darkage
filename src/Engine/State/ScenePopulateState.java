@@ -4,7 +4,6 @@
  */
 package Engine.State;
 
-import Engine.Engine;
 import World.Behaviour.Action.Edit.Behavior.AddBehavior;
 import World.Behaviour.Action.IAction;
 import World.Behaviour.Action.Move.Move;
@@ -20,7 +19,6 @@ import World.Scene.SolidBody;
 import World.Scene.Visual.Body;
 import World.Scene.Visual.IBody;
 import com.jme3.app.Application;
-import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.PhysicsSpace;
@@ -40,8 +38,8 @@ public class ScenePopulateState extends EngineAccesState{
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
-	_space = stateManager.getState(BulletAppState.class).getPhysicsSpace();
-	_space.enableDebug(getEngine().getAssetManager());
+	_space = getEngine().getSpace();
+	
 	ShapeFactory shapeFactory = new ShapeFactory(getEngine().getAssetManager());
 	_bodyFactory = new BodyFactory(getEngine().getRootNode(), shapeFactory);
 	SolidFactory solidFactory = new SolidFactory(_space);

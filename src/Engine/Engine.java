@@ -15,6 +15,7 @@ import World.Behaviour.Action.App.Stop;
 import World.Behaviour.IBehavior;
 import com.jme3.app.StatsAppState;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.PhysicsSpace;
 import com.jme3.input.KeyInput;
 import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.RenderManager;
@@ -33,6 +34,7 @@ public class Engine extends VendorEngine {
 
     private List<IBehavior> _behaviors;
     private IFloatHandler _tpfHandler;
+    private PhysicsSpace _space;
 
     public Engine(){
 	super(
@@ -49,6 +51,7 @@ public class Engine extends VendorEngine {
     public void init() {
 	// extend vield of view, it annoys me if i can't see everything
 	
+	_space = stateManager.getState(BulletAppState.class).getPhysicsSpace();
 	InputListener.createAndBind(
 		inputManager,
 		new BehavioredInput("Escape", new Stop(this), KeyInput.KEY_ESCAPE)
@@ -85,5 +88,12 @@ public class Engine extends VendorEngine {
      */
     public IFloatHandler getTpfHandler() {
 	return _tpfHandler;
+    }
+
+    /**
+     * @return the _space
+     */
+    public PhysicsSpace getSpace() {
+	return _space;
     }
 }
