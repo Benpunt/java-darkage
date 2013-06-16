@@ -57,6 +57,7 @@ public abstract class ForceBody extends Presence implements IForceBody{
     
     @Override
     public void add(ForceBody body){
+	add((IBehavior) body);
 	_bodies.add(body);
 	_node.attachChild(body.getNode());
     }

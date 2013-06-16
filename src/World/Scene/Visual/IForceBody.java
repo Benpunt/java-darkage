@@ -13,7 +13,7 @@ import com.jme3.scene.Node;
  *
  * @author jappie
  */
-public interface IForceBody extends IPresence, ISpatialAcces {
+public interface IForceBody extends IPresence, ISpatialAcces, Cloneable {
 
     void add(ForceBody body);
 

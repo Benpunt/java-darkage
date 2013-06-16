@@ -6,15 +6,20 @@ package Engine.State;
 
 import Engine.Engine;
 import World.Behaviour.Action.App.Stop;
+import World.Behaviour.Action.Edit.Behavior.AddBehavior;
 import World.Behaviour.Action.Move.Move;
 import World.Behaviour.Action.Move.Teleport;
+import World.Behaviour.Action.Spawn;
 import World.Behaviour.Behavior;
 import World.Behaviour.Condition.Collision.Collision;
+import World.Behaviour.IBehavior;
+import World.Factory.IFactory;
 import World.Factory.Scene.BodyFactory;
 import World.Factory.Scene.ShapeFactory;
 import World.Factory.Scene.SolidFactory;
 import World.Scene.SolidBody;
 import World.Scene.Visual.Body;
+import World.Scene.Visual.IBody;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
@@ -31,7 +36,7 @@ import com.jme3.math.Vector3f;
 public class ScenePopulateState extends AbstractAppState{
     
     private BodyFactory _bodyFactory;
-    private Body _sillyCubes, _testCubes;
+    private Body _sillyCubes;
     private Engine _engine;
     private PhysicsSpace _space;
     @Override
@@ -55,8 +60,6 @@ public class ScenePopulateState extends AbstractAppState{
 	
 	_sillyCubes = _bodyFactory.createCubes();
 	_sillyCubes.move(new Vector3f(0f, 100f, 0f));
-	
-	_testCubes = _bodyFactory.createCubes();
 
 	 
 	/** Must add a light to make the lit object visible! */
@@ -112,7 +115,41 @@ public class ScenePopulateState extends AbstractAppState{
 	    )
 	);
 	onCollision.add(
-	    new Move(_sillyCubes, new Vector3f(0f, 1000f, 0f), _engine.getTpfHandler())
+	    new Move(
+		_sillyCubes, 
+		new Vector3f(0f, 300f, 0f), 
+		_engine.getTpfHandler()
+	    )
+	);
+	onCollision.add(
+	
+	    new Spawn(
+		new Body(_engine.getRootNode()),
+		
+		new IFactory<IBody>(){
+		    public IBody create() {
+			IBody cubes = _bodyFactory.createCubes();
+			cubes.add(new Behavior(
+				new Move(
+				    cubes,
+				    new Vector3f(
+					0,
+					0,
+					-0.3f
+				    ),
+				    _engine.getTpfHandler()
+				)
+			    )
+			);
+			_sillyCubes.add(
+			    new AddBehavior(_sillyCubes, cubes)
+			);
+			return cubes;
+		    }
+		}
+		
+	    )
+	
 	);
 	_sillyCubes.add(
 	new Behavior(
@@ -134,15 +171,6 @@ public class ScenePopulateState extends AbstractAppState{
 	    _sillyCubes
 	);
 	
-    }
-    
-    /**
-     * test update
-     * @param tpf 
-     */
-    @Override
-    public void update(float tpf) {
-	_testCubes.move(new Vector3f(0, 0, -3*tpf));
     }
 
 }

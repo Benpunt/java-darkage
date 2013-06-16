@@ -6,7 +6,7 @@ package World.Behaviour.Action;
 
 import World.Factory.IFactory;
 import World.Scene.Visual.IBody;
-import World.Scene.Visual.Shape.IShape;
+import com.jme3.scene.Node;
 
 /**
  *
@@ -14,14 +14,20 @@ import World.Scene.Visual.Shape.IShape;
  */
 public class Spawn extends Action{
     private IBody _on;
-    private IFactory<IShape> _from;
-    public Spawn(IBody on, IFactory<IShape> from){
+    private IFactory<IBody> _factory;
+    
+    /**
+     * the factory interface is probably best used as an ananymous class decleration
+     * @param on
+     * @param factory 
+     */
+    public Spawn(IBody on, IFactory<IBody> factory){
 	_on = on;
-	_from = from;
+	_factory = factory;
     }
 
     public void execute() {
-	_on.add(_from.create());
+	_on.add(_factory.create());
     }
     
 }
