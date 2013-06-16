@@ -4,8 +4,10 @@
  */
 package World.Behaviour.Condition.Collision;
 
+import Engine.Handler.IReadFloat;
 import Engine.Log;
 import World.Behaviour.Condition.Condition;
+import World.Scene.ISpatialAcces;
 import World.Scene.Visual.Body;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
@@ -20,27 +22,25 @@ import java.util.logging.Logger;
  * @author jappie
  */
 public class Collision extends Condition {
-    CollisionListener _listener;
+    private CollisionListener _listener;
+    private ISpatialAcces _target;
     
-    public Collision(PhysicsSpace space, CollisionShape shape){
-	register(space, shape);
-    }
-    
-    public Collision(PhysicsSpace space, Body target){
-	register(space, CollisionShapeFactory.createMeshShape(target.getNode()));
-    }
-    /**
-     * registers the shape to the space
-     * @param space
-     * @param shape 
-     */
-    private void register(PhysicsSpace space, CollisionShape shape){
-	_listener = new CollisionListener(shape);
-	space.add((PhysicsCollisionObject)_listener);
+    public Collision(PhysicsSpace space, ISpatialAcces target){
+	_target = target;
+	
+	_listener = new CollisionListener(
+	    CollisionShapeFactory.createBoxShape(_target.getSpatial())
+	);
+	space.add(_listener);
+	_listener.setPhysicsLocation(_target.getSpatial().getWorldTranslation());
     }
 
     public boolean isSufficient() {
-	Log.write(Level.FINE, "is colliding: {0}", _listener.HasColided());
-	return _listener.HasColided();
+	_listener.setSpatial(_target.getSpatial());
+	boolean colides = _listener.HasColided();
+	
+	Log.write(Level.FINEST, "{1} is colliding: {0}. Overlapping count: {2}", 
+		colides, _target.getSpatial(), _listener.getOverlappingCount());
+	return colides;
     }
 }

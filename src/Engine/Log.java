@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  */
 public class Log {
     private static final Logger LOGGER = Logger.getLogger("dark-age-outputed");
-    private static final Level LOG_LEVEL = Level.ALL;
+    private static final Level LOG_LEVEL = Level.FINER;
     
     static{
         LOGGER.setLevel(LOG_LEVEL);

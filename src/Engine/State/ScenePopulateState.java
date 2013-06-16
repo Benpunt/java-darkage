@@ -7,6 +7,7 @@ package Engine.State;
 import Engine.Engine;
 import World.Behaviour.Action.App.Stop;
 import World.Behaviour.Action.Move.Move;
+import World.Behaviour.Action.Move.Teleport;
 import World.Behaviour.Behavior;
 import World.Behaviour.Condition.Collision.Collision;
 import World.Factory.Scene.BodyFactory;
@@ -44,7 +45,7 @@ public class ScenePopulateState extends AbstractAppState{
 	}
 	
 	_space = stateManager.getState(BulletAppState.class).getPhysicsSpace();
-	
+	_space.enableDebug(_engine.getAssetManager());
 	ShapeFactory shapeFactory = new ShapeFactory(_engine.getAssetManager());
 	_bodyFactory = new BodyFactory(_engine.getRootNode(), shapeFactory);
 	SolidFactory solidFactory = new SolidFactory(_space);
@@ -103,16 +104,14 @@ public class ScenePopulateState extends AbstractAppState{
     }
     
     private void initBehavior(){
-	Behavior quitOnCollide = new Behavior(
+	Behavior onCollision = new Behavior(
 	    new Collision(
 		_space, 
 		_sillyCubes
 	    )
 	);
-	quitOnCollide.add(
-	    new Stop(
-		_engine
-	    )
+	onCollision.add(
+	    new Teleport(_sillyCubes, new Vector3f(0f, 100f, 0f))
 	);
 	_engine.getBehaviors().add(
 	    new Behavior(
@@ -127,7 +126,7 @@ public class ScenePopulateState extends AbstractAppState{
 			_engine.getTpfHandler()
 		    )
 		),
-		quitOnCollide
+		onCollision
 	    )
 	);
 	

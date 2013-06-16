@@ -11,12 +11,13 @@ import World.Scene.Visual.Shape.IShape;
 import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
 
 /**
  *
  * @author jappie
  */
-public class SolidBody extends Presence implements IPhysicalBody, IBody{
+public class SolidBody extends Presence implements ISolidBody{
     private IPhysicalBody _physical;
     private IBody  _visual;
     
@@ -66,5 +67,9 @@ public class SolidBody extends Presence implements IPhysicalBody, IBody{
 
     public Node getNode() {
 	return _visual.getNode();
+    }
+
+    public Spatial getSpatial() {
+	return _visual.getSpatial();
     }
 }

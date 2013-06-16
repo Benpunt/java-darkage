@@ -8,6 +8,7 @@ import World.Behaviour.IBehavior;
 import World.Scene.Visual.Shape.IShape;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,5 +63,9 @@ public class Body extends ForceBody implements IBody{
 
     public void move(Vector3f to) {
 	getNode().move(to);
+    }
+
+    public Spatial getSpatial() {
+	return getNode();
     }
 }

@@ -20,6 +20,11 @@ public class CollisionListener extends GhostControl implements ICollisionListene
     
     private boolean _hasColided;
 
+    /**
+     * does not work with ghostcontroll at least.
+     * But i get an error when i do not implement it. So I kept the original intenden functionality
+     * @param event 
+     */
     public void collision(PhysicsCollisionEvent event) {
 	_hasColided = true;
     }
@@ -30,7 +35,7 @@ public class CollisionListener extends GhostControl implements ICollisionListene
      */
     @Override
     public boolean HasColided() {
-	boolean value = _hasColided;
+	boolean value = (getOverlappingCount() > 0) || _hasColided;
 	_hasColided = false;
 	return value;
     }
