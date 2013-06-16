@@ -14,7 +14,7 @@ import com.jme3.math.Vector3f;
  *
  * @author jappie
  */
-public class PhysicalCharacter extends PhysicsAcces {
+public class PhysicalCharacter extends PhysicsAcces implements IPhysicalCharacter {
     private CharacterControl _character;
     public PhysicalCharacter(PhysicsSpace space, CharacterControl character, IBehavior behavior){
 	super(space, behavior);
