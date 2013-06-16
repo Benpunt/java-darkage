@@ -27,7 +27,6 @@ public class Collision extends Condition {
 	    CollisionShapeFactory.createBoxShape(_target.getSpatial())
 	);
 	space.add(_listener);
-	_listener.setPhysicsLocation(_target.getSpatial().getWorldTranslation());
     }
 
     public boolean isSufficient() {
