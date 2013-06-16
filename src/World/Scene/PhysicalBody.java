@@ -14,18 +14,16 @@ import com.jme3.math.Vector3f;
  *
  * @author jappie
  */
-public class PhysicalBody extends Presence implements IPhysicalBody{
+public class PhysicalBody extends PhysicsAcces implements IPhysicalBody{
     private PhysicsRigidBody _physicsBody;
-    private PhysicsSpace _space;
     public PhysicalBody(PhysicsSpace space, PhysicsRigidBody shape){
 	this(space, shape, null);
     }
     public PhysicalBody(PhysicsSpace space, PhysicsRigidBody shape, IBehavior behavior){
-	super(behavior);
+	super(space, behavior);
 	check(shape);
 	_physicsBody = shape;
-	_space = space;
-	_space.add(_physicsBody);
+	getSpace().add(_physicsBody);
     }
 
     /**
@@ -42,13 +40,13 @@ public class PhysicalBody extends Presence implements IPhysicalBody{
     @Override
     public void setPhysicsBody(PhysicsRigidBody shape) {
 	check(shape);
-	_space.remove(_physicsBody);
+	getSpace().remove(_physicsBody);
 	_physicsBody = shape;
-	_space.add(_physicsBody);
+	getSpace().add(_physicsBody);
     }
     
     public void detach(){
-	_space.remove(_physicsBody);
+	getSpace().remove(_physicsBody);
     }
     
     private void check(PhysicsRigidBody shape){
