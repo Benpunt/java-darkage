@@ -4,7 +4,6 @@
  */
 package World.Behaviour.Action.Move;
 
-import World.Scene.ITeleportable;
 import com.jme3.math.Vector3f;
 
 /**

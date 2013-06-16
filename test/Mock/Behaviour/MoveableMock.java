@@ -4,7 +4,7 @@
  */
 package Mock.Behaviour;
 
-import World.Scene.IMoveable;
+import World.Behaviour.Action.Move.IMoveable;
 import com.jme3.math.Vector3f;
 
 /**

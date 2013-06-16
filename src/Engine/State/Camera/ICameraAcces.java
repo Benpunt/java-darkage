@@ -6,8 +6,8 @@ package Engine.State.Camera;
 
 import Engine.State.Camera.CameraAcces.CamAction;
 import World.Behaviour.IBehavior;
-import World.Scene.IMoveable;
-import World.Scene.ITeleportable;
+import World.Behaviour.Action.Move.IMoveable;
+import World.Behaviour.Action.Move.ITeleportable;
 import java.util.Map;
 
 /**

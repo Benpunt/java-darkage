@@ -4,6 +4,8 @@
  */
 package World.Scene;
 
+import World.Behaviour.Action.Move.IMoveable;
+import World.Behaviour.Action.Move.ITeleportable;
 import World.Behaviour.IBehavior;
 
 /**

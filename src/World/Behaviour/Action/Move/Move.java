@@ -6,7 +6,6 @@ package World.Behaviour.Action.Move;
 
 import Engine.Handler.FloatHandler;
 import Engine.Handler.IReadFloat;
-import World.Scene.IMoveable;
 import com.jme3.math.Vector3f;
 
 /**
