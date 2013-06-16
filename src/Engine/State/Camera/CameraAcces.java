@@ -41,11 +41,13 @@ import java.util.Set;
  * the enumaration CamAction tells wich behaviors are modifiable.
  * @author jappie
  */
-public class CameraAcces extends FlyByCamera implements Map<CamAction, IBehavior> {
+public class CameraAcces extends FlyByCamera implements ICameraAcces {
 
     private float _farSight = 1000f;
     private float _nearSight = 1f;
     private Map<CamAction, IBehavior> _behaviors;
+
+
     
     public enum CamAction {
 	StrafeForward, StrafeBackward, StrafeLeft, StrafeRight,
@@ -213,5 +215,12 @@ public class CameraAcces extends FlyByCamera implements Map<CamAction, IBehavior
 
     public Set<Entry<CamAction, IBehavior>> entrySet() {
 	return _behaviors.entrySet();
+    }
+    public void move(Vector3f to) {
+	setLocation(to.addLocal(cam.getLocation()));
+    }
+
+    public void setLocation(Vector3f where) {
+	cam.setLocation(where);
     }
 }
