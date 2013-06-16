@@ -32,26 +32,18 @@ import com.jme3.math.Vector3f;
  * adds stuff to the scene/world. Initilizes behavior
  * @author jappie
  */
-public class ScenePopulateState extends AbstractAppState{
+public class ScenePopulateState extends EngineAccesState{
     
     private BodyFactory _bodyFactory;
     private Body _sillyCubes;
-    private Engine _engine;
     private PhysicsSpace _space;
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
-	
-	if(app instanceof Engine){
-	    _engine = (Engine) app;
-	}else{
-	    return;
-	}
-	
 	_space = stateManager.getState(BulletAppState.class).getPhysicsSpace();
-	_space.enableDebug(_engine.getAssetManager());
-	ShapeFactory shapeFactory = new ShapeFactory(_engine.getAssetManager());
-	_bodyFactory = new BodyFactory(_engine.getRootNode(), shapeFactory);
+	_space.enableDebug(getEngine().getAssetManager());
+	ShapeFactory shapeFactory = new ShapeFactory(getEngine().getAssetManager());
+	_bodyFactory = new BodyFactory(getEngine().getRootNode(), shapeFactory);
 	SolidFactory solidFactory = new SolidFactory(_space);
 	
 	
@@ -65,7 +57,7 @@ public class ScenePopulateState extends AbstractAppState{
 	DirectionalLight sun = new DirectionalLight();
 	sun.setDirection(new Vector3f(1,0,-2).normalizeLocal());
 	sun.setColor(ColorRGBA.White);
-	_engine.getRootNode().addLight(sun);
+	getEngine().getRootNode().addLight(sun);
 	
 		
 	Body map = _bodyFactory.createMap();
@@ -117,13 +109,13 @@ public class ScenePopulateState extends AbstractAppState{
 	    new Move(
 		_sillyCubes, 
 		new Vector3f(0f, 300f, 0f), 
-		_engine.getTpfHandler()
+		getEngine().getTpfHandler()
 	    )
 	);
 	onCollision.add(
 	
 	    new Spawn(
-		new Body(_engine.getRootNode()),
+		new Body(getEngine().getRootNode()),
 		
 		new IFactory<IBody>(){
 		    public IBody create() {
@@ -136,7 +128,7 @@ public class ScenePopulateState extends AbstractAppState{
 					0,
 					-0.03f
 				    ),
-				    _engine.getTpfHandler()
+				    getEngine().getTpfHandler()
 				)
 			    )
 			);
@@ -163,13 +155,13 @@ public class ScenePopulateState extends AbstractAppState{
 			    -10f, 
 			    0f
 			), 
-			_engine.getTpfHandler()
+			getEngine().getTpfHandler()
 		    )
 		),
 		onCollision
 	    )
 	);
-	_engine.getBehaviors().add(
+	getEngine().getBehaviors().add(
 	    _sillyCubes
 	);
 	

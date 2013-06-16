@@ -4,12 +4,17 @@
  */
 package Engine.State;
 
-import com.jme3.app.state.AbstractAppState;
+import com.jme3.app.Application;
+import com.jme3.app.state.AppStateManager;
 
 /**
  *
  * @author jappie
  */
-public class PlayerState extends AbstractAppState {
+public class PlayerState extends EngineAccesState {
     
+    @Override
+    public void initialize(AppStateManager stateManager, Application app) {
+        super.initialize(stateManager, app);
+    }
 }
