@@ -6,6 +6,7 @@ package Engine.State.Camera;
 
 import Engine.Handler.FloatHandler;
 import Engine.Handler.IFloatHandler;
+import Engine.State.Camera.CameraAcces.CamAction;
 import UI.BehavioredInput;
 import UI.InputListener;
 import World.Behaviour.Action.Camera.Backward;
@@ -28,105 +29,115 @@ import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.Trigger;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
- *
+ * This class initilizes the camara & its key bindings
+ * It provides an api to edit the behavior of those keys at runtime.
+ * 
+ * the enumaration CamAction tells wich behaviors are modifiable.
  * @author jappie
  */
-public class CameraAcces extends FlyByCamera{
+public class CameraAcces extends FlyByCamera implements Map<CamAction, IBehavior> {
+
     private float _farSight = 1000f;
     private float _nearSight = 1f;
     private Map<CamAction, IBehavior> _behaviors;
-    private enum CamAction {
-	StrafeForward, StrafeBackward, StrafeLeft, StrafeRight, 
+    
+    public enum CamAction {
+	StrafeForward, StrafeBackward, StrafeLeft, StrafeRight,
 	LookDown, LookUp, LookLeft, LookRight
     };
-    public CameraAcces(Camera cam){
-        super(cam);
+
+    public CameraAcces(Camera cam) {
+	super(cam);
 	_behaviors = new EnumMap<CamAction, IBehavior>(CamAction.class);
     }
-    public Vector3f getLeft(){
+
+    public Vector3f getLeft() {
 	return cam.getLeft();
     }
-    public Vector3f getUp(){
+
+    public Vector3f getUp() {
 	return initialUpVec;
     }
-    
-    public boolean isYInverted(){
+
+    public boolean isYInverted() {
 	return invertY;
     }
-    
+
     @Override
-    public void rotateCamera(float value, Vector3f axis){
-        super.rotateCamera(value, axis);
+    public void rotateCamera(float value, Vector3f axis) {
+	super.rotateCamera(value, axis);
     }
 
     @Override
-    public void zoomCamera(float value){
-        super.zoomCamera(value);
+    public void zoomCamera(float value) {
+	super.zoomCamera(value);
     }
 
     @Override
-    public void riseCamera(float value){
-        super.riseCamera(value);
+    public void riseCamera(float value) {
+	super.riseCamera(value);
     }
 
     @Override
-    public void moveCamera(float value, boolean sideways){
-        super.moveCamera(value, sideways);
+    public void moveCamera(float value, boolean sideways) {
+	super.moveCamera(value, sideways);
     }
-    
-    public void setFarSight(float value){
+
+    public void setFarSight(float value) {
 	_farSight = value;
 	updateFrustrum();
     }
-    public void setFarNearSight(float value){
+
+    public void setFarNearSight(float value) {
 	_nearSight = value;
 	updateFrustrum();
     }
-    
-    private void updateFrustrum(){
-	cam.setFrustumPerspective(45f, (float)cam.getWidth() / cam.getHeight(), _nearSight, _farSight);
+
+    private void updateFrustrum() {
+	cam.setFrustumPerspective(45f, (float) cam.getWidth() / cam.getHeight(), _nearSight, _farSight);
     }
-    
+
     private void register(
-	InputManager inputManager, 
-	IFloatHandler handler, 
-	CamAction action, 
-	int key
-    ){
-	BehavioredInput input = 
+	    InputManager inputManager,
+	    IFloatHandler handler,
+	    CamAction action,
+	    int key) {
+	BehavioredInput input =
 		new BehavioredInput(
-		    action+"", 
-		    _behaviors.get(action), 
-		    key);
+		action + "",
+		_behaviors.get(action),
+		key);
 	input.setFloatHandler(handler);
-	InputListener.createAndBind(inputManager, input);	
-    }    
-    private void register(
-	InputManager inputManager, 
-	IFloatHandler handler, 
-	CamAction action, 
-	Trigger key
-    ){
-	BehavioredInput input = 
-		new BehavioredInput(
-		    action+"", 
-		    _behaviors.get(action), 
-		    key);
-	input.setFloatHandler(handler);
-	InputListener.createAndBind(inputManager, input);	
+	InputListener.createAndBind(inputManager, input);
     }
-    
-    public void registerInput(InputManager inputManager){
-	
+
+    private void register(
+	    InputManager inputManager,
+	    IFloatHandler handler,
+	    CamAction action,
+	    Trigger key) {
+	BehavioredInput input =
+		new BehavioredInput(
+		action + "",
+		_behaviors.get(action),
+		key);
+	input.setFloatHandler(handler);
+	InputListener.createAndBind(inputManager, input);
+    }
+
+    public void registerInput(InputManager inputManager) {
+
 	IFactory<IFloatHandler> floatFactory = new Factory<IFloatHandler>(FloatHandler.class);
 	IFloatHandler handler = floatFactory.create();
 	_behaviors.put(CamAction.StrafeForward, new Behavior(new Forward(this, handler)));
 	register(inputManager, handler, CamAction.StrafeForward, KeyInput.KEY_W);
-	
+
 	handler = floatFactory.create();
 	_behaviors.put(CamAction.StrafeLeft, new Behavior(new StrafeLeft(this, handler)));
 	register(inputManager, handler, CamAction.StrafeLeft, KeyInput.KEY_A);
@@ -154,5 +165,53 @@ public class CameraAcces extends FlyByCamera{
 	handler = floatFactory.create();
 	_behaviors.put(CamAction.LookDown, new Behavior(new LookDown(this, handler)));
 	register(inputManager, handler, CamAction.LookDown, new MouseAxisTrigger(MouseInput.AXIS_Y, isYInverted()));
+    }
+
+    public int size() {
+	return _behaviors.size();
+    }
+
+    public boolean isEmpty() {
+	return _behaviors.isEmpty();
+    }
+
+    public boolean containsKey(Object key) {
+	return _behaviors.containsKey(key);
+    }
+
+    public boolean containsValue(Object value) {
+	return _behaviors.containsValue(value);
+    }
+
+    public IBehavior get(Object key) {
+	return _behaviors.get(key);
+    }
+
+    public IBehavior put(CamAction key, IBehavior value) {
+	return _behaviors.put(key, value);
+    }
+
+    public IBehavior remove(Object key) {
+	return _behaviors.remove(key);
+    }
+
+    public void putAll(Map<? extends CamAction, ? extends IBehavior> m) {
+	_behaviors.putAll(m);
+    }
+
+    public void clear() {
+	_behaviors.clear();
+    }
+
+    public Set<CamAction> keySet() {
+	return _behaviors.keySet();
+    }
+
+    public Collection<IBehavior> values() {
+	return _behaviors.values();
+    }
+
+    public Set<Entry<CamAction, IBehavior>> entrySet() {
+	return _behaviors.entrySet();
     }
 }
