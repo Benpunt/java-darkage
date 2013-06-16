@@ -64,7 +64,7 @@ public class Engine extends VendorEngine {
      * executes all behaviors
      */
     public void update(float tpf) {
-	Log.write(Level.FINEST, "loop");
+	Log.write(Level.FINEST, "Starting a new gameloop.");
 	getTpfHandler().set(tpf);
 	for(IBehavior behavior : getBehaviors()){
 	    behavior.execute();

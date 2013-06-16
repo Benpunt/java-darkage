@@ -14,10 +14,10 @@ import World.Behaviour.Action.Camera.CameraAbleSwitch;
 import World.Behaviour.Action.Camera.Forward;
 import World.Behaviour.Action.Camera.StrafeLeft;
 import World.Behaviour.Action.Camera.StrafeRight;
-import World.Behaviour.Action.Camera.TiltDown;
-import World.Behaviour.Action.Camera.TiltLeft;
-import World.Behaviour.Action.Camera.TiltRight;
-import World.Behaviour.Action.Camera.TiltUp;
+import World.Behaviour.Action.Camera.LookDown;
+import World.Behaviour.Action.Camera.LookLeft;
+import World.Behaviour.Action.Camera.LookRight;
+import World.Behaviour.Action.Camera.LookUp;
 import World.Behaviour.Behavior;
 import World.Factory.Factory;
 import World.Factory.IFactory;
@@ -106,7 +106,7 @@ public class CameraState extends AbstractAppState {
 	    handler = floatFactory.create();
 	    input = new BehavioredInput(
 			"tilt left", 
-			new TiltLeft(_flyCam, handler), 
+			new LookLeft(_flyCam, handler), 
 			new MouseAxisTrigger(
 			    MouseInput.AXIS_X, 
 			    true)
@@ -118,7 +118,7 @@ public class CameraState extends AbstractAppState {
 	    handler = floatFactory.create();
 	    input = new BehavioredInput(
 			"tilt right", 
-			new TiltRight(_flyCam, handler), 
+			new LookRight(_flyCam, handler), 
 			new MouseAxisTrigger(
 			    MouseInput.AXIS_X, 
 			    false)
@@ -130,7 +130,7 @@ public class CameraState extends AbstractAppState {
 	    handler = floatFactory.create();
 	    input = new BehavioredInput(
 			"tilt up", 
-			new TiltUp(_flyCam, handler), 
+			new LookUp(_flyCam, handler), 
 			new MouseAxisTrigger(
 			    MouseInput.AXIS_Y, 
 			    !_flyCam.isYInverted()
@@ -143,7 +143,7 @@ public class CameraState extends AbstractAppState {
 	    handler = floatFactory.create();
 	    input = new BehavioredInput(
 			"tilt down", 
-			new TiltDown(_flyCam, handler), 
+			new LookDown(_flyCam, handler), 
 			new MouseAxisTrigger(
 			    MouseInput.AXIS_Y, 
 			    _flyCam.isYInverted()
