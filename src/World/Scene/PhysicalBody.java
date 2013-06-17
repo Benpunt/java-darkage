@@ -60,4 +60,8 @@ public class PhysicalBody extends PhysicsAcces implements IPhysicalBody{
     public void move(Vector3f to) {
 	_physicsBody.setLinearVelocity(to);
     }
+
+    public Vector3f getLocation() {
+	return _physicsBody.getPhysicsLocation();
+    }
 }

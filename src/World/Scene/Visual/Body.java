@@ -68,4 +68,8 @@ public class Body extends ForceBody implements IBody{
     public Spatial getSpatial() {
 	return getNode();
     }
+
+    public Vector3f getLocation() {
+	return getNode().getWorldTranslation();
+    }
 }

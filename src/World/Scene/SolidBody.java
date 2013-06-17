@@ -72,4 +72,11 @@ public class SolidBody extends Presence implements ISolidBody{
     public Spatial getSpatial() {
 	return _visual.getSpatial();
     }
+
+    public Vector3f getLocation() {
+	
+	// physical has only one world coordinate system
+	// whereas the visual can have coordinate systems inside coordinate systems.
+	return _physical.getLocation(); 
+    }
 }

@@ -5,6 +5,7 @@
 package World.Scene;
 
 import World.Behaviour.Action.Move.IMoveable;
+import World.Behaviour.Action.Move.IReadLocation;
 import World.Behaviour.Action.Move.ITeleportable;
 import World.Behaviour.IBehavior;
 
@@ -12,7 +13,7 @@ import World.Behaviour.IBehavior;
  *
  * @author jappie
  */
-public interface IPresence extends IMoveable, ITeleportable, IBehavior {
+public interface IPresence extends IMoveable, ITeleportable, IBehavior, IReadLocation {
 
     /**
      * detaches the presence from a space
