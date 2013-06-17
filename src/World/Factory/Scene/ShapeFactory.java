@@ -14,6 +14,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.texture.Image;
 import com.jme3.texture.Texture;
+import com.jme3.util.TangentBinormalGenerator;
 
 /**
  *
@@ -21,10 +22,12 @@ import com.jme3.texture.Texture;
  */
 public class ShapeFactory implements IFactory<IShape>{
     private Material _material;
+    private AssetManager _asset;
     Texture _map;
     public ShapeFactory(AssetManager assetManager){
 	_map = assetManager.loadTexture("Textures/map.png");
 	_material = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+	_asset = assetManager;
     }
     
     public IShape createCube(){
@@ -52,8 +55,18 @@ public class ShapeFactory implements IFactory<IShape>{
     }
     
     public IShape createFloor(){
-	Material material = getMaterial();
-	material.setColor("Color", ColorRGBA.randomColor());
-	return Cube.create(material,  new Vector3f(1,1,1), new Vector3f(5000, 1.5f, 5000));
+	Material material = new Material(_asset, "Common/MatDefs/Light/Lighting.j3md");
+	
+	material.setTexture("DiffuseMap", _asset.loadTexture("Textures/Terrain/Pond/Pond.jpg"));
+	material.setTexture("NormalMap", _asset.loadTexture("Textures/Terrain/Pond/Pond_normal.png"));
+	material.setBoolean("UseMaterialColors",true);    
+	material.setColor("Specular",ColorRGBA.randomColor());
+	material.setColor("Diffuse",ColorRGBA.randomColor());
+	material.setFloat("Shininess", 30f); // [1,128] 	
+	
+	IShape shape =  Cube.create(material,  new Vector3f(1,1,1), new Vector3f(5000, 1.5f, 5000));
+	TangentBinormalGenerator.generate(shape.getShape().getMesh());
+
+	return shape;
     }
 }

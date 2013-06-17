@@ -12,8 +12,6 @@ import Engine.State.Camera.CameraAcces.CamAction;
 import Engine.State.Camera.CameraState;
 import Engine.State.Camera.ICameraAcces;
 import World.Behaviour.Action.Move.DynamicMove;
-import World.Behaviour.Action.Move.Move;
-import World.Behaviour.Action.Move.TeleportToObject;
 import World.Behaviour.Action.SetFlag;
 import World.Behaviour.Behavior;
 import World.Scene.IPhysicalCharacter;

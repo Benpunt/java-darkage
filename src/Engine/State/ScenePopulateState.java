@@ -116,7 +116,7 @@ public class ScenePopulateState extends EngineAccesState{
 	onCollision.add(
 	    new Move(
 		_sillyCubes, 
-		new Vector3f(0f, 300f, 0f), 
+		new Vector3f(0f, 2000f, 0f), 
 		getEngine().getTpfHandler()
 	    )
 	);

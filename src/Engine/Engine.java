@@ -38,11 +38,11 @@ public class Engine extends VendorEngine {
 
     public Engine(){
 	super(
-		new StatsAppState(), // adds some debug texts
-		new CameraState(), // creates camara & keyinput bindings
-		new BulletAppState(), // loads physics
-		new ScenePopulateState(), // creates a world
-		new PlayerState() // defines a player, binds camara to it
+		 new StatsAppState() // adds some debug texts
+		,new CameraState() // creates camara & keyinput bindings
+		,new BulletAppState() // loads physics
+		,new ScenePopulateState()//, // creates a world
+		,new PlayerState() // defines a player, binds camara to it
 	    );
 	_behaviors = new ArrayList<IBehavior>();
 	_tpfHandler = new FloatHandler();
