@@ -6,6 +6,7 @@ package Engine.State;
 
 import Engine.Handler.BoolHandler;
 import Engine.Handler.IBoolHandler;
+import Engine.Handler.IVector3fHandler;
 import Engine.State.Camera.CameraAcces.CamAction;
 import Engine.State.Camera.CameraState;
 import Engine.State.Camera.ICameraAcces;
@@ -31,6 +32,9 @@ public class PlayerState extends EngineAccesState {
     private static final int _walkSpeed = 10;
     private IBoolHandler _moveKeyPressed = new BoolHandler(false);
     private ICameraAcces _camera;
+    
+    private IVector3fHandler _left, _right, _forward, _backward;
+    
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);

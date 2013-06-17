@@ -42,7 +42,6 @@ import java.util.Set;
  * @author jappie
  */
 public class CameraAcces extends FlyByCamera implements ICameraAcces {
-
     private float _farSight = 1000f;
     private float _nearSight = 1f;
     private Map<CamAction, IBehavior> _behaviors;
