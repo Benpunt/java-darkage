@@ -4,15 +4,15 @@
  */
 package World.Behaviour.Action.Camera;
 
-import Engine.State.Camera.CameraAcces;
 import Engine.Handler.IReadFloat;
+import Engine.State.Camera.ICameraAcces;
 
 /**
  *
  * @author jappie
  */
 public class Forward extends CameraManupilation {
-    public Forward(CameraAcces camera, IReadFloat floatAcces){
+    public Forward(ICameraAcces camera, IReadFloat floatAcces){
 	super(camera, floatAcces);
     }
     public void execute() {

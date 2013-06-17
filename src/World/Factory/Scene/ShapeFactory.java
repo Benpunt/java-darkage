@@ -62,7 +62,7 @@ public class ShapeFactory implements IFactory<IShape>{
 	material.setBoolean("UseMaterialColors",true);    
 	material.setColor("Specular",ColorRGBA.randomColor());
 	material.setColor("Diffuse",ColorRGBA.randomColor());
-	material.setFloat("Shininess", 30f); // [1,128] 	
+	material.setFloat("Shininess", 30f); // [1,128] 
 	
 	IShape shape =  Cube.create(material,  new Vector3f(1,1,1), new Vector3f(5000, 1.5f, 5000));
 	TangentBinormalGenerator.generate(shape.getShape().getMesh());

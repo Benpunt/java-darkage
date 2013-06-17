@@ -4,7 +4,7 @@
  */
 package World.Behaviour.Action.Camera;
 
-import Engine.State.Camera.CameraAcces;
+import Engine.State.Camera.ICameraAcces;
 
 /**
  * stores the cameras current rotate & movement speed & sets it to 0 on next call
@@ -13,7 +13,7 @@ import Engine.State.Camera.CameraAcces;
 public class CameraAbleSwitch extends CameraAction{
     float _moveSpeed;
     float _rotateSpeed;
-    public CameraAbleSwitch(CameraAcces camera){
+    public CameraAbleSwitch(ICameraAcces camera){
 	super(camera);
 	_moveSpeed = camera.getMoveSpeed();
 	_rotateSpeed = camera.getRotationSpeed();

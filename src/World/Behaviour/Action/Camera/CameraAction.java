@@ -4,7 +4,7 @@
  */
 package World.Behaviour.Action.Camera;
 
-import Engine.State.Camera.CameraAcces;
+import Engine.State.Camera.ICameraAcces;
 import World.Behaviour.Action.Action;
 
 /**
@@ -12,15 +12,15 @@ import World.Behaviour.Action.Action;
  * @author jappie
  */
 public abstract class CameraAction extends Action {
-    private CameraAcces _camera;
-    protected CameraAction(CameraAcces camera){
+    private ICameraAcces _camera;
+    protected CameraAction(ICameraAcces camera){
 	_camera = camera;
     }
 
     /**
      * @return the _camera
      */
-    protected CameraAcces getCamera() {
+    protected ICameraAcces getCamera() {
 	return _camera;
     }
 }

@@ -22,7 +22,7 @@ import com.jme3.input.KeyInput;
 public class CameraState extends AbstractAppState {
 
     private Application _app;
-    private CameraAcces _flyCam;
+    private ICameraAcces _flyCam;
     private InputManager _inputManager;
     public CameraState() {
     }    
@@ -34,7 +34,7 @@ public class CameraState extends AbstractAppState {
         _flyCam = cam;
     }
     
-    public CameraAcces getCamera() {
+    public ICameraAcces getCamera() {
 	if (_flyCam == null) {
 	    _flyCam = new CameraAcces(_app.getCamera());
 	    _flyCam.setMoveSpeed(200f);

@@ -5,7 +5,7 @@
 package World.Behaviour.Action.Camera;
 
 import Engine.Handler.IReadFloat;
-import Engine.State.Camera.CameraAcces;
+import Engine.State.Camera.ICameraAcces;
 
 /**
  *
@@ -13,7 +13,7 @@ import Engine.State.Camera.CameraAcces;
  */
 public abstract class CameraManupilation extends CameraAction{
     private IReadFloat _float;
-    protected CameraManupilation(CameraAcces camera, IReadFloat floatAcces){
+    protected CameraManupilation(ICameraAcces camera, IReadFloat floatAcces){
 	super(camera);
 	_float = floatAcces;
     }

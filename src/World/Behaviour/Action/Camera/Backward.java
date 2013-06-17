@@ -5,14 +5,14 @@
 package World.Behaviour.Action.Camera;
 
 import Engine.Handler.IReadFloat;
-import Engine.State.Camera.CameraAcces;
+import Engine.State.Camera.ICameraAcces;
 
 /**
  *
  * @author jappie
  */
 public class Backward extends CameraManupilation {
-    public Backward(CameraAcces camera, IReadFloat floatAcces){
+    public Backward(ICameraAcces camera, IReadFloat floatAcces){
 	super(camera, floatAcces);
     }
     public void execute() {

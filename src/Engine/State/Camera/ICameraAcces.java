@@ -14,7 +14,11 @@ import com.jme3.math.Vector3f;
 import java.util.Map;
 
 /**
- *defines a slightly improved interface for flybycam & offers a little more acces to things
+ *defines a slightly improved interface for flybycam & offers a little more acces to things.
+ * Okey this interface seems to be a god interface, but you have to remember that the implementation
+ * camara acces passes most calls trough to either FlyByCam or Camera.
+ * I realy can't dumb this further down. Well maybe remove the Map, but I will do that when the need
+ * arisis.
  * @see com.jme3.input.FlyByCamera
  * @author jappie
  */
@@ -102,4 +106,6 @@ public interface ICameraAcces extends Map<CamAction, IBehavior>, IMoveable, ITel
     
     public Vector3f getDirection();
     public Vector3f getLeft();
+    public Vector3f getUp();
+    public void setFarSight(float value);
 }

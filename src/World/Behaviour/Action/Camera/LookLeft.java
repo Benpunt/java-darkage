@@ -4,16 +4,15 @@
  */
 package World.Behaviour.Action.Camera;
 
-import Engine.State.Camera.CameraAcces;
 import Engine.Handler.IReadFloat;
-import World.Behaviour.Action.Action;
+import Engine.State.Camera.ICameraAcces;
 
 /**
  *
  * @author jappie
  */
 public class LookLeft extends CameraManupilation {
-    public LookLeft(CameraAcces camera, IReadFloat floatAcces){
+    public LookLeft(ICameraAcces camera, IReadFloat floatAcces){
 	super(camera, floatAcces);
     }
     public void execute() {

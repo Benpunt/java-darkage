@@ -4,16 +4,15 @@
  */
 package World.Behaviour.Action.Camera;
 
-import Engine.State.Camera.CameraAcces;
 import Engine.Handler.IReadFloat;
-import World.Behaviour.Action.Action;
+import Engine.State.Camera.ICameraAcces;
 
 /**
  *
  * @author jappie
  */
 public class StrafeRight extends CameraManupilation {
-    public StrafeRight(CameraAcces camera, IReadFloat floatAcces){
+    public StrafeRight(ICameraAcces camera, IReadFloat floatAcces){
 	super(camera, floatAcces);
     }
     public void execute() {
