@@ -29,7 +29,7 @@ import com.jme3.math.Vector3f;
  */
 public class PlayerState extends EngineAccesState {
     private IPhysicalCharacter _player;
-    private static final int _walkSpeed = 50;
+    private static final int _walkSpeed = 200;
     private IBoolHandler _moveKeyPressed = new BoolHandler(false);
     private ICameraAcces _camera;
     
