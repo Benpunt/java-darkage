@@ -219,7 +219,7 @@ public class CameraAcces extends FlyByCamera implements ICameraAcces {
     public void move(Vector3f to) {
 	setLocation(to.addLocal(cam.getLocation()));
     }
-
+    
     public void setLocation(Vector3f where) {
 	cam.setLocation(where);
     }
