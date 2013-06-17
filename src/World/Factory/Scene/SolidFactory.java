@@ -35,6 +35,7 @@ public class SolidFactory{
 	    CollisionShapeFactory.createMeshShape(visual.getNode()), weight
 	);
 	_space.add(controller);
+	
 	return new SolidBody(new PhysicalBody(_space, controller), visual);
     }
 }

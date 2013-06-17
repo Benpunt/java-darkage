@@ -10,7 +10,6 @@ import Engine.State.Camera.ICameraAcces;
 import World.Behaviour.Action.Move.Move;
 import World.Behaviour.Action.Move.TeleportToObject;
 import World.Behaviour.Behavior;
-import World.Behaviour.IBehavior;
 import World.Scene.IPhysicalCharacter;
 import World.Scene.PhysicalCharacter;
 import com.jme3.app.Application;
@@ -30,7 +29,7 @@ public class PlayerState extends EngineAccesState {
         super.initialize(stateManager, app);
 	ICameraAcces camera = stateManager.getState(CameraState.class).getCamera();
 	
-	
+	/*
 	_player = new PhysicalCharacter(
 		getEngine().getSpace(), 
 		new CharacterControl(new CapsuleCollisionShape(1.5f, 6f, 1), 0.05f));
@@ -41,5 +40,6 @@ public class PlayerState extends EngineAccesState {
 		),
 		new TeleportToObject(camera, _player)
 		));
+		*/
     }
 }
