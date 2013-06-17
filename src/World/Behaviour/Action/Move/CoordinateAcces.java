@@ -24,6 +24,13 @@ public abstract class CoordinateAcces extends Action{
 	return _coordinate;
     }
     
+    /**
+     * @param coordinate the _coordinate to set
+     */
+    protected void setCoordinate(Vector3f coordinate) {
+	_coordinate = coordinate;
+    }
+    
     @Override
     public boolean equals(Object to){
 	if(!(to instanceof CoordinateAcces)){
