@@ -45,8 +45,6 @@ public class CameraAcces extends FlyByCamera implements ICameraAcces {
     private float _farSight = 1000f;
     private float _nearSight = 1f;
     private Map<CamAction, IBehavior> _behaviors;
-
-
     
     public enum CamAction {
 	StrafeForward, StrafeBackward, StrafeLeft, StrafeRight,
@@ -221,5 +219,9 @@ public class CameraAcces extends FlyByCamera implements ICameraAcces {
     
     public void setLocation(Vector3f where) {
 	cam.setLocation(where);
+    }
+    
+    public Vector3f getDirection() {
+	return cam.getDirection();
     }
 }

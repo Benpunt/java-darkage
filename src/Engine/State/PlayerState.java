@@ -7,9 +7,11 @@ package Engine.State;
 import Engine.Handler.BoolHandler;
 import Engine.Handler.IBoolHandler;
 import Engine.Handler.IVector3fHandler;
+import Engine.Handler.Vector3fHandler;
 import Engine.State.Camera.CameraAcces.CamAction;
 import Engine.State.Camera.CameraState;
 import Engine.State.Camera.ICameraAcces;
+import World.Behaviour.Action.Move.DynamicMove;
 import World.Behaviour.Action.Move.Move;
 import World.Behaviour.Action.Move.TeleportToObject;
 import World.Behaviour.Action.SetFlag;
@@ -29,11 +31,15 @@ import com.jme3.math.Vector3f;
  */
 public class PlayerState extends EngineAccesState {
     private IPhysicalCharacter _player;
-    private static final int _walkSpeed = 10;
+    private static final int _walkSpeed = 50;
     private IBoolHandler _moveKeyPressed = new BoolHandler(false);
     private ICameraAcces _camera;
     
-    private IVector3fHandler _left, _right, _forward, _backward;
+    private IVector3fHandler 
+	    _left = new Vector3fHandler(), 
+	    _right = new Vector3fHandler(), 
+	    _forward = new Vector3fHandler(), 
+	    _backward = new Vector3fHandler();
     
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
@@ -46,8 +52,8 @@ public class PlayerState extends EngineAccesState {
 	
 	_camera.get(CamAction.StrafeLeft).add(
 	    new Behavior(
-		new Move(
-		    _player, new Vector3f(-_walkSpeed, 0,0), getEngine().getTpfHandler()
+		new DynamicMove(
+		    _player, _left, getEngine().getTpfHandler()
 		),
 		createFlag()
 	    )
@@ -55,8 +61,8 @@ public class PlayerState extends EngineAccesState {
 	
 	_camera.get(CamAction.StrafeRight).add(
 	    new Behavior(
-		new Move(
-		    _player, new Vector3f(_walkSpeed, 0,0), getEngine().getTpfHandler()
+		new DynamicMove(
+		    _player, _right, getEngine().getTpfHandler()
 		),
 		createFlag()
 	    )
@@ -64,8 +70,8 @@ public class PlayerState extends EngineAccesState {
 	
 	_camera.get(CamAction.StrafeForward).add(
 	    new Behavior(
-		new Move(
-		    _player, new Vector3f(0, 0,-_walkSpeed), getEngine().getTpfHandler()
+		new DynamicMove(
+		    _player, _forward, getEngine().getTpfHandler()
 		),
 		createFlag()
 	    )
@@ -73,8 +79,8 @@ public class PlayerState extends EngineAccesState {
 	
 	_camera.get(CamAction.StrafeBackward).add(
 	    new Behavior(
-		new Move(
-		    _player, new Vector3f(0, 0,_walkSpeed), getEngine().getTpfHandler()
+		new DynamicMove(
+		    _player, _backward, getEngine().getTpfHandler()
 		),
 		createFlag()
 	    )
@@ -88,6 +94,11 @@ public class PlayerState extends EngineAccesState {
     
     @Override
     public void update(float tpf) {
+	_left.setVector(_camera.getLeft().mult(_walkSpeed));
+	_right.setVector(_camera.getLeft().mult(_walkSpeed).negate());
+	_forward.setVector(_camera.getDirection().mult(_walkSpeed));
+	_backward.setVector(_camera.getDirection().mult(_walkSpeed).negate());
+	
 	if(_moveKeyPressed.is()){
 	    _moveKeyPressed.set(false);
 	}else{

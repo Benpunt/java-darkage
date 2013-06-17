@@ -99,4 +99,7 @@ public interface ICameraAcces extends Map<CamAction, IBehavior>, IMoveable, ITel
     public void zoomCamera(float value);
     public void riseCamera(float value);
     public void moveCamera(float value, boolean sideways);
+    
+    public Vector3f getDirection();
+    public Vector3f getLeft();
 }
