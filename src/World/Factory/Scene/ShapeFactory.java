@@ -50,4 +50,10 @@ public class ShapeFactory implements IFactory<IShape>{
     public Material getMaterial() {
 	return _material.clone();
     }
+    
+    public IShape createFloor(){
+	Material material = getMaterial();
+	material.setColor("Color", ColorRGBA.randomColor());
+	return Cube.create(material,  new Vector3f(1,1,1), new Vector3f(5000, 1.5f, 5000));
+    }
 }

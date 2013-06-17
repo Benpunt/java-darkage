@@ -10,7 +10,6 @@ import World.Scene.Visual.IBody;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
-import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 
 /**
@@ -35,6 +34,8 @@ public class SolidFactory{
 	    CollisionShapeFactory.createMeshShape(visual.getNode()), weight
 	);
 	_space.add(controller);
+	
+	controller.setPhysicsLocation(visual.getLocation());
 	
 	return new SolidBody(new PhysicalBody(_space, controller), visual);
     }

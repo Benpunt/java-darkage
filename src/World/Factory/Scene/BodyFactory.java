@@ -51,6 +51,14 @@ public class BodyFactory {
 	return body;
     }
     
+    public Body createFloor(){
+	Body body = createBody();
+	IShape shape = _factory.createFloor();
+	body.add(shape);
+	_target.add(body);
+	return body;
+    }
+    
     /**
      * calls the other create body with a null pointer.
      * the other create body will just create a node with

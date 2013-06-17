@@ -4,6 +4,7 @@
  */
 package World.Scene;
 
+import World.Behaviour.Action.Move.TeleportToObject;
 import World.Behaviour.Behavior;
 import World.Scene.Visual.ForceBody;
 import World.Scene.Visual.IBody;
@@ -26,6 +27,10 @@ public class SolidBody extends Presence implements ISolidBody{
 	super(new Behavior(physical, visual));
 	_physical = physical;
 	_visual = visual;
+	add(new Behavior(
+		new TeleportToObject(_visual, this)
+	    )
+	);
     }  
 
     @Override
@@ -36,13 +41,10 @@ public class SolidBody extends Presence implements ISolidBody{
 
     public void setLocation(Vector3f where) {
 	_physical.setLocation(where);
-	_visual.setLocation(where);
     }
 
     public void move(Vector3f to) {
 	_physical.move(to);
-	// let the physics engine handle the movement
-	_visual.move(_physical.getPhysicsBody().getPhysicsLocation());
     }
 
     public PhysicsRigidBody getPhysicsBody() {

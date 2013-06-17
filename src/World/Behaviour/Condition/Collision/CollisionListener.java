@@ -7,6 +7,7 @@ package World.Behaviour.Condition.Collision;
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.GhostControl;
+import com.jme3.scene.Spatial;
 
 /**
  *

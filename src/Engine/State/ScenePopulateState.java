@@ -15,12 +15,12 @@ import World.Factory.IFactory;
 import World.Factory.Scene.BodyFactory;
 import World.Factory.Scene.ShapeFactory;
 import World.Factory.Scene.SolidFactory;
+import World.Scene.ISolidBody;
 import World.Scene.SolidBody;
 import World.Scene.Visual.Body;
 import World.Scene.Visual.IBody;
 import com.jme3.app.Application;
 import com.jme3.app.state.AppStateManager;
-import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
@@ -44,12 +44,21 @@ public class ScenePopulateState extends EngineAccesState{
 	_bodyFactory = new BodyFactory(getEngine().getRootNode(), shapeFactory);
 	SolidFactory solidFactory = new SolidFactory(_space);
 	
+	
+	IBody targets = _bodyFactory.createCubes();
+	targets.move(new Vector3f(0, 100, 0));
 	// ataches them to the physics space & rootnode, but dumps the reference
 	// so it exists but I hardly can influence it.
-	solidFactory.createFromVisual(_bodyFactory.createCubes());
+	solidFactory.createFromVisual(targets);
+	
+	getEngine().getBehaviors().add(targets);
+	
+	Body floor = _bodyFactory.createFloor();
+	floor.setLocation(new Vector3f(0, -100, 0));
+	solidFactory.createFromVisual(floor);
 	
 	_sillyCubes = _bodyFactory.createCubes();
-	_sillyCubes.move(new Vector3f(0f, 100f, 0f));
+	_sillyCubes.move(new Vector3f(0f, 200f, 0f));
 
 	 
 	/** Must add a light to make the lit object visible! */

@@ -26,7 +26,7 @@ public class TeleportToObject extends Teleport{
     
     @Override
     public void execute() {
-	Log.debug("teleporting to object: {0}", _location);
+	Log.verbose("teleporting to object: {0}", _location);
 	setCoordinate(_location.getLocation().add(_offset));
 	super.execute();
     }
