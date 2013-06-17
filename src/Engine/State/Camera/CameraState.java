@@ -4,30 +4,16 @@
  */
 package Engine.State.Camera;
 
-import Engine.Handler.FloatHandler;
-import Engine.Handler.IFloatHandler;
 import UI.BehavioredInput;
 import UI.InputListener;
 import World.Behaviour.Action.App.CursorVisibiltySwitch;
-import World.Behaviour.Action.Camera.Backward;
 import World.Behaviour.Action.Camera.CameraAbleSwitch;
-import World.Behaviour.Action.Camera.Forward;
-import World.Behaviour.Action.Camera.StrafeLeft;
-import World.Behaviour.Action.Camera.StrafeRight;
-import World.Behaviour.Action.Camera.LookDown;
-import World.Behaviour.Action.Camera.LookLeft;
-import World.Behaviour.Action.Camera.LookRight;
-import World.Behaviour.Action.Camera.LookUp;
 import World.Behaviour.Behavior;
-import World.Factory.Factory;
-import World.Factory.IFactory;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
-import com.jme3.input.MouseInput;
-import com.jme3.input.controls.MouseAxisTrigger;
 
 /**
  * replaces thedefault flycamstate so I could change keybindings
@@ -45,10 +31,15 @@ public class CameraState extends AbstractAppState {
      *  This is called by SimpleApplication during initialize().
      */
     void setCamera( CameraAcces cam ) {
-        this._flyCam = cam;
+        _flyCam = cam;
     }
     
     public CameraAcces getCamera() {
+	if (_flyCam == null) {
+	    _flyCam = new CameraAcces(_app.getCamera());
+	    _flyCam.setMoveSpeed(200f);
+	    _flyCam.setFarSight(100000f);
+	}
         return _flyCam;
     }
 
@@ -60,12 +51,8 @@ public class CameraState extends AbstractAppState {
 	_inputManager = app.getInputManager();
         if (_inputManager != null) {
 	    
-            if (_flyCam == null) {
-                _flyCam = new CameraAcces(app.getCamera());
-		_flyCam.setMoveSpeed(200f);
-		_flyCam.setFarSight(100000f);
-	    }
-	    _flyCam.registerInput(_inputManager);
+
+	    getCamera().registerInput(_inputManager);
 	    BehavioredInput input = new BehavioredInput(
 		"mouse capture", 
 		
@@ -75,11 +62,11 @@ public class CameraState extends AbstractAppState {
 	    input.setActionBehavior(
 		new Behavior(
 		    new CursorVisibiltySwitch(_inputManager), // shows cursor (or not)
-		    new CameraAbleSwitch(_flyCam) // disablese cam (or enable)
+		    new CameraAbleSwitch(getCamera()) // disablese cam (or enable)
 		));
 	    InputListener.createAndBind(_inputManager, input);
 	    
-	    _inputManager.setCursorVisible(_flyCam.isDragToRotate() || !isEnabled());
+	    _inputManager.setCursorVisible(getCamera().isDragToRotate() || !isEnabled());
         }               
     }
             
@@ -87,12 +74,12 @@ public class CameraState extends AbstractAppState {
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         
-        _flyCam.setEnabled(enabled);
+        getCamera().setEnabled(enabled);
     }
     
     @Override
     public void cleanup() {
         super.cleanup();
-        _flyCam.unregisterInput();        
+        getCamera().unregisterInput();        
     }
 }

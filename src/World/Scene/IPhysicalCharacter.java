@@ -4,10 +4,12 @@
  */
 package World.Scene;
 
+import com.jme3.bullet.control.CharacterControl;
+
 /**
  *
  * @author jappie
  */
 public interface IPhysicalCharacter extends IPresence{
-    
+    CharacterControl getControll();
 }

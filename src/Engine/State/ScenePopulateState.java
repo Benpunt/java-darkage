@@ -44,8 +44,10 @@ public class ScenePopulateState extends EngineAccesState{
 	_bodyFactory = new BodyFactory(getEngine().getRootNode(), shapeFactory);
 	SolidFactory solidFactory = new SolidFactory(_space);
 	
-	
+	// ataches them to the physics space & rootnode, but dumps the reference
+	// so it exists but I hardly can influence it.
 	solidFactory.createFromVisual(_bodyFactory.createCubes());
+	
 	_sillyCubes = _bodyFactory.createCubes();
 	_sillyCubes.move(new Vector3f(0f, 100f, 0f));
 

@@ -31,13 +31,16 @@ public class PlayerState extends EngineAccesState {
 	
 	_player = new PhysicalCharacter(
 		getEngine().getSpace(), 
-		new CharacterControl(new CapsuleCollisionShape(1.5f, 6f, 1), 0.05f));
+		new CharacterControl(new CapsuleCollisionShape(1.5f, 6f, 1), 0.0000001f));
 	
-	camera.get(CamAction.StrafeLeft).add(new Behavior(
+	camera.get(CamAction.StrafeLeft).add(
+	    new Behavior(
 		new Move(
-		    _player, new Vector3f(1,0,0), getEngine().getTpfHandler()
-		),
-		new TeleportToObject(camera, _player)
-		));
+		    _player, new Vector3f(-100,0,0), getEngine().getTpfHandler()
+		)
+	    )
+	);
+	
+	getEngine().getBehaviors().add(new Behavior(new TeleportToObject(camera, _player)));
     }
 }
