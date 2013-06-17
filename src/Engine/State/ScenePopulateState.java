@@ -15,6 +15,7 @@ import World.Factory.IFactory;
 import World.Factory.Scene.BodyFactory;
 import World.Factory.Scene.ShapeFactory;
 import World.Factory.Scene.SolidFactory;
+import World.Factory.Terrain.TerrainFactory;
 import World.Scene.ISolidBody;
 import World.Scene.SolidBody;
 import World.Scene.Visual.Body;
@@ -25,6 +26,7 @@ import com.jme3.bullet.PhysicsSpace;
 import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
+import com.jme3.terrain.geomipmap.TerrainQuad;
 
 /**
  * adds stuff to the scene/world. Initilizes behavior
@@ -44,18 +46,11 @@ public class ScenePopulateState extends EngineAccesState{
 	_bodyFactory = new BodyFactory(getEngine().getRootNode(), shapeFactory);
 	SolidFactory solidFactory = new SolidFactory(_space);
 	
+	TerrainQuad terrain = new TerrainFactory(getEngine().getAssetManager(), "terain").create();
+	terrain.setLocalTranslation(0, -100, 0);
+	getEngine().getRootNode().attachChild(terrain);
 	
-	IBody targets = _bodyFactory.createCubes();
-	targets.move(new Vector3f(0, 100, 0));
-	// ataches them to the physics space & rootnode, but dumps the reference
-	// so it exists but I hardly can influence it.
-	solidFactory.createFromVisual(targets);
-	
-	getEngine().getBehaviors().add(targets);
-	
-	Body floor = _bodyFactory.createFloor();
-	floor.setLocation(new Vector3f(0, -100, 0));
-	solidFactory.createFromVisual(floor);
+	solidFactory.createFromVisual(new Body(terrain));
 	
 	_sillyCubes = _bodyFactory.createCubes();
 	_sillyCubes.move(new Vector3f(0f, 200f, 0f));
@@ -66,10 +61,6 @@ public class ScenePopulateState extends EngineAccesState{
 	sun.setDirection(new Vector3f(1,0,-2).normalizeLocal());
 	sun.setColor(ColorRGBA.White);
 	getEngine().getRootNode().addLight(sun);
-	
-		
-	Body map = _bodyFactory.createMap();
-	map.getNode().move(-2500, -6000f, -2500f);	
 	
 	// aperantly you look at the z axis on the begining
 	Body justSomeCubes = _bodyFactory.createCubes();
