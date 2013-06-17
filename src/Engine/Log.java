@@ -41,6 +41,26 @@ public class Log {
     }
     
     public static void write(String message){
-	LOGGER.info(message);
+	write(Level.INFO, message);
+    }
+    
+    public static void debug(String message){
+	write(Level.FINER, message);
+    }
+    
+    public static void verbose(String message){
+	write(Level.FINEST, message);
+    }
+    
+        public static void write(String message, Object ... params){
+	write(Level.INFO, message, params);
+    }
+    
+    public static void debug(String message, Object ... params){
+	write(Level.FINER, message, params);
+    }
+    
+    public static void verbose(String message, Object ... params){
+	write(Level.FINEST, message, params);
     }
 }
