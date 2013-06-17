@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Engine;
 
 import java.util.logging.ConsoleHandler;
@@ -9,7 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Wraps arround the java.util.logging.Logger, just to save some typing time.
+ * & it makes all the loging go trough here so sutting it down is easy
  * @author jappie
  */
 public class Log {
@@ -29,18 +26,15 @@ public class Log {
     private Log(){
 	
     }
-    public static Logger get(){
-	return LOGGER;
-    }
-    public static void write(Level severity, String message, Object ... params){
+    private static void write(Level severity, String message, Object ... params){
 	LOGGER.log(severity, message, params);
     }
     
-    public static void write(Level severity, String message){
+    private static void write(Level severity, String message){
 	LOGGER.log(severity, message);
     }
     
-    public static void write(String message){
+    private static void write(String message){
 	write(Level.INFO, message);
     }
     
@@ -52,7 +46,7 @@ public class Log {
 	write(Level.FINEST, message);
     }
     
-        public static void write(String message, Object ... params){
+    public static void write(String message, Object ... params){
 	write(Level.INFO, message, params);
     }
     

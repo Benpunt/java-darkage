@@ -9,7 +9,6 @@ import World.Behaviour.Condition.Condition;
 import World.Scene.ISpatialAcces;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.util.CollisionShapeFactory;
-import java.util.logging.Level;
 /**
  * This setup is the fastest i could think off
  * every spacial gets its own listener. The listener returns true if it colides & resets itself
@@ -33,7 +32,7 @@ public class Collision extends Condition {
 	_listener.setSpatial(_target.getSpatial()); // update the ghost controll
 	boolean colides = _listener.HasColided();
 	
-	Log.write(Level.FINEST, "{1} is colliding: {0}. Overlapping count: {2}", 
+	Log.verbose("{1} is colliding: {0}. Overlapping count: {2}", 
 		colides, _target.getSpatial(), _listener.getOverlappingCount());
 	return colides;
     }
