@@ -4,30 +4,16 @@
  */
 package Engine.State.Camera;
 
-import Engine.Handler.FloatHandler;
-import Engine.Handler.IFloatHandler;
 import UI.BehavioredInput;
 import UI.InputListener;
 import World.Behaviour.Action.App.CursorVisibiltySwitch;
-import World.Behaviour.Action.Camera.Backward;
 import World.Behaviour.Action.Camera.CameraAbleSwitch;
-import World.Behaviour.Action.Camera.Forward;
-import World.Behaviour.Action.Camera.StrafeLeft;
-import World.Behaviour.Action.Camera.StrafeRight;
-import World.Behaviour.Action.Camera.LookDown;
-import World.Behaviour.Action.Camera.LookLeft;
-import World.Behaviour.Action.Camera.LookRight;
-import World.Behaviour.Action.Camera.LookUp;
 import World.Behaviour.Behavior;
-import World.Factory.Factory;
-import World.Factory.IFactory;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.input.InputManager;
 import com.jme3.input.KeyInput;
-import com.jme3.input.MouseInput;
-import com.jme3.input.controls.MouseAxisTrigger;
 
 /**
  * replaces thedefault flycamstate so I could change keybindings
