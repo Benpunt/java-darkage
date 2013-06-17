@@ -44,9 +44,8 @@ public class ScenePopulateState extends EngineAccesState{
 	_bodyFactory = new BodyFactory(getEngine().getRootNode(), shapeFactory);
 	SolidFactory solidFactory = new SolidFactory(_space);
 	
-	try{
+	
 	solidFactory.createFromVisual(_bodyFactory.createCubes());
-	}catch(ExceptionInInitializerError e){}
 	_sillyCubes = _bodyFactory.createCubes();
 	_sillyCubes.move(new Vector3f(0f, 100f, 0f));
 

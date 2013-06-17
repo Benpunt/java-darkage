@@ -29,7 +29,6 @@ public class PlayerState extends EngineAccesState {
         super.initialize(stateManager, app);
 	ICameraAcces camera = stateManager.getState(CameraState.class).getCamera();
 	
-	/*
 	_player = new PhysicalCharacter(
 		getEngine().getSpace(), 
 		new CharacterControl(new CapsuleCollisionShape(1.5f, 6f, 1), 0.05f));
@@ -40,6 +39,5 @@ public class PlayerState extends EngineAccesState {
 		),
 		new TeleportToObject(camera, _player)
 		));
-		*/
     }
 }
