@@ -43,5 +43,9 @@ public class PhysicalCharacter extends PhysicsAcces implements IPhysicalCharacte
     public Vector3f getLocation() {
 	return _character.getPhysicsLocation();
     }
+
+    public CharacterControl getControll() {
+	return _character;
+    }
     
 }
