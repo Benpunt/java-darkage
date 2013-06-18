@@ -20,7 +20,8 @@ import com.jme3.texture.Texture.WrapMode;
  * @author jappie
  */
 public class TerrainFactory extends AssetAccesor implements IFactory<TerrainQuad> {
-
+    private static final int STRECTCH = 80;
+    private static final int NOISE_ACCENT = 1;
     private String _seed;
     private IHeightMapFactory _heightMapFactory;
     private static final int DEFAULT_CHUNK_SIZE = 513,
@@ -38,7 +39,7 @@ public class TerrainFactory extends AssetAccesor implements IFactory<TerrainQuad
 
 	TerrainQuad terrain = new TerrainQuad(_seed, _patchSize, _size, _heightMapFactory.create());
 	terrain.setMaterial(createMaterial());
-	terrain.setLocalScale(30f, 1f, 30);
+	terrain.setLocalScale(STRECTCH, NOISE_ACCENT, STRECTCH);
 	return terrain;
     }
 
