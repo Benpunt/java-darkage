@@ -51,16 +51,18 @@ public class ScenePopulateState extends EngineAccesState{
 	getEngine().getRootNode().attachChild(terrain);
 	
 	solidFactory.createFromVisual(new Body(terrain));
-	
-	_sillyCubes = _bodyFactory.createCubes();
-	_sillyCubes.move(new Vector3f(0f, 200f, 0f));
-
 	 
 	/** Must add a light to make the lit object visible! */
 	DirectionalLight sun = new DirectionalLight();
 	sun.setDirection(new Vector3f(1,0,-2).normalizeLocal());
 	sun.setColor(ColorRGBA.White);
 	getEngine().getRootNode().addLight(sun);
+	//createTestCubes();
+    }
+    private void createTestCubes(){
+		
+	_sillyCubes = _bodyFactory.createCubes();
+	_sillyCubes.move(new Vector3f(0f, 200f, 0f));
 	
 	// aperantly you look at the z axis on the begining
 	Body justSomeCubes = _bodyFactory.createCubes();
@@ -94,10 +96,7 @@ public class ScenePopulateState extends EngineAccesState{
 	justSomeCubes.move(new Vector3f(-450, 5000f, 0));
 	justSomeCubes.getNode().scale(3f);
 	
-	initBehavior();
-    }
-    
-    private void initBehavior(){
+	// some testing behavior
 	Behavior onCollision = new Behavior(
 	    new Collision(
 		_space, 
@@ -163,7 +162,6 @@ public class ScenePopulateState extends EngineAccesState{
 	getEngine().getBehaviors().add(
 	    _sillyCubes
 	);
-	
     }
     
 

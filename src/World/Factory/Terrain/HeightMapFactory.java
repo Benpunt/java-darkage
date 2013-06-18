@@ -21,21 +21,20 @@ public class HeightMapFactory extends AssetAccesor implements IHeightMapFactory{
 
     public HeightMapFactory(AssetManager assetManager, String seed, Vector2f size){
 	super(assetManager);
-	_noise = new Noise(seed.hashCode()+100);
+	int hasCode = seed.hashCode()+100;
+	Log.debug("Creating noise for the heightmap with seed: {0}", hasCode);
+	_noise = new Noise(hasCode);
 	_size = size;
     }
     
     public float[] create() {
-	float[] value = new float[Math.round(_size.x * _size.y) +1];
+	float[] value = new float[Math.round(_size.x * _size.y)];
 	
 	for(int x = 0; x < _size.x; x++){
 	    for(int y = 0; y < _size.y; y++){
-		value[Math.round(x*_size.x + y)] = _noise.turbulence2(x, y, 10)*30;
+		value[Math.round(x*_size.x + y)] = _noise.turbulence2(x, y, 1000)*50;
 	    }
 	}
-	Log.debug("terain generation: {0}", value[10]);
-	Log.debug("terain generation: {0}", value[4]);
-	Log.debug("terain generation: {0}", value[100]);
 	return value;
     }
     @Override
