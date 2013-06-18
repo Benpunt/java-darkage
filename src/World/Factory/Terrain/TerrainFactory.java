@@ -8,6 +8,7 @@ import World.Factory.AssetAccesor;
 import World.Factory.IFactory;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
+import com.jme3.math.Vector2f;
 import com.jme3.terrain.geomipmap.TerrainQuad;
 import com.jme3.terrain.heightmap.AbstractHeightMap;
 import com.jme3.terrain.heightmap.ImageBasedHeightMap;
@@ -21,8 +22,8 @@ import com.jme3.texture.Texture.WrapMode;
 public class TerrainFactory extends AssetAccesor implements IFactory<TerrainQuad> {
 
     private String _seed;
-    private IFactory<float[]> _heightMapFactory;
-    private static final int DEFAULT_CHUNK_SIZE = 4097,
+    private IHeightMapFactory _heightMapFactory;
+    private static final int DEFAULT_CHUNK_SIZE = 513,
 	    DEFAULT_PATCH_SIZE = 257;
     private int _size = DEFAULT_CHUNK_SIZE,
 	    _patchSize = DEFAULT_PATCH_SIZE;
@@ -30,14 +31,14 @@ public class TerrainFactory extends AssetAccesor implements IFactory<TerrainQuad
     public TerrainFactory(AssetManager assetManager, String seed) {
 	super(assetManager);
 	_seed = seed;
-	_heightMapFactory = new HeightMapFactory(assetManager);
+	_heightMapFactory = new HeightMapFactory(assetManager, seed, new Vector2f(_size, _size));
     }
 
     public TerrainQuad create() {
 
 	TerrainQuad terrain = new TerrainQuad(_seed, _patchSize, _size, _heightMapFactory.create());
 	terrain.setMaterial(createMaterial());
-	terrain.setLocalScale(2f, 1f, 2f);
+	terrain.setLocalScale(30f, 1f, 30);
 	return terrain;
     }
 
@@ -46,6 +47,7 @@ public class TerrainFactory extends AssetAccesor implements IFactory<TerrainQuad
      */
     public void setSize(int size) {
 	this._size = size;
+	_heightMapFactory.setSize(new Vector2f(size, size));
     }
 
     private Material createMaterial() {
