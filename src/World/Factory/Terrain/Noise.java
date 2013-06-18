@@ -78,8 +78,9 @@ public class Noise
         Random rand = new Random(seed);
 
         // Calculate the table of psuedo-random coefficients.
-        for(i = 0; i < DEFAULT_SAMPLE_SIZE; i++)
-            p_imp[i] = i;
+        for(i = 0; i < DEFAULT_SAMPLE_SIZE; i++) {
+	    p_imp[i] = i;
+	}
 
         // generate the psuedo-random permutation table.
         while(--i > 0)
