@@ -21,6 +21,7 @@ import com.jme3.texture.Texture.WrapMode;
 public class TerrainFactory extends AssetAccesor implements IFactory<TerrainQuad> {
 
     private String _seed;
+    private IFactory<float[]> _heightMapFactory;
     private static final int DEFAULT_CHUNK_SIZE = 4097,
 	    DEFAULT_PATCH_SIZE = 257;
     private int _size = DEFAULT_CHUNK_SIZE,
@@ -29,13 +30,12 @@ public class TerrainFactory extends AssetAccesor implements IFactory<TerrainQuad
     public TerrainFactory(AssetManager assetManager, String seed) {
 	super(assetManager);
 	_seed = seed;
+	_heightMapFactory = new HeightMapFactory(assetManager);
     }
 
     public TerrainQuad create() {
-	AbstractHeightMap heightmap = new ImageBasedHeightMap(getAsset().loadTexture(
-		"Textures/Terrain/splat/mountains512.png").getImage());
-	heightmap.load();
-	TerrainQuad terrain = new TerrainQuad(_seed, _patchSize, _size, heightmap.getHeightMap());
+
+	TerrainQuad terrain = new TerrainQuad(_seed, _patchSize, _size, _heightMapFactory.create());
 	terrain.setMaterial(createMaterial());
 	terrain.setLocalScale(2f, 1f, 2f);
 	return terrain;
